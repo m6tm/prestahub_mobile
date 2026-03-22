@@ -1,0 +1,12 @@
+buttons:
+  cancel: Annuler
+  confirm: Confirmer
+  save: Enregistrer
+  back: Retour
+errors:
+  generic: Une erreur est survenue. Veuillez réessayer.
+  no_connection: Pas de connexion internet.
+labels:
+  loading: Chargement...
+  success: Succès
+  required: Champ obligatoire

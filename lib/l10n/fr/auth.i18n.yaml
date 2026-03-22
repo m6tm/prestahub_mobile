@@ -1,0 +1,15 @@
+login:
+  title: Connexion
+  subtitle: Bienvenue sur PrestaHub
+  email_label: Adresse email
+  password_label: Mot de passe
+  forgot_password: Mot de passe oublié ?
+  submit: Se connecter
+signup:
+  title: Inscription
+  subtitle: Rejoignez-nous pour commencer
+  submit: S'inscrire
+welcome: "Bienvenue $name !"
+logout:
+  confirm_title: Déconnexion
+  confirm_message: Êtes-vous sûr de vouloir vous déconnecter ?

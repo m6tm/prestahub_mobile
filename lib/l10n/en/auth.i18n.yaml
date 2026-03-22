@@ -1,0 +1,15 @@
+login:
+  title: Login
+  subtitle: Welcome to PrestaHub
+  email_label: Email address
+  password_label: Password
+  forgot_password: Forgot password?
+  submit: Sign in
+signup:
+  title: Sign Up
+  subtitle: Join us to get started
+  submit: Join
+welcome: "Welcome $name !"
+logout:
+  confirm_title: Log Out
+  confirm_message: Are you sure you want to log out?

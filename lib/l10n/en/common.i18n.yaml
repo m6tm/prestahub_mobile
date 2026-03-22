@@ -1,0 +1,12 @@
+buttons:
+  cancel: Cancel
+  confirm: Confirm
+  save: Save
+  back: Back
+errors:
+  generic: Something went wrong. Please try again.
+  no_connection: No internet connection.
+labels:
+  loading: Loading...
+  success: Success
+  required: Required field
