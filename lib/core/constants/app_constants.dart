@@ -1,17 +1,16 @@
+import 'package:prestahub/core/network/api_config.dart';
+
 class AppConstants {
   // App Info
   static const String appName = 'PrestaHub';
   static const String appVersion = '1.0.0';
 
-  // Supabase
-  static const String supabaseUrl = String.fromEnvironment(
-    'SUPABASE_URL',
-    defaultValue: '',
-  );
-  static const String supabaseAnonKey = String.fromEnvironment(
-    'SUPABASE_ANON_KEY',
-    defaultValue: '',
-  );
+  // API
+  static String get apiBaseUrl => ApiConfig.baseUrl;
+
+  // Environnement
+  static bool get isDev => ApiConfig.isDev;
+  static bool get isProd => ApiConfig.isProd;
 
   // Routes
   static const String routeSplash = '/';

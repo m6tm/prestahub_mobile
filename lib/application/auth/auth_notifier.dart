@@ -1,42 +1,40 @@
+import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:prestahub/data/repositories/auth_repository.dart';
 import 'package:prestahub/domain/models/user_model.dart';
+import 'package:prestahub/domain/repositories/auth_repository_interface.dart';
 import 'package:prestahub/core/enums/user_role.dart';
 
-// Auth State Notifier
+/// Notifier pour gérer l'état de l'authentification de l'utilisateur.
 class AuthNotifier extends AsyncNotifier<UserModel?> {
   @override
   Future<UserModel?> build() async {
-    final repo = ref.watch(authRepositoryProvider);
-
-    // Listen to auth changes
-    ref.listen(authStateChangesProvider, (_, next) async {
-      next.whenData((event) async {
-        if (event.event == AuthChangeEvent.signedIn) {
-          state = const AsyncLoading();
-          state = await AsyncValue.guard(() => repo.getCurrentUserProfile());
-        } else if (event.event == AuthChangeEvent.signedOut) {
-          state = const AsyncData(null);
-        }
-      });
-    });
-
-    return repo.getCurrentUserProfile();
+    final IAuthRepository repo = ref.watch(authRepositoryProvider);
+    final result = await repo.getCurrentUserProfile();
+    
+    return result.fold(
+      (failure) => null, // Ou gérer l'erreur autrement
+      (user) => user,
+    );
   }
 
+  /// Connecte un utilisateur.
   Future<void> signInWithEmail({
     required String email,
     required String password,
   }) async {
     state = const AsyncLoading();
-    final repo = ref.read(authRepositoryProvider);
-    state = await AsyncValue.guard(() async {
-      await repo.signInWithEmail(email: email, password: password);
-      return repo.getCurrentUserProfile();
-    });
+    final IAuthRepository repo = ref.read(authRepositoryProvider);
+    
+    final result = await repo.signInWithEmail(email: email, password: password);
+    
+    state = result.fold(
+      (failure) => AsyncValue.error(failure.message, StackTrace.current),
+      (user) => AsyncValue.data(user),
+    );
   }
 
+  /// Inscrit un utilisateur.
   Future<void> signUpWithEmail({
     required String email,
     required String password,
@@ -46,34 +44,40 @@ class AuthNotifier extends AsyncNotifier<UserModel?> {
     String? lastName,
   }) async {
     state = const AsyncLoading();
-    final repo = ref.read(authRepositoryProvider);
-    state = await AsyncValue.guard(() async {
-      await repo.signUpWithEmail(
-        email: email,
-        password: password,
-        role: role.value,
-        phone: phone,
-        firstName: firstName,
-        lastName: lastName,
-      );
-      return repo.getCurrentUserProfile();
-    });
+    final IAuthRepository repo = ref.read(authRepositoryProvider);
+    
+    final result = await repo.signUpWithEmail(
+      email: email,
+      password: password,
+      role: role.value,
+      phone: phone,
+      firstName: firstName,
+      lastName: lastName,
+    );
+    
+    state = result.fold(
+      (failure) => AsyncValue.error(failure.message, StackTrace.current),
+      (user) => AsyncValue.data(user),
+    );
   }
 
+  /// Déconnecte l'utilisateur actuel.
   Future<void> signOut() async {
-    final repo = ref.read(authRepositoryProvider);
-    await repo.signOut();
-    state = const AsyncData(null);
+    state = const AsyncLoading();
+    final IAuthRepository repo = ref.read(authRepositoryProvider);
+    
+    final result = await repo.signOut();
+    
+    state = result.fold(
+      (failure) => AsyncValue.error(failure.message, StackTrace.current),
+      (_) => const AsyncValue.data(null),
+    );
   }
 }
 
-// Providers
+/// Providers
 final authNotifierProvider =
     AsyncNotifierProvider<AuthNotifier, UserModel?>(() => AuthNotifier());
-
-final authStateChangesProvider = StreamProvider<AuthState>((ref) {
-  return ref.watch(authRepositoryProvider).authStateChanges;
-});
 
 final currentUserProvider = Provider<UserModel?>((ref) {
   return ref.watch(authNotifierProvider).valueOrNull;

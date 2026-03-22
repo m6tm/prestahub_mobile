@@ -1,36 +1,60 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:prestahub/core/error/failures.dart';
+import 'package:prestahub/core/network/api_endpoints.dart';
+import 'package:prestahub/core/network/http_client.dart';
+import 'package:prestahub/core/network/network_module.dart';
+import 'package:prestahub/data/services/auth_local_service.dart';
+import 'package:prestahub/data/services/service_module.dart';
 import 'package:prestahub/domain/models/user_model.dart';
+import 'package:prestahub/domain/repositories/auth_repository_interface.dart';
 
-final supabaseClientProvider = Provider<SupabaseClient>((ref) {
-  return Supabase.instance.client;
+/// Implémentation de IAuthRepository utilisant HttpClient.
+final authRepositoryProvider = Provider<IAuthRepository>((ref) {
+  return AuthRepository(
+    ref.watch(httpClientProvider),
+    ref.watch(authLocalServiceProvider),
+  );
 });
 
-final authRepositoryProvider = Provider<AuthRepository>((ref) {
-  return AuthRepository(ref.watch(supabaseClientProvider));
-});
+class AuthRepository implements IAuthRepository {
+  final HttpClient _client;
+  final AuthLocalService _authLocalService;
 
-class AuthRepository {
-  final SupabaseClient _client;
+  AuthRepository(this._client, this._authLocalService);
 
-  AuthRepository(this._client);
-
-  User? get currentUser => _client.auth.currentUser;
-  bool get isAuthenticated => currentUser != null;
-
-  Stream<AuthState> get authStateChanges => _client.auth.onAuthStateChange;
-
-  Future<AuthResponse> signInWithEmail({
+  /// Authentifie un utilisateur avec son email et mot de passe.
+  Future<Either<Failure, UserModel>> signInWithEmail({
     required String email,
     required String password,
   }) async {
-    return await _client.auth.signInWithPassword(
-      email: email,
-      password: password,
-    );
+    try {
+      final response = await _client.post(
+        ApiEndpoints.login,
+        data: {
+          'email': email,
+          'password': password,
+        },
+      );
+
+      final user = UserModel.fromMap(response.data['user']);
+      final token = response.data['token'];
+      final refreshToken = response.data['refresh_token'];
+      
+      if (token != null) {
+        await _authLocalService.saveToken(token);
+      }
+      if (refreshToken != null) {
+        await _authLocalService.saveRefreshToken(refreshToken);
+      }
+      return Right(user);
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
 
-  Future<AuthResponse> signUpWithEmail({
+  /// Inscrit un nouvel utilisateur.
+  Future<Either<Failure, UserModel>> signUpWithEmail({
     required String email,
     required String password,
     required String role,
@@ -38,37 +62,98 @@ class AuthRepository {
     String? firstName,
     String? lastName,
   }) async {
-    final response = await _client.auth.signUp(
-      email: email,
-      password: password,
-      phone: phone,
-      data: {
-        'role': role,
-        'first_name': firstName,
-        'last_name': lastName,
-      },
-    );
-    return response;
+    try {
+      final response = await _client.post(
+        ApiEndpoints.register,
+        data: {
+          'email': email,
+          'password': password,
+          'role': role,
+          'phone': phone,
+          'first_name': firstName,
+          'last_name': lastName,
+        },
+      );
+
+      final user = UserModel.fromMap(response.data['user']);
+      final token = response.data['token'];
+      final refreshToken = response.data['refresh_token'];
+
+      if (token != null) {
+        await _authLocalService.saveToken(token);
+      }
+      if (refreshToken != null) {
+        await _authLocalService.saveRefreshToken(refreshToken);
+      }
+      return Right(user);
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
 
-  Future<void> signOut() async {
-    await _client.auth.signOut();
+  /// Déconnecte l'utilisateur actuel.
+  Future<Either<Failure, void>> signOut() async {
+    try {
+      await _client.post(ApiEndpoints.logout);
+      await _authLocalService.clearTokens();
+      return const Right(null);
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
 
-  Future<void> resetPasswordForEmail(String email) async {
-    await _client.auth.resetPasswordForEmail(email);
+  /// Récupère le profil de l'utilisateur actuel.
+  Future<Either<Failure, UserModel?>> getCurrentUserProfile() async {
+    try {
+      final response = await _client.get(ApiEndpoints.me);
+      if (response.data == null) return const Right(null);
+      
+      final user = UserModel.fromMap(response.data['user']);
+      return Right(user);
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
 
-  Future<UserModel?> getCurrentUserProfile() async {
-    final user = currentUser;
-    if (user == null) return null;
+  /// Demande une réinitialisation de mot de passe.
+  Future<Either<Failure, void>> resetPasswordForEmail(String email) async {
+    try {
+      await _client.post(ApiEndpoints.resetPassword, data: {'email': email});
+      return const Right(null);
+    } on Exception catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
 
-    final data = await _client
-        .from('profiles')
-        .select()
-        .eq('id', user.id)
-        .single();
+  /// Rafraîchit le jeton d'accès actuel.
+  @override
+  Future<Either<Failure, String>> refreshToken() async {
+    try {
+      final oldRefreshToken = _authLocalService.getRefreshToken();
+      if (oldRefreshToken == null) {
+        return const Left(AuthFailure('No refresh token available'));
+      }
 
-    return UserModel.fromMap(data);
+      final response = await _client.post(
+        ApiEndpoints.refreshToken,
+        data: {'refresh_token': oldRefreshToken},
+      );
+
+      final newToken = response.data['token'];
+      final newRefreshToken = response.data['refresh_token'];
+
+      if (newToken != null) {
+        await _authLocalService.saveToken(newToken);
+      }
+      if (newRefreshToken != null) {
+        await _authLocalService.saveRefreshToken(newRefreshToken);
+      }
+
+      return Right(newToken ?? '');
+    } on Exception catch (e) {
+      // En cas d'échec du rafraîchissement, on vide les jetons
+      await _authLocalService.clearTokens();
+      return Left(ServerFailure(e.toString()));
+    }
   }
 }
