@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 class PrestaHubTheme {
   // Light Mode Colors
-  static const Color primary = Color(0xFF6D28D9);
-  static const Color primaryHover = Color(0xFF5B21B6);
+  static const Color primary = Color(0xFF651BE4);
+  static const Color primaryHover = Color(0xFF5316C2);
   static const Color primaryContent = Color(0xFFFFFFFF);
 
   static const Color secondary = Color(0xFF8B5CF6);
@@ -54,8 +54,8 @@ class PrestaHubTheme {
       onError: Colors.white,
     ),
     scaffoldBackgroundColor: backgroundLight,
-    fontFamily: GoogleFonts.montserrat().fontFamily,
-    textTheme: GoogleFonts.montserratTextTheme().apply(
+    fontFamily: GoogleFonts.inter().fontFamily,
+    textTheme: GoogleFonts.interTextTheme().apply(
       bodyColor: textLight,
       displayColor: primary,
     ),
@@ -70,17 +70,13 @@ class PrestaHubTheme {
         backgroundColor: primary,
         foregroundColor: primaryContent,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
     cardTheme: CardThemeData(
       color: surfaceLight,
       elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
   );
 
@@ -100,8 +96,8 @@ class PrestaHubTheme {
       brightness: Brightness.dark,
     ),
     scaffoldBackgroundColor: backgroundDark,
-    fontFamily: GoogleFonts.montserrat().fontFamily,
-    textTheme: GoogleFonts.montserratTextTheme(ThemeData.dark().textTheme).apply(
+    fontFamily: GoogleFonts.inter().fontFamily,
+    textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme).apply(
       bodyColor: textDark,
       displayColor: primaryDark,
     ),
@@ -116,17 +112,13 @@ class PrestaHubTheme {
         backgroundColor: primaryDark,
         foregroundColor: backgroundDark,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
     cardTheme: CardThemeData(
       color: surfaceDark,
       elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
   );
 }
