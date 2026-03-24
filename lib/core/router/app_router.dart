@@ -7,6 +7,9 @@ import 'package:prestahub/core/enums/user_role.dart';
 import 'package:prestahub/presentation/splash/splash_screen.dart';
 import 'package:prestahub/presentation/onboarding/onboarding_screen.dart';
 
+import 'package:prestahub/presentation/auth/login/login_screen.dart';
+import 'package:prestahub/presentation/auth/signup/signup_screen.dart';
+
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(isAuthenticatedProvider);
   final role = ref.watch(userRoleProvider);
@@ -53,8 +56,17 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: AppConstants.routeOnboarding,
         builder: (context, state) => const OnboardingScreen(),
       ),
+      GoRoute(
+        path: AppConstants.routeLogin,
+        builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeRegister,
+        builder: (context, state) => const SignupScreen(),
+      ),
     ],
     errorBuilder: (context, state) =>
         Scaffold(body: Center(child: Text('Page non trouvée: ${state.error}'))),
   );
 });
+

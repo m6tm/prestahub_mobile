@@ -1,6 +1,15 @@
 login:
   title: Connexion
-  subtitle: Bienvenue sur PrestaHub
+  welcome_title: Bon retour parmi nous
+  welcome_subtitle: Entrez vos coordonnées pour continuer
+  email_phone_label: Email ou Numéro de téléphone
+  email_phone_placeholder: Entrez votre email ou téléphone
+  continue_button: Continuer
+  alternative_title: CONNEXION ALTERNATIVE
+  otp_button: OTP
+  password_button: Mot de passe
+  new_user_text: "Nouveau sur Prestahub ? "
+  create_account_link: Créer un compte
   email_label: Adresse email
   password_label: Mot de passe
   forgot_password: Mot de passe oublié ?
@@ -8,7 +17,24 @@ login:
 signup:
   title: Inscription
   subtitle: Rejoignez-nous pour commencer
-  submit: S'inscrire
+  subtitle_ecosystem: Rejoignez notre écosystème professionnel dès aujourd'hui
+  role_client: Client
+  role_professional: Professionnel
+  fullname_label: Nom complet
+  fullname_placeholder: Jean Dupont
+  email_label: Adresse email
+  email_placeholder: jean.dupont@exemple.com
+  phone_label: Numéro de téléphone
+  phone_placeholder: "+33 6 12 34 56 78"
+  password_label: Mot de passe
+  password_placeholder: "••••••••"
+  submit: Créer un compte
+  social_divider: OU CONTINUER AVEC
+  social:
+    google: Google
+    apple: Apple
+  already_have_account_text: "Vous avez déjà un compte ? "
+  login_link: Se connecter
 welcome: "Bienvenue $name !"
 logout:
   confirm_title: Déconnexion

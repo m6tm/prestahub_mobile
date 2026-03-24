@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 60 (30 per locale)
+/// Strings: 110 (55 per locale)
 ///
-/// Built on 2026-03-24 at 12:42 UTC
+/// Built on 2026-03-24 at 15:35 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -199,7 +199,16 @@ class _TranslationsAuthLoginFr {
 
 	// Translations
 	String get title => 'Connexion';
-	String get subtitle => 'Bienvenue sur PrestaHub';
+	String get welcomeTitle => 'Bon retour parmi nous';
+	String get welcomeSubtitle => 'Entrez vos coordonnées pour continuer';
+	String get emailPhoneLabel => 'Email ou Numéro de téléphone';
+	String get emailPhonePlaceholder => 'Entrez votre email ou téléphone';
+	String get continueButton => 'Continuer';
+	String get alternativeTitle => 'CONNEXION ALTERNATIVE';
+	String get otpButton => 'OTP';
+	String get passwordButton => 'Mot de passe';
+	String get newUserText => 'Nouveau sur Prestahub ? ';
+	String get createAccountLink => 'Créer un compte';
 	String get emailLabel => 'Adresse email';
 	String get passwordLabel => 'Mot de passe';
 	String get forgotPassword => 'Mot de passe oublié ?';
@@ -215,7 +224,22 @@ class _TranslationsAuthSignupFr {
 	// Translations
 	String get title => 'Inscription';
 	String get subtitle => 'Rejoignez-nous pour commencer';
-	String get submit => 'S\'inscrire';
+	String get subtitleEcosystem => 'Rejoignez notre écosystème professionnel dès aujourd\'hui';
+	String get roleClient => 'Client';
+	String get roleProfessional => 'Professionnel';
+	String get fullnameLabel => 'Nom complet';
+	String get fullnamePlaceholder => 'Jean Dupont';
+	String get emailLabel => 'Adresse email';
+	String get emailPlaceholder => 'jean.dupont@exemple.com';
+	String get phoneLabel => 'Numéro de téléphone';
+	String get phonePlaceholder => '+33 6 12 34 56 78';
+	String get passwordLabel => 'Mot de passe';
+	String get passwordPlaceholder => '••••••••';
+	String get submit => 'Créer un compte';
+	String get socialDivider => 'OU CONTINUER AVEC';
+	late final _TranslationsAuthSignupSocialFr social = _TranslationsAuthSignupSocialFr._(_root);
+	String get alreadyHaveAccountText => 'Vous avez déjà un compte ? ';
+	String get loginLink => 'Se connecter';
 }
 
 // Path: auth.logout
@@ -275,6 +299,17 @@ class _TranslationsOnboardingPagesFr {
 	late final _TranslationsOnboardingPagesFindFr find = _TranslationsOnboardingPagesFindFr._(_root);
 	late final _TranslationsOnboardingPagesBookFr book = _TranslationsOnboardingPagesBookFr._(_root);
 	late final _TranslationsOnboardingPagesRateFr rate = _TranslationsOnboardingPagesRateFr._(_root);
+}
+
+// Path: auth.signup.social
+class _TranslationsAuthSignupSocialFr {
+	_TranslationsAuthSignupSocialFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get google => 'Google';
+	String get apple => 'Apple';
 }
 
 // Path: onboarding.pages.find
@@ -387,7 +422,16 @@ class _TranslationsAuthLoginEn extends _TranslationsAuthLoginFr {
 
 	// Translations
 	@override String get title => 'Login';
-	@override String get subtitle => 'Welcome to PrestaHub';
+	@override String get welcomeTitle => 'Welcome back';
+	@override String get welcomeSubtitle => 'Enter your details to continue';
+	@override String get emailPhoneLabel => 'Email or Phone Number';
+	@override String get emailPhonePlaceholder => 'Enter your email or phone';
+	@override String get continueButton => 'Continue';
+	@override String get alternativeTitle => 'ALTERNATIVE LOGIN';
+	@override String get otpButton => 'OTP';
+	@override String get passwordButton => 'Password';
+	@override String get newUserText => 'New to Prestahub? ';
+	@override String get createAccountLink => 'Create an account';
 	@override String get emailLabel => 'Email address';
 	@override String get passwordLabel => 'Password';
 	@override String get forgotPassword => 'Forgot password?';
@@ -403,7 +447,22 @@ class _TranslationsAuthSignupEn extends _TranslationsAuthSignupFr {
 	// Translations
 	@override String get title => 'Sign Up';
 	@override String get subtitle => 'Join us to get started';
-	@override String get submit => 'Join';
+	@override String get subtitleEcosystem => 'Join our professional ecosystem today';
+	@override String get roleClient => 'Client';
+	@override String get roleProfessional => 'Professional';
+	@override String get fullnameLabel => 'Full Name';
+	@override String get fullnamePlaceholder => 'John Doe';
+	@override String get emailLabel => 'Email Address';
+	@override String get emailPlaceholder => 'john@example.com';
+	@override String get phoneLabel => 'Phone Number';
+	@override String get phonePlaceholder => '+1 (555) 000-0000';
+	@override String get passwordLabel => 'Password';
+	@override String get passwordPlaceholder => '••••••••';
+	@override String get submit => 'Create Account';
+	@override String get socialDivider => 'OR CONTINUE WITH';
+	@override late final _TranslationsAuthSignupSocialEn social = _TranslationsAuthSignupSocialEn._(_root);
+	@override String get alreadyHaveAccountText => 'Already have an account? ';
+	@override String get loginLink => 'Log in';
 }
 
 // Path: auth.logout
@@ -465,6 +524,17 @@ class _TranslationsOnboardingPagesEn extends _TranslationsOnboardingPagesFr {
 	@override late final _TranslationsOnboardingPagesRateEn rate = _TranslationsOnboardingPagesRateEn._(_root);
 }
 
+// Path: auth.signup.social
+class _TranslationsAuthSignupSocialEn extends _TranslationsAuthSignupSocialFr {
+	_TranslationsAuthSignupSocialEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get google => 'Google';
+	@override String get apple => 'Apple';
+}
+
 // Path: onboarding.pages.find
 class _TranslationsOnboardingPagesFindEn extends _TranslationsOnboardingPagesFindFr {
 	_TranslationsOnboardingPagesFindEn._(_TranslationsEn root) : this._root = root, super._(root);
@@ -505,14 +575,39 @@ extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'auth.login.title': return 'Connexion';
-			case 'auth.login.subtitle': return 'Bienvenue sur PrestaHub';
+			case 'auth.login.welcomeTitle': return 'Bon retour parmi nous';
+			case 'auth.login.welcomeSubtitle': return 'Entrez vos coordonnées pour continuer';
+			case 'auth.login.emailPhoneLabel': return 'Email ou Numéro de téléphone';
+			case 'auth.login.emailPhonePlaceholder': return 'Entrez votre email ou téléphone';
+			case 'auth.login.continueButton': return 'Continuer';
+			case 'auth.login.alternativeTitle': return 'CONNEXION ALTERNATIVE';
+			case 'auth.login.otpButton': return 'OTP';
+			case 'auth.login.passwordButton': return 'Mot de passe';
+			case 'auth.login.newUserText': return 'Nouveau sur Prestahub ? ';
+			case 'auth.login.createAccountLink': return 'Créer un compte';
 			case 'auth.login.emailLabel': return 'Adresse email';
 			case 'auth.login.passwordLabel': return 'Mot de passe';
 			case 'auth.login.forgotPassword': return 'Mot de passe oublié ?';
 			case 'auth.login.submit': return 'Se connecter';
 			case 'auth.signup.title': return 'Inscription';
 			case 'auth.signup.subtitle': return 'Rejoignez-nous pour commencer';
-			case 'auth.signup.submit': return 'S\'inscrire';
+			case 'auth.signup.subtitleEcosystem': return 'Rejoignez notre écosystème professionnel dès aujourd\'hui';
+			case 'auth.signup.roleClient': return 'Client';
+			case 'auth.signup.roleProfessional': return 'Professionnel';
+			case 'auth.signup.fullnameLabel': return 'Nom complet';
+			case 'auth.signup.fullnamePlaceholder': return 'Jean Dupont';
+			case 'auth.signup.emailLabel': return 'Adresse email';
+			case 'auth.signup.emailPlaceholder': return 'jean.dupont@exemple.com';
+			case 'auth.signup.phoneLabel': return 'Numéro de téléphone';
+			case 'auth.signup.phonePlaceholder': return '+33 6 12 34 56 78';
+			case 'auth.signup.passwordLabel': return 'Mot de passe';
+			case 'auth.signup.passwordPlaceholder': return '••••••••';
+			case 'auth.signup.submit': return 'Créer un compte';
+			case 'auth.signup.socialDivider': return 'OU CONTINUER AVEC';
+			case 'auth.signup.social.google': return 'Google';
+			case 'auth.signup.social.apple': return 'Apple';
+			case 'auth.signup.alreadyHaveAccountText': return 'Vous avez déjà un compte ? ';
+			case 'auth.signup.loginLink': return 'Se connecter';
 			case 'auth.welcome': return ({required Object name}) => 'Bienvenue ${name} !';
 			case 'auth.logout.confirmTitle': return 'Déconnexion';
 			case 'auth.logout.confirmMessage': return 'Êtes-vous sûr de vouloir vous déconnecter ?';
@@ -543,14 +638,39 @@ extension on _TranslationsEn {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'auth.login.title': return 'Login';
-			case 'auth.login.subtitle': return 'Welcome to PrestaHub';
+			case 'auth.login.welcomeTitle': return 'Welcome back';
+			case 'auth.login.welcomeSubtitle': return 'Enter your details to continue';
+			case 'auth.login.emailPhoneLabel': return 'Email or Phone Number';
+			case 'auth.login.emailPhonePlaceholder': return 'Enter your email or phone';
+			case 'auth.login.continueButton': return 'Continue';
+			case 'auth.login.alternativeTitle': return 'ALTERNATIVE LOGIN';
+			case 'auth.login.otpButton': return 'OTP';
+			case 'auth.login.passwordButton': return 'Password';
+			case 'auth.login.newUserText': return 'New to Prestahub? ';
+			case 'auth.login.createAccountLink': return 'Create an account';
 			case 'auth.login.emailLabel': return 'Email address';
 			case 'auth.login.passwordLabel': return 'Password';
 			case 'auth.login.forgotPassword': return 'Forgot password?';
 			case 'auth.login.submit': return 'Sign in';
 			case 'auth.signup.title': return 'Sign Up';
 			case 'auth.signup.subtitle': return 'Join us to get started';
-			case 'auth.signup.submit': return 'Join';
+			case 'auth.signup.subtitleEcosystem': return 'Join our professional ecosystem today';
+			case 'auth.signup.roleClient': return 'Client';
+			case 'auth.signup.roleProfessional': return 'Professional';
+			case 'auth.signup.fullnameLabel': return 'Full Name';
+			case 'auth.signup.fullnamePlaceholder': return 'John Doe';
+			case 'auth.signup.emailLabel': return 'Email Address';
+			case 'auth.signup.emailPlaceholder': return 'john@example.com';
+			case 'auth.signup.phoneLabel': return 'Phone Number';
+			case 'auth.signup.phonePlaceholder': return '+1 (555) 000-0000';
+			case 'auth.signup.passwordLabel': return 'Password';
+			case 'auth.signup.passwordPlaceholder': return '••••••••';
+			case 'auth.signup.submit': return 'Create Account';
+			case 'auth.signup.socialDivider': return 'OR CONTINUE WITH';
+			case 'auth.signup.social.google': return 'Google';
+			case 'auth.signup.social.apple': return 'Apple';
+			case 'auth.signup.alreadyHaveAccountText': return 'Already have an account? ';
+			case 'auth.signup.loginLink': return 'Log in';
 			case 'auth.welcome': return ({required Object name}) => 'Welcome ${name} !';
 			case 'auth.logout.confirmTitle': return 'Log Out';
 			case 'auth.logout.confirmMessage': return 'Are you sure you want to log out?';
