@@ -2,16 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:prestahub/core/error/exceptions.dart';
 import 'package:prestahub/core/network/api_config.dart';
 import 'package:prestahub/core/network/interceptors/auth_interceptor.dart';
+import 'package:prestahub/core/network/interceptors/cache_interceptor.dart';
 import 'package:prestahub/core/network/interceptors/error_interceptor.dart';
 import 'package:prestahub/core/network/interceptors/logging_interceptor.dart';
 import 'package:prestahub/data/services/auth_local_service.dart';
+import 'package:prestahub/domain/repositories/cache_repository_interface.dart';
 
 /// Client HTTP robuste basé sur Dio.
 class HttpClient {
   late final Dio _dio;
   final AuthLocalService _authLocalService;
+  final ICacheRepository _cacheRepository;
 
-  HttpClient(this._authLocalService, {Dio? dio}) {
+  HttpClient(this._authLocalService, this._cacheRepository, {Dio? dio}) {
     _dio = dio ?? Dio(
       BaseOptions(
         baseUrl: ApiConfig.baseUrl, // Utilisation de ApiConfig au lieu de AppConstants
@@ -28,6 +31,7 @@ class HttpClient {
     if (dio == null) {
       _dio.interceptors.addAll([
         AuthInterceptor(_authLocalService),
+        CacheInterceptor(_cacheRepository),
         LoggingInterceptor(),
         ErrorInterceptor(),
       ]);

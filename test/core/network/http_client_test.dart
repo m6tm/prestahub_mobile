@@ -4,6 +4,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:prestahub/core/error/exceptions.dart';
 import 'package:prestahub/core/network/http_client.dart';
 import 'package:prestahub/data/services/auth_local_service.dart';
+import 'package:prestahub/domain/repositories/cache_repository_interface.dart';
 
 class MockDio extends Mock implements Dio {
   @override
@@ -12,15 +13,20 @@ class MockDio extends Mock implements Dio {
 
 class MockAuthLocalService extends Mock implements AuthLocalService {}
 
+class MockCacheRepository extends Mock implements ICacheRepository {}
+
 void main() {
   late HttpClient httpClient;
   late MockDio mockDio;
   late MockAuthLocalService mockAuthLocalService;
+  late MockCacheRepository mockCacheRepository;
 
   setUp(() {
     mockDio = MockDio();
     mockAuthLocalService = MockAuthLocalService();
-    httpClient = HttpClient(mockAuthLocalService, dio: mockDio);
+    mockCacheRepository = MockCacheRepository();
+    
+    httpClient = HttpClient(mockAuthLocalService, mockCacheRepository, dio: mockDio);
   });
 
   group('HttpClient Error Handling', () {

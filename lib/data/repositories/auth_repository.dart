@@ -24,6 +24,7 @@ class AuthRepository implements IAuthRepository {
   AuthRepository(this._client, this._authLocalService);
 
   /// Authentifie un utilisateur avec son email et mot de passe.
+  @override
   Future<Either<Failure, UserModel>> signInWithEmail({
     required String email,
     required String password,
@@ -54,6 +55,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   /// Inscrit un nouvel utilisateur.
+  @override
   Future<Either<Failure, UserModel>> signUpWithEmail({
     required String email,
     required String password,
@@ -92,6 +94,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   /// Déconnecte l'utilisateur actuel.
+  @override
   Future<Either<Failure, void>> signOut() async {
     try {
       await _client.post(ApiEndpoints.logout);
@@ -103,6 +106,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   /// Récupère le profil de l'utilisateur actuel.
+  @override
   Future<Either<Failure, UserModel?>> getCurrentUserProfile() async {
     try {
       final response = await _client.get(ApiEndpoints.me);
@@ -116,6 +120,7 @@ class AuthRepository implements IAuthRepository {
   }
 
   /// Demande une réinitialisation de mot de passe.
+  @override
   Future<Either<Failure, void>> resetPasswordForEmail(String email) async {
     try {
       await _client.post(ApiEndpoints.resetPassword, data: {'email': email});

@@ -5,5 +5,6 @@ import 'package:prestahub/data/services/service_module.dart';
 /// Provider pour le client HTTP.
 final httpClientProvider = Provider<HttpClient>((ref) {
   final authLocalService = ref.watch(authLocalServiceProvider);
-  return HttpClient(authLocalService);
+  final cacheRepository = ref.watch(cacheServiceProvider);
+  return HttpClient(authLocalService, cacheRepository);
 });
