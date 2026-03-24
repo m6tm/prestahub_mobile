@@ -5,16 +5,24 @@ import 'package:prestahub/core/network/interceptors/auth_interceptor.dart';
 import 'package:prestahub/core/network/interceptors/cache_interceptor.dart';
 import 'package:prestahub/core/network/interceptors/error_interceptor.dart';
 import 'package:prestahub/core/network/interceptors/logging_interceptor.dart';
+import 'package:prestahub/core/network/interceptors/sync_interceptor.dart';
 import 'package:prestahub/data/services/auth_local_service.dart';
 import 'package:prestahub/domain/repositories/cache_repository_interface.dart';
+import 'package:prestahub/domain/repositories/sync_repository_interface.dart';
 
 /// Client HTTP robuste basé sur Dio.
 class HttpClient {
   late final Dio _dio;
   final AuthLocalService _authLocalService;
   final ICacheRepository _cacheRepository;
+  final ISyncRepository? _syncRepository;
 
-  HttpClient(this._authLocalService, this._cacheRepository, {Dio? dio}) {
+  HttpClient(
+    this._authLocalService, 
+    this._cacheRepository, {
+    ISyncRepository? syncRepository,
+    Dio? dio,
+  }) : _syncRepository = syncRepository {
     _dio = dio ?? Dio(
       BaseOptions(
         baseUrl: ApiConfig.baseUrl, // Utilisation de ApiConfig au lieu de AppConstants
@@ -27,11 +35,12 @@ class HttpClient {
       ),
     );
 
-    // Ajout d'intercepteurs seulement si on n'a pas passé un Dio custom (ou on les ajoute quand même)
+    // Ajout d'intercepteurs seulement si on n'a pas passé un Dio custom
     if (dio == null) {
       _dio.interceptors.addAll([
         AuthInterceptor(_authLocalService),
         CacheInterceptor(_cacheRepository),
+        if (_syncRepository != null) SyncInterceptor(_syncRepository),
         LoggingInterceptor(),
         ErrorInterceptor(),
       ]);
