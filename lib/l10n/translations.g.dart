@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 42 (21 per locale)
+/// Strings: 60 (30 per locale)
 ///
-/// Built on 2026-03-22 at 15:03 UTC
+/// Built on 2026-03-24 at 12:42 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -150,6 +150,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	// Translations
 	late final _TranslationsAuthFr auth = _TranslationsAuthFr._(_root);
 	late final _TranslationsCommonFr common = _TranslationsCommonFr._(_root);
+	late final _TranslationsOnboardingFr onboarding = _TranslationsOnboardingFr._(_root);
 }
 
 // Path: auth
@@ -175,6 +176,19 @@ class _TranslationsCommonFr {
 	late final _TranslationsCommonButtonsFr buttons = _TranslationsCommonButtonsFr._(_root);
 	late final _TranslationsCommonErrorsFr errors = _TranslationsCommonErrorsFr._(_root);
 	late final _TranslationsCommonLabelsFr labels = _TranslationsCommonLabelsFr._(_root);
+}
+
+// Path: onboarding
+class _TranslationsOnboardingFr {
+	_TranslationsOnboardingFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get skip => 'Ignorer';
+	String get start => 'Commencer';
+	String get next => 'Suivant';
+	late final _TranslationsOnboardingPagesFr pages = _TranslationsOnboardingPagesFr._(_root);
 }
 
 // Path: auth.login
@@ -251,6 +265,51 @@ class _TranslationsCommonLabelsFr {
 	String get required => 'Champ obligatoire';
 }
 
+// Path: onboarding.pages
+class _TranslationsOnboardingPagesFr {
+	_TranslationsOnboardingPagesFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final _TranslationsOnboardingPagesFindFr find = _TranslationsOnboardingPagesFindFr._(_root);
+	late final _TranslationsOnboardingPagesBookFr book = _TranslationsOnboardingPagesBookFr._(_root);
+	late final _TranslationsOnboardingPagesRateFr rate = _TranslationsOnboardingPagesRateFr._(_root);
+}
+
+// Path: onboarding.pages.find
+class _TranslationsOnboardingPagesFindFr {
+	_TranslationsOnboardingPagesFindFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Trouver des experts';
+	String get description => 'Connectez-vous avec des prestataires vérifiés pour tous vos besoins, où que vous soyez.';
+}
+
+// Path: onboarding.pages.book
+class _TranslationsOnboardingPagesBookFr {
+	_TranslationsOnboardingPagesBookFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Prendre rendez-vous';
+	String get description => 'Planifiez vos interventions en quelques clics selon vos disponibilités.';
+}
+
+// Path: onboarding.pages.rate
+class _TranslationsOnboardingPagesRateFr {
+	_TranslationsOnboardingPagesRateFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Noter & Évaluer';
+	String get description => 'Partagez votre expérience et aidez la communauté à grow en toute confiance.';
+}
+
 // Path: <root>
 class _TranslationsEn extends Translations {
 	/// You can call this constructor and build your own translation instance of this locale.
@@ -279,6 +338,7 @@ class _TranslationsEn extends Translations {
 	// Translations
 	@override late final _TranslationsAuthEn auth = _TranslationsAuthEn._(_root);
 	@override late final _TranslationsCommonEn common = _TranslationsCommonEn._(_root);
+	@override late final _TranslationsOnboardingEn onboarding = _TranslationsOnboardingEn._(_root);
 }
 
 // Path: auth
@@ -304,6 +364,19 @@ class _TranslationsCommonEn extends _TranslationsCommonFr {
 	@override late final _TranslationsCommonButtonsEn buttons = _TranslationsCommonButtonsEn._(_root);
 	@override late final _TranslationsCommonErrorsEn errors = _TranslationsCommonErrorsEn._(_root);
 	@override late final _TranslationsCommonLabelsEn labels = _TranslationsCommonLabelsEn._(_root);
+}
+
+// Path: onboarding
+class _TranslationsOnboardingEn extends _TranslationsOnboardingFr {
+	_TranslationsOnboardingEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get skip => 'Skip';
+	@override String get start => 'Get Started';
+	@override String get next => 'Next';
+	@override late final _TranslationsOnboardingPagesEn pages = _TranslationsOnboardingPagesEn._(_root);
 }
 
 // Path: auth.login
@@ -380,6 +453,51 @@ class _TranslationsCommonLabelsEn extends _TranslationsCommonLabelsFr {
 	@override String get required => 'Required field';
 }
 
+// Path: onboarding.pages
+class _TranslationsOnboardingPagesEn extends _TranslationsOnboardingPagesFr {
+	_TranslationsOnboardingPagesEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsOnboardingPagesFindEn find = _TranslationsOnboardingPagesFindEn._(_root);
+	@override late final _TranslationsOnboardingPagesBookEn book = _TranslationsOnboardingPagesBookEn._(_root);
+	@override late final _TranslationsOnboardingPagesRateEn rate = _TranslationsOnboardingPagesRateEn._(_root);
+}
+
+// Path: onboarding.pages.find
+class _TranslationsOnboardingPagesFindEn extends _TranslationsOnboardingPagesFindFr {
+	_TranslationsOnboardingPagesFindEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Find Professionals';
+	@override String get description => 'Connect with verified experts in your area for any task you need.';
+}
+
+// Path: onboarding.pages.book
+class _TranslationsOnboardingPagesBookEn extends _TranslationsOnboardingPagesBookFr {
+	_TranslationsOnboardingPagesBookEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Book Appointments';
+	@override String get description => 'Schedule services seamlessly at your convenience.';
+}
+
+// Path: onboarding.pages.rate
+class _TranslationsOnboardingPagesRateEn extends _TranslationsOnboardingPagesRateFr {
+	_TranslationsOnboardingPagesRateEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Rate & Review';
+	@override String get description => 'Share your experience and help the community grow.';
+}
+
 /// Flat map(s) containing all translations.
 /// Only for edge cases! For simple maps, use the map function of this library.
 
@@ -407,6 +525,15 @@ extension on Translations {
 			case 'common.labels.loading': return 'Chargement...';
 			case 'common.labels.success': return 'Succès';
 			case 'common.labels.required': return 'Champ obligatoire';
+			case 'onboarding.skip': return 'Ignorer';
+			case 'onboarding.start': return 'Commencer';
+			case 'onboarding.next': return 'Suivant';
+			case 'onboarding.pages.find.title': return 'Trouver des experts';
+			case 'onboarding.pages.find.description': return 'Connectez-vous avec des prestataires vérifiés pour tous vos besoins, où que vous soyez.';
+			case 'onboarding.pages.book.title': return 'Prendre rendez-vous';
+			case 'onboarding.pages.book.description': return 'Planifiez vos interventions en quelques clics selon vos disponibilités.';
+			case 'onboarding.pages.rate.title': return 'Noter & Évaluer';
+			case 'onboarding.pages.rate.description': return 'Partagez votre expérience et aidez la communauté à grow en toute confiance.';
 			default: return null;
 		}
 	}
@@ -436,6 +563,15 @@ extension on _TranslationsEn {
 			case 'common.labels.loading': return 'Loading...';
 			case 'common.labels.success': return 'Success';
 			case 'common.labels.required': return 'Required field';
+			case 'onboarding.skip': return 'Skip';
+			case 'onboarding.start': return 'Get Started';
+			case 'onboarding.next': return 'Next';
+			case 'onboarding.pages.find.title': return 'Find Professionals';
+			case 'onboarding.pages.find.description': return 'Connect with verified experts in your area for any task you need.';
+			case 'onboarding.pages.book.title': return 'Book Appointments';
+			case 'onboarding.pages.book.description': return 'Schedule services seamlessly at your convenience.';
+			case 'onboarding.pages.rate.title': return 'Rate & Review';
+			case 'onboarding.pages.rate.description': return 'Share your experience and help the community grow.';
 			default: return null;
 		}
 	}

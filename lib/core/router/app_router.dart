@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:prestahub/application/auth/auth_notifier.dart';
 import 'package:prestahub/core/constants/app_constants.dart';
 import 'package:prestahub/core/enums/user_role.dart';
+import 'package:prestahub/presentation/splash/splash_screen.dart';
+import 'package:prestahub/presentation/onboarding/onboarding_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(isAuthenticatedProvider);
@@ -42,7 +44,16 @@ final routerProvider = Provider<GoRouter>((ref) {
 
       return null;
     },
-    routes: [],
+    routes: [
+      GoRoute(
+        path: AppConstants.routeSplash,
+        builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeOnboarding,
+        builder: (context, state) => const OnboardingScreen(),
+      ),
+    ],
     errorBuilder: (context, state) =>
         Scaffold(body: Center(child: Text('Page non trouvée: ${state.error}'))),
   );

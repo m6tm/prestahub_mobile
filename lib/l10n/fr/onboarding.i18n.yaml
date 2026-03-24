@@ -1,0 +1,13 @@
+skip: Ignorer
+start: Commencer
+next: Suivant
+pages:
+  find:
+    title: Trouver des experts
+    description: Connectez-vous avec des prestataires vérifiés pour tous vos besoins, où que vous soyez.
+  book:
+    title: Prendre rendez-vous
+    description: Planifiez vos interventions en quelques clics selon vos disponibilités.
+  rate:
+    title: Noter & Évaluer
+    description: Partagez votre expérience et aidez la communauté à grow en toute confiance.

@@ -1,0 +1,13 @@
+skip: Skip
+start: Get Started
+next: Next
+pages:
+  find:
+    title: Find Professionals
+    description: Connect with verified experts in your area for any task you need.
+  book:
+    title: Book Appointments
+    description: Schedule services seamlessly at your convenience.
+  rate:
+    title: Rate & Review
+    description: Share your experience and help the community grow.
