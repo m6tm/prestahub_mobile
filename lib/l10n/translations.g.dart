@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 110 (55 per locale)
+/// Strings: 142 (71 per locale)
 ///
-/// Built on 2026-03-24 at 15:35 UTC
+/// Built on 2026-03-25 at 08:44 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -236,6 +236,18 @@ class _TranslationsAuthSignupFr {
 	String get passwordLabel => 'Mot de passe';
 	String get passwordPlaceholder => '••••••••';
 	String get submit => 'Créer un compte';
+	String get submitProfessional => 'S\'inscrire comme prestataire';
+	String get companyLabel => 'Nom de l\'entreprise / Raison sociale';
+	String get companyPlaceholder => 'Ex: Presta Services SAS';
+	String get siretLabel => 'Numéro SIRET / ID Fiscal';
+	String get siretPlaceholder => '123 456 789 00012';
+	String get categoryLabel => 'Catégorie professionnelle';
+	String get categoryPlaceholder => 'Choisir une catégorie';
+	late final _TranslationsAuthSignupCategoriesFr categories = _TranslationsAuthSignupCategoriesFr._(_root);
+	String get termsPrefix => 'En vous inscrivant, vous acceptez nos ';
+	String get termsCgu => 'Conditions Générales d\'Utilisation';
+	String get termsAnd => ' et notre ';
+	String get termsPrivacy => 'Politique de Confidentialité';
 	String get socialDivider => 'OU CONTINUER AVEC';
 	late final _TranslationsAuthSignupSocialFr social = _TranslationsAuthSignupSocialFr._(_root);
 	String get alreadyHaveAccountText => 'Vous avez déjà un compte ? ';
@@ -299,6 +311,20 @@ class _TranslationsOnboardingPagesFr {
 	late final _TranslationsOnboardingPagesFindFr find = _TranslationsOnboardingPagesFindFr._(_root);
 	late final _TranslationsOnboardingPagesBookFr book = _TranslationsOnboardingPagesBookFr._(_root);
 	late final _TranslationsOnboardingPagesRateFr rate = _TranslationsOnboardingPagesRateFr._(_root);
+}
+
+// Path: auth.signup.categories
+class _TranslationsAuthSignupCategoriesFr {
+	_TranslationsAuthSignupCategoriesFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get construction => 'Bâtiment & Travaux';
+	String get cleaning => 'Nettoyage & Entretien';
+	String get it => 'Informatique & Tech';
+	String get events => 'Événementiel';
+	String get health => 'Santé & Bien-être';
 }
 
 // Path: auth.signup.social
@@ -459,6 +485,18 @@ class _TranslationsAuthSignupEn extends _TranslationsAuthSignupFr {
 	@override String get passwordLabel => 'Password';
 	@override String get passwordPlaceholder => '••••••••';
 	@override String get submit => 'Create Account';
+	@override String get submitProfessional => 'Register as Provider';
+	@override String get companyLabel => 'Company Name / Business Name';
+	@override String get companyPlaceholder => 'Ex: Presta Services SAS';
+	@override String get siretLabel => 'SIRET Number / Tax ID';
+	@override String get siretPlaceholder => '123 456 789 00012';
+	@override String get categoryLabel => 'Professional Category';
+	@override String get categoryPlaceholder => 'Choose a category';
+	@override late final _TranslationsAuthSignupCategoriesEn categories = _TranslationsAuthSignupCategoriesEn._(_root);
+	@override String get termsPrefix => 'By signing up, you agree to our ';
+	@override String get termsCgu => 'Terms of Service';
+	@override String get termsAnd => ' and our ';
+	@override String get termsPrivacy => 'Privacy Policy';
 	@override String get socialDivider => 'OR CONTINUE WITH';
 	@override late final _TranslationsAuthSignupSocialEn social = _TranslationsAuthSignupSocialEn._(_root);
 	@override String get alreadyHaveAccountText => 'Already have an account? ';
@@ -522,6 +560,20 @@ class _TranslationsOnboardingPagesEn extends _TranslationsOnboardingPagesFr {
 	@override late final _TranslationsOnboardingPagesFindEn find = _TranslationsOnboardingPagesFindEn._(_root);
 	@override late final _TranslationsOnboardingPagesBookEn book = _TranslationsOnboardingPagesBookEn._(_root);
 	@override late final _TranslationsOnboardingPagesRateEn rate = _TranslationsOnboardingPagesRateEn._(_root);
+}
+
+// Path: auth.signup.categories
+class _TranslationsAuthSignupCategoriesEn extends _TranslationsAuthSignupCategoriesFr {
+	_TranslationsAuthSignupCategoriesEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get construction => 'Building & Construction';
+	@override String get cleaning => 'Cleaning & Maintenance';
+	@override String get it => 'IT & Technology';
+	@override String get events => 'Events';
+	@override String get health => 'Health & Wellness';
 }
 
 // Path: auth.signup.social
@@ -603,6 +655,22 @@ extension on Translations {
 			case 'auth.signup.passwordLabel': return 'Mot de passe';
 			case 'auth.signup.passwordPlaceholder': return '••••••••';
 			case 'auth.signup.submit': return 'Créer un compte';
+			case 'auth.signup.submitProfessional': return 'S\'inscrire comme prestataire';
+			case 'auth.signup.companyLabel': return 'Nom de l\'entreprise / Raison sociale';
+			case 'auth.signup.companyPlaceholder': return 'Ex: Presta Services SAS';
+			case 'auth.signup.siretLabel': return 'Numéro SIRET / ID Fiscal';
+			case 'auth.signup.siretPlaceholder': return '123 456 789 00012';
+			case 'auth.signup.categoryLabel': return 'Catégorie professionnelle';
+			case 'auth.signup.categoryPlaceholder': return 'Choisir une catégorie';
+			case 'auth.signup.categories.construction': return 'Bâtiment & Travaux';
+			case 'auth.signup.categories.cleaning': return 'Nettoyage & Entretien';
+			case 'auth.signup.categories.it': return 'Informatique & Tech';
+			case 'auth.signup.categories.events': return 'Événementiel';
+			case 'auth.signup.categories.health': return 'Santé & Bien-être';
+			case 'auth.signup.termsPrefix': return 'En vous inscrivant, vous acceptez nos ';
+			case 'auth.signup.termsCgu': return 'Conditions Générales d\'Utilisation';
+			case 'auth.signup.termsAnd': return ' et notre ';
+			case 'auth.signup.termsPrivacy': return 'Politique de Confidentialité';
 			case 'auth.signup.socialDivider': return 'OU CONTINUER AVEC';
 			case 'auth.signup.social.google': return 'Google';
 			case 'auth.signup.social.apple': return 'Apple';
@@ -666,6 +734,22 @@ extension on _TranslationsEn {
 			case 'auth.signup.passwordLabel': return 'Password';
 			case 'auth.signup.passwordPlaceholder': return '••••••••';
 			case 'auth.signup.submit': return 'Create Account';
+			case 'auth.signup.submitProfessional': return 'Register as Provider';
+			case 'auth.signup.companyLabel': return 'Company Name / Business Name';
+			case 'auth.signup.companyPlaceholder': return 'Ex: Presta Services SAS';
+			case 'auth.signup.siretLabel': return 'SIRET Number / Tax ID';
+			case 'auth.signup.siretPlaceholder': return '123 456 789 00012';
+			case 'auth.signup.categoryLabel': return 'Professional Category';
+			case 'auth.signup.categoryPlaceholder': return 'Choose a category';
+			case 'auth.signup.categories.construction': return 'Building & Construction';
+			case 'auth.signup.categories.cleaning': return 'Cleaning & Maintenance';
+			case 'auth.signup.categories.it': return 'IT & Technology';
+			case 'auth.signup.categories.events': return 'Events';
+			case 'auth.signup.categories.health': return 'Health & Wellness';
+			case 'auth.signup.termsPrefix': return 'By signing up, you agree to our ';
+			case 'auth.signup.termsCgu': return 'Terms of Service';
+			case 'auth.signup.termsAnd': return ' and our ';
+			case 'auth.signup.termsPrivacy': return 'Privacy Policy';
 			case 'auth.signup.socialDivider': return 'OR CONTINUE WITH';
 			case 'auth.signup.social.google': return 'Google';
 			case 'auth.signup.social.apple': return 'Apple';

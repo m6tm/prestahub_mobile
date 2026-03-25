@@ -29,6 +29,23 @@ signup:
   password_label: Mot de passe
   password_placeholder: "••••••••"
   submit: Créer un compte
+  submit_professional: "S'inscrire comme prestataire"
+  company_label: "Nom de l'entreprise / Raison sociale"
+  company_placeholder: "Ex: Presta Services SAS"
+  siret_label: "Numéro SIRET / ID Fiscal"
+  siret_placeholder: "123 456 789 00012"
+  category_label: Catégorie professionnelle
+  category_placeholder: Choisir une catégorie
+  categories:
+    construction: "Bâtiment & Travaux"
+    cleaning: "Nettoyage & Entretien"
+    it: "Informatique & Tech"
+    events: "Événementiel"
+    health: "Santé & Bien-être"
+  terms_prefix: "En vous inscrivant, vous acceptez nos "
+  terms_cgu: "Conditions Générales d'Utilisation"
+  terms_and: " et notre "
+  terms_privacy: Politique de Confidentialité
   social_divider: OU CONTINUER AVEC
   social:
     google: Google

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:prestahub/core/theme/app_theme.dart';
 import 'package:prestahub/l10n/translations.g.dart';
+import 'package:prestahub/presentation/auth/signup/professional_signup_form.dart';
 
 /// Écran d'inscription de l'application.
 class SignupScreen extends ConsumerStatefulWidget {
@@ -155,60 +156,65 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 ),
               ),
               const SizedBox(height: 32),
-              // Name Field
-              _buildField(
-                label: t.auth.signup.fullnameLabel,
-                hint: t.auth.signup.fullnamePlaceholder,
-                icon: Icons.person_outline,
-              ),
-              const SizedBox(height: 20),
-              // Email Field
-              _buildField(
-                label: t.auth.signup.emailLabel,
-                hint: t.auth.signup.emailPlaceholder,
-                icon: Icons.mail_outline,
-                keyboardType: TextInputType.emailAddress,
-              ),
-              const SizedBox(height: 20),
-              // Phone Field
-              _buildField(
-                label: t.auth.signup.phoneLabel,
-                hint: t.auth.signup.phonePlaceholder,
-                icon: Icons.phone_android_outlined,
-                keyboardType: TextInputType.phone,
-              ),
-              const SizedBox(height: 20),
-              // Password Field
-              _buildField(
-                label: t.auth.signup.passwordLabel,
-                hint: t.auth.signup.passwordPlaceholder,
-                icon: Icons.lock_outline,
-                isPassword: true,
-                isPasswordVisible: _isPasswordVisible,
-                onToggleVisibility: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
-              ),
-              const SizedBox(height: 32),
-              // Create Account Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: PrestaHubTheme.primary,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+              // Formulaire conditionnel selon le rôle sélectionné
+              if (_selectedSegment == 1) ...[
+                const ProfessionalSignupForm(),
+              ] else ...[
+                // Name Field
+                _buildField(
+                  label: t.auth.signup.fullnameLabel,
+                  hint: t.auth.signup.fullnamePlaceholder,
+                  icon: Icons.person_outline,
+                ),
+                const SizedBox(height: 20),
+                // Email Field
+                _buildField(
+                  label: t.auth.signup.emailLabel,
+                  hint: t.auth.signup.emailPlaceholder,
+                  icon: Icons.mail_outline,
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 20),
+                // Phone Field
+                _buildField(
+                  label: t.auth.signup.phoneLabel,
+                  hint: t.auth.signup.phonePlaceholder,
+                  icon: Icons.phone_android_outlined,
+                  keyboardType: TextInputType.phone,
+                ),
+                const SizedBox(height: 20),
+                // Password Field
+                _buildField(
+                  label: t.auth.signup.passwordLabel,
+                  hint: t.auth.signup.passwordPlaceholder,
+                  icon: Icons.lock_outline,
+                  isPassword: true,
+                  isPasswordVisible: _isPasswordVisible,
+                  onToggleVisibility: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
+                ),
+                const SizedBox(height: 32),
+                // Create Account Button
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: PrestaHubTheme.primary,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      elevation: 6,
+                      shadowColor: PrestaHubTheme.primary.withValues(alpha: 0.4),
                     ),
-                    elevation: 6,
-                    shadowColor: PrestaHubTheme.primary.withValues(alpha: 0.4),
-                  ),
-                  child: Text(
-                    t.auth.signup.submit,
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    child: Text(
+                      t.auth.signup.submit,
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
-              ),
+              ],
               const SizedBox(height: 32),
               // Social Login
               Row(

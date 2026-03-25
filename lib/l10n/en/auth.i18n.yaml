@@ -29,6 +29,23 @@ signup:
   password_label: Password
   password_placeholder: "••••••••"
   submit: Create Account
+  submit_professional: Register as Provider
+  company_label: Company Name / Business Name
+  company_placeholder: "Ex: Presta Services SAS"
+  siret_label: SIRET Number / Tax ID
+  siret_placeholder: "123 456 789 00012"
+  category_label: Professional Category
+  category_placeholder: Choose a category
+  categories:
+    construction: "Building & Construction"
+    cleaning: "Cleaning & Maintenance"
+    it: "IT & Technology"
+    events: Events
+    health: "Health & Wellness"
+  terms_prefix: "By signing up, you agree to our "
+  terms_cgu: Terms of Service
+  terms_and: " and our "
+  terms_privacy: Privacy Policy
   social_divider: OR CONTINUE WITH
   social:
     google: Google
