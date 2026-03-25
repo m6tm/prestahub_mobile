@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 192 (96 per locale)
+/// Strings: 194 (97 per locale)
 ///
-/// Built on 2026-03-25 at 11:23 UTC
+/// Built on 2026-03-25 at 12:02 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -265,7 +265,8 @@ class _TranslationsAuthLogoutFr {
 
 	// Translations
 	String get confirmTitle => 'Déconnexion';
-	String get confirmMessage => 'Êtes-vous sûr de vouloir vous déconnecter ?';
+	String get confirmMessage => 'Êtes-vous sûr de vouloir vous déconnecter de votre compte ?';
+	String get submitButton => 'Se déconnecter';
 }
 
 // Path: auth.forgotPasswordScreen
@@ -568,8 +569,9 @@ class _TranslationsAuthLogoutEn extends _TranslationsAuthLogoutFr {
 	@override final _TranslationsEn _root; // ignore: unused_field
 
 	// Translations
-	@override String get confirmTitle => 'Log Out';
-	@override String get confirmMessage => 'Are you sure you want to log out?';
+	@override String get confirmTitle => 'Logout';
+	@override String get confirmMessage => 'Are you sure you want to log out of your account?';
+	@override String get submitButton => 'Log Out';
 }
 
 // Path: auth.forgotPasswordScreen
@@ -788,7 +790,8 @@ extension on Translations {
 			case 'auth.signup.loginLink': return 'Se connecter';
 			case 'auth.welcome': return ({required Object name}) => 'Bienvenue ${name} !';
 			case 'auth.logout.confirmTitle': return 'Déconnexion';
-			case 'auth.logout.confirmMessage': return 'Êtes-vous sûr de vouloir vous déconnecter ?';
+			case 'auth.logout.confirmMessage': return 'Êtes-vous sûr de vouloir vous déconnecter de votre compte ?';
+			case 'auth.logout.submitButton': return 'Se déconnecter';
 			case 'auth.forgotPasswordScreen.title': return 'Mot de passe oublié';
 			case 'auth.forgotPasswordScreen.resetTitle': return 'Réinitialisation';
 			case 'auth.forgotPasswordScreen.resetSubtitle': return 'Entrez votre email ou numéro de téléphone pour recevoir un lien de réinitialisation';
@@ -891,8 +894,9 @@ extension on _TranslationsEn {
 			case 'auth.signup.alreadyHaveAccountText': return 'Already have an account? ';
 			case 'auth.signup.loginLink': return 'Log in';
 			case 'auth.welcome': return ({required Object name}) => 'Welcome ${name} !';
-			case 'auth.logout.confirmTitle': return 'Log Out';
-			case 'auth.logout.confirmMessage': return 'Are you sure you want to log out?';
+			case 'auth.logout.confirmTitle': return 'Logout';
+			case 'auth.logout.confirmMessage': return 'Are you sure you want to log out of your account?';
+			case 'auth.logout.submitButton': return 'Log Out';
 			case 'auth.forgotPasswordScreen.title': return 'Forgot Password';
 			case 'auth.forgotPasswordScreen.resetTitle': return 'Reset Password';
 			case 'auth.forgotPasswordScreen.resetSubtitle': return 'Enter your email or phone number to receive a reset link';

@@ -55,7 +55,8 @@ signup:
 welcome: "Bienvenue $name !"
 logout:
   confirm_title: Déconnexion
-  confirm_message: Êtes-vous sûr de vouloir vous déconnecter ?
+  confirm_message: Êtes-vous sûr de vouloir vous déconnecter de votre compte ?
+  submit_button: Se déconnecter
 forgot_password_screen:
   title: Mot de passe oublié
   reset_title: Réinitialisation
