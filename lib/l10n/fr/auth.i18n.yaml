@@ -70,3 +70,17 @@ otp_verification_screen:
   did_not_receive: "Vous n'avez pas reçu le code ?"
   resend: Renvoyer le code
   verify_button: Vérifier
+new_password_screen:
+  title: Nouveau mot de passe
+  headline: Créez un nouveau mot de passe
+  subheadline: Assurez-vous que votre compte reste sécurisé avec un mot de passe fort.
+  new_password_label: Nouveau mot de passe
+  confirm_password_label: Confirmer le mot de passe
+  strength_label: Force du mot de passe
+  strength_weak: Faible
+  strength_medium: Moyen
+  strength_strong: Fort
+  requirement_chars: Au moins 8 caractères
+  requirement_case_num: Une majuscule et un chiffre
+  requirement_special: Un caractère spécial (@, #, $, etc.)
+  submit_button: Enregistrer

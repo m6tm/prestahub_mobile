@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
-class OtpIllustration extends StatefulWidget {
-  const OtpIllustration({super.key});
+/// Widget d'illustration pour l'écran de nouveau mot de passe.
+/// Affiche une icône de bouclier avec un cadenas dans un cercle pulsant.
+class NewPasswordIllustration extends StatefulWidget {
+  const NewPasswordIllustration({super.key});
 
   @override
-  State<OtpIllustration> createState() => _OtpIllustrationState();
+  State<NewPasswordIllustration> createState() => _NewPasswordIllustrationState();
 }
 
-class _OtpIllustrationState extends State<OtpIllustration>
+class _NewPasswordIllustrationState extends State<NewPasswordIllustration>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
@@ -36,7 +38,7 @@ class _OtpIllustrationState extends State<OtpIllustration>
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // Pulse effect
+          // Effet de pulsation
           AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
@@ -45,46 +47,39 @@ class _OtpIllustrationState extends State<OtpIllustration>
                 child: Opacity(
                   opacity: 1.0 - (_controller.value * 0.5),
                   child: Container(
-                    width: 192,
-                    height: 192,
+                    width: 140,
+                    height: 140,
                     decoration: BoxDecoration(
                       color: primaryColor.withValues(alpha: 0.1),
-                    shape: BoxShape.circle,
-                  ),
+                      shape: BoxShape.circle,
+                    ),
                   ),
                 ),
               );
             },
           ),
-
-          // Outer background
+          
+          // Arrière-plan extérieur
           Container(
-            width: 192,
-            height: 192,
+            width: 140,
+            height: 140,
             decoration: BoxDecoration(
               color: primaryColor.withValues(alpha: 0.05),
               shape: BoxShape.circle,
             ),
           ),
-
-          // Inner icon container
+          
+          // Conteneur de l'icône
           Container(
-            padding: const EdgeInsets.all(32),
+            width: 100,
+            height: 100,
             decoration: BoxDecoration(
-              color: isDark ? Colors.grey[800] : Colors.white,
-              borderRadius: BorderRadius.circular(80),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
-                  blurRadius: 24,
-                  offset: const Offset(0, 8),
-                ),
-              ],
+              color: isDark ? Colors.grey[800] : primaryColor.withValues(alpha: 0.1),
+              shape: BoxShape.circle,
             ),
             child: Icon(
-              Icons
-                  .shield_rounded, // fallback icon since shield_person isn't directly available in Icons sometimes
-              size: 72,
+              Icons.security_rounded,
+              size: 48,
               color: primaryColor,
             ),
           ),

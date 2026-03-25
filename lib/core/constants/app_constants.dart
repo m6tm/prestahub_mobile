@@ -19,6 +19,7 @@ class AppConstants {
   static const String routeRegister = '/register';
   static const String routeOtp = '/otp';
   static const String routeForgotPassword = '/forgot-password';
+  static const String routeNewPassword = '/new-password';
 
   // Client routes
   static const String routeClientHome = '/client/home';

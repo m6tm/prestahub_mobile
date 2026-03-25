@@ -70,3 +70,17 @@ otp_verification_screen:
   did_not_receive: "Didn't receive the code?"
   resend: Resend code
   verify_button: Verify
+new_password_screen:
+  title: New Password
+  headline: Create a new password
+  subheadline: Make sure your account stays secure with a strong password.
+  new_password_label: New password
+  confirm_password_label: Confirm password
+  strength_label: Password strength
+  strength_weak: Weak
+  strength_medium: Medium
+  strength_strong: Strong
+  requirement_chars: At least 8 characters
+  requirement_case_num: One uppercase and one number
+  requirement_special: One special character (@, #, $, etc.)
+  submit_button: Save

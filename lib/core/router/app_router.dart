@@ -11,6 +11,7 @@ import 'package:prestahub/presentation/auth/login/login_screen.dart';
 import 'package:prestahub/presentation/auth/signup/signup_screen.dart';
 import 'package:prestahub/presentation/auth/forgot_password/forgot_password_screen.dart';
 import 'package:prestahub/presentation/auth/otp_verification/otp_verification_screen.dart';
+import 'package:prestahub/presentation/auth/new_password/new_password_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(isAuthenticatedProvider);
@@ -26,8 +27,9 @@ final routerProvider = Provider<GoRouter>((ref) {
         AppConstants.routeLogin,
         AppConstants.routeRegister,
         AppConstants.routeOnboarding,
-        AppConstants.routeForgotPassword,
         AppConstants.routeOtp,
+        AppConstants.routeForgotPassword,
+        AppConstants.routeNewPassword,
         AppConstants.routeSplash,
       ];
 
@@ -74,6 +76,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppConstants.routeOtp,
         builder: (context, state) => const OtpVerificationScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeNewPassword,
+        builder: (context, state) => const NewPasswordScreen(),
       ),
     ],
     errorBuilder: (context, state) =>

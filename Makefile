@@ -7,7 +7,7 @@ help:
 	@echo "  make clean              - Nettoie le projet (flutter clean) et réinstalle les dépendances"
 	@echo "  make i18n               - Génère les fichiers de traduction interactifs via slang"
 	@echo "  make generate           - Exécute build_runner pour générer le code (Hive, etc.)"
-	@echo "  make analyze            - Lance l'analyseur statique Flutter (lints)"
+	@echo "  make lint            - Lance l'analyseur statique Flutter (lints)"
 	@echo "  make format             - Formate le code source avec dart format"
 	@echo "  make test               - Lance les tests unitaires et de widgets"
 	@echo "  make run                - Lance l'application sur l'appareil/émulateur par défaut"
@@ -29,7 +29,7 @@ i18n:
 generate:
 	dart run build_runner build --delete-conflicting-outputs
 
-analyze:
+lint:
 	flutter analyze
 
 format:

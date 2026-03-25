@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prestahub/l10n/translations.g.dart';
+import 'package:go_router/go_router.dart';
+import 'package:prestahub/core/constants/app_constants.dart';
 import 'widgets/otp_header.dart';
 import 'widgets/otp_illustration.dart';
 import 'widgets/otp_inputs.dart';
@@ -78,13 +80,13 @@ class OtpVerificationScreen extends StatelessWidget {
                                 height: 56,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // TODO: Add verification logic
+                                    context.push(AppConstants.routeNewPassword);
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Theme.of(context).primaryColor,
                                     foregroundColor: Colors.white,
                                     elevation: 8,
-                                    shadowColor: Theme.of(context).primaryColor.withOpacity(0.25),
+                                    shadowColor: Theme.of(context).primaryColor.withValues(alpha: 0.25),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(12),
                                     ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
+import 'package:prestahub/core/constants/app_constants.dart';
 
 class OtpInputs extends StatefulWidget {
   const OtpInputs({super.key});
@@ -52,7 +54,12 @@ class _OtpInputsState extends State<OtpInputs> {
         FocusScope.of(context).requestFocus(_focusNodes[index + 1]);
       } else {
         FocusScope.of(context).unfocus();
-        // Here you would hook up the auto-submit to verify the code
+        // Simulation d'une auto-validation et redirection
+        Future.delayed(const Duration(milliseconds: 300), () {
+          if (mounted) {
+            context.push(AppConstants.routeNewPassword);
+          }
+        });
       }
     } else {
       if (index > 0) {
@@ -77,10 +84,10 @@ class _OtpInputsState extends State<OtpInputs> {
         return SizedBox(
           width: 48,
           height: 56,
-          child: RawKeyboardListener(
+          child: KeyboardListener(
             focusNode: FocusNode(),
-            onKey: (event) {
-              if (event.runtimeType == RawKeyDownEvent) {
+            onKeyEvent: (event) {
+              if (event is KeyDownEvent) {
                 if (event.logicalKey == LogicalKeyboardKey.backspace) {
                    if (_controllers[index].text.isEmpty && index > 0) {
                      FocusScope.of(context).requestFocus(_focusNodes[index - 1]);

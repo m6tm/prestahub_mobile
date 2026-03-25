@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 166 (83 per locale)
+/// Strings: 192 (96 per locale)
 ///
-/// Built on 2026-03-25 at 11:02 UTC
+/// Built on 2026-03-25 at 11:23 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -166,6 +166,7 @@ class _TranslationsAuthFr {
 	late final _TranslationsAuthLogoutFr logout = _TranslationsAuthLogoutFr._(_root);
 	late final _TranslationsAuthForgotPasswordScreenFr forgotPasswordScreen = _TranslationsAuthForgotPasswordScreenFr._(_root);
 	late final _TranslationsAuthOtpVerificationScreenFr otpVerificationScreen = _TranslationsAuthOtpVerificationScreenFr._(_root);
+	late final _TranslationsAuthNewPasswordScreenFr newPasswordScreen = _TranslationsAuthNewPasswordScreenFr._(_root);
 }
 
 // Path: common
@@ -295,6 +296,28 @@ class _TranslationsAuthOtpVerificationScreenFr {
 	String get didNotReceive => 'Vous n\'avez pas reçu le code ?';
 	String get resend => 'Renvoyer le code';
 	String get verifyButton => 'Vérifier';
+}
+
+// Path: auth.newPasswordScreen
+class _TranslationsAuthNewPasswordScreenFr {
+	_TranslationsAuthNewPasswordScreenFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Nouveau mot de passe';
+	String get headline => 'Créez un nouveau mot de passe';
+	String get subheadline => 'Assurez-vous que votre compte reste sécurisé avec un mot de passe fort.';
+	String get newPasswordLabel => 'Nouveau mot de passe';
+	String get confirmPasswordLabel => 'Confirmer le mot de passe';
+	String get strengthLabel => 'Force du mot de passe';
+	String get strengthWeak => 'Faible';
+	String get strengthMedium => 'Moyen';
+	String get strengthStrong => 'Fort';
+	String get requirementChars => 'Au moins 8 caractères';
+	String get requirementCaseNum => 'Une majuscule et un chiffre';
+	String get requirementSpecial => 'Un caractère spécial (@,';
+	String get submitButton => 'Enregistrer';
 }
 
 // Path: common.buttons
@@ -447,6 +470,7 @@ class _TranslationsAuthEn extends _TranslationsAuthFr {
 	@override late final _TranslationsAuthLogoutEn logout = _TranslationsAuthLogoutEn._(_root);
 	@override late final _TranslationsAuthForgotPasswordScreenEn forgotPasswordScreen = _TranslationsAuthForgotPasswordScreenEn._(_root);
 	@override late final _TranslationsAuthOtpVerificationScreenEn otpVerificationScreen = _TranslationsAuthOtpVerificationScreenEn._(_root);
+	@override late final _TranslationsAuthNewPasswordScreenEn newPasswordScreen = _TranslationsAuthNewPasswordScreenEn._(_root);
 }
 
 // Path: common
@@ -576,6 +600,28 @@ class _TranslationsAuthOtpVerificationScreenEn extends _TranslationsAuthOtpVerif
 	@override String get didNotReceive => 'Didn\'t receive the code?';
 	@override String get resend => 'Resend code';
 	@override String get verifyButton => 'Verify';
+}
+
+// Path: auth.newPasswordScreen
+class _TranslationsAuthNewPasswordScreenEn extends _TranslationsAuthNewPasswordScreenFr {
+	_TranslationsAuthNewPasswordScreenEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'New Password';
+	@override String get headline => 'Create a new password';
+	@override String get subheadline => 'Make sure your account stays secure with a strong password.';
+	@override String get newPasswordLabel => 'New password';
+	@override String get confirmPasswordLabel => 'Confirm password';
+	@override String get strengthLabel => 'Password strength';
+	@override String get strengthWeak => 'Weak';
+	@override String get strengthMedium => 'Medium';
+	@override String get strengthStrong => 'Strong';
+	@override String get requirementChars => 'At least 8 characters';
+	@override String get requirementCaseNum => 'One uppercase and one number';
+	@override String get requirementSpecial => 'One special character (@,';
+	@override String get submitButton => 'Save';
 }
 
 // Path: common.buttons
@@ -755,6 +801,19 @@ extension on Translations {
 			case 'auth.otpVerificationScreen.didNotReceive': return 'Vous n\'avez pas reçu le code ?';
 			case 'auth.otpVerificationScreen.resend': return 'Renvoyer le code';
 			case 'auth.otpVerificationScreen.verifyButton': return 'Vérifier';
+			case 'auth.newPasswordScreen.title': return 'Nouveau mot de passe';
+			case 'auth.newPasswordScreen.headline': return 'Créez un nouveau mot de passe';
+			case 'auth.newPasswordScreen.subheadline': return 'Assurez-vous que votre compte reste sécurisé avec un mot de passe fort.';
+			case 'auth.newPasswordScreen.newPasswordLabel': return 'Nouveau mot de passe';
+			case 'auth.newPasswordScreen.confirmPasswordLabel': return 'Confirmer le mot de passe';
+			case 'auth.newPasswordScreen.strengthLabel': return 'Force du mot de passe';
+			case 'auth.newPasswordScreen.strengthWeak': return 'Faible';
+			case 'auth.newPasswordScreen.strengthMedium': return 'Moyen';
+			case 'auth.newPasswordScreen.strengthStrong': return 'Fort';
+			case 'auth.newPasswordScreen.requirementChars': return 'Au moins 8 caractères';
+			case 'auth.newPasswordScreen.requirementCaseNum': return 'Une majuscule et un chiffre';
+			case 'auth.newPasswordScreen.requirementSpecial': return 'Un caractère spécial (@,';
+			case 'auth.newPasswordScreen.submitButton': return 'Enregistrer';
 			case 'common.buttons.cancel': return 'Annuler';
 			case 'common.buttons.confirm': return 'Confirmer';
 			case 'common.buttons.save': return 'Enregistrer';
@@ -846,6 +905,19 @@ extension on _TranslationsEn {
 			case 'auth.otpVerificationScreen.didNotReceive': return 'Didn\'t receive the code?';
 			case 'auth.otpVerificationScreen.resend': return 'Resend code';
 			case 'auth.otpVerificationScreen.verifyButton': return 'Verify';
+			case 'auth.newPasswordScreen.title': return 'New Password';
+			case 'auth.newPasswordScreen.headline': return 'Create a new password';
+			case 'auth.newPasswordScreen.subheadline': return 'Make sure your account stays secure with a strong password.';
+			case 'auth.newPasswordScreen.newPasswordLabel': return 'New password';
+			case 'auth.newPasswordScreen.confirmPasswordLabel': return 'Confirm password';
+			case 'auth.newPasswordScreen.strengthLabel': return 'Password strength';
+			case 'auth.newPasswordScreen.strengthWeak': return 'Weak';
+			case 'auth.newPasswordScreen.strengthMedium': return 'Medium';
+			case 'auth.newPasswordScreen.strengthStrong': return 'Strong';
+			case 'auth.newPasswordScreen.requirementChars': return 'At least 8 characters';
+			case 'auth.newPasswordScreen.requirementCaseNum': return 'One uppercase and one number';
+			case 'auth.newPasswordScreen.requirementSpecial': return 'One special character (@,';
+			case 'auth.newPasswordScreen.submitButton': return 'Save';
 			case 'common.buttons.cancel': return 'Cancel';
 			case 'common.buttons.confirm': return 'Confirm';
 			case 'common.buttons.save': return 'Save';
