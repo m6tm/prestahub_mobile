@@ -74,7 +74,10 @@ class _ProfessionalSignupFormState extends State<ProfessionalSignupForm> {
             label: s.categoryLabel,
             placeholder: s.categoryPlaceholder,
             categories: [
-              _CategoryItem(value: 'construction', label: s.categories.construction),
+              _CategoryItem(
+                value: 'construction',
+                label: s.categories.construction,
+              ),
               _CategoryItem(value: 'cleaning', label: s.categories.cleaning),
               _CategoryItem(value: 'it', label: s.categories.it),
               _CategoryItem(value: 'events', label: s.categories.events),
@@ -184,8 +187,10 @@ class _SignupField extends StatelessWidget {
                 width: 2,
               ),
             ),
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 14,
+              horizontal: 16,
+            ),
           ),
         ),
       ],
@@ -246,8 +251,11 @@ class _CategoryDropdownField extends StatelessWidget {
           ),
           icon: const Icon(Icons.expand_more, color: Colors.grey),
           decoration: InputDecoration(
-            prefixIcon:
-                const Icon(Icons.category_outlined, color: Colors.grey, size: 20),
+            prefixIcon: const Icon(
+              Icons.category_outlined,
+              color: Colors.grey,
+              size: 20,
+            ),
             filled: true,
             fillColor: const Color(0xFFF8FAFC),
             border: OutlineInputBorder(
@@ -261,8 +269,10 @@ class _CategoryDropdownField extends StatelessWidget {
                 width: 2,
               ),
             ),
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 4, horizontal: 0),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 0,
+            ),
           ),
           items: categories
               .map(

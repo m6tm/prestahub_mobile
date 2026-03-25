@@ -74,7 +74,9 @@ void main() {
           (user) => expect(user.id, tUserModel.id),
         );
         verify(() => mockAuthLocalService.saveToken('jwt_token')).called(1);
-        verify(() => mockAuthLocalService.saveRefreshToken('refresh_token')).called(1);
+        verify(
+          () => mockAuthLocalService.saveRefreshToken('refresh_token'),
+        ).called(1);
       },
     );
 

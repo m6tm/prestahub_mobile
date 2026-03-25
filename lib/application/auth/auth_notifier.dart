@@ -11,7 +11,7 @@ class AuthNotifier extends AsyncNotifier<UserModel?> {
   Future<UserModel?> build() async {
     final IAuthRepository repo = ref.watch(authRepositoryProvider);
     final result = await repo.getCurrentUserProfile();
-    
+
     return result.fold(
       (failure) => null, // Ou gérer l'erreur autrement
       (user) => user,
@@ -25,9 +25,9 @@ class AuthNotifier extends AsyncNotifier<UserModel?> {
   }) async {
     state = const AsyncLoading();
     final IAuthRepository repo = ref.read(authRepositoryProvider);
-    
+
     final result = await repo.signInWithEmail(email: email, password: password);
-    
+
     state = result.fold(
       (failure) => AsyncValue.error(failure.message, StackTrace.current),
       (user) => AsyncValue.data(user),
@@ -45,7 +45,7 @@ class AuthNotifier extends AsyncNotifier<UserModel?> {
   }) async {
     state = const AsyncLoading();
     final IAuthRepository repo = ref.read(authRepositoryProvider);
-    
+
     final result = await repo.signUpWithEmail(
       email: email,
       password: password,
@@ -54,7 +54,7 @@ class AuthNotifier extends AsyncNotifier<UserModel?> {
       firstName: firstName,
       lastName: lastName,
     );
-    
+
     state = result.fold(
       (failure) => AsyncValue.error(failure.message, StackTrace.current),
       (user) => AsyncValue.data(user),
@@ -65,9 +65,9 @@ class AuthNotifier extends AsyncNotifier<UserModel?> {
   Future<void> signOut() async {
     state = const AsyncLoading();
     final IAuthRepository repo = ref.read(authRepositoryProvider);
-    
+
     final result = await repo.signOut();
-    
+
     state = result.fold(
       (failure) => AsyncValue.error(failure.message, StackTrace.current),
       (_) => const AsyncValue.data(null),
@@ -76,8 +76,9 @@ class AuthNotifier extends AsyncNotifier<UserModel?> {
 }
 
 /// Providers
-final authNotifierProvider =
-    AsyncNotifierProvider<AuthNotifier, UserModel?>(() => AuthNotifier());
+final authNotifierProvider = AsyncNotifierProvider<AuthNotifier, UserModel?>(
+  () => AuthNotifier(),
+);
 
 final currentUserProvider = Provider<UserModel?>((ref) {
   return ref.watch(authNotifierProvider).valueOrNull;

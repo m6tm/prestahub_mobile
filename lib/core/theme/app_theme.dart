@@ -97,10 +97,9 @@ class PrestaHubTheme {
     ),
     scaffoldBackgroundColor: backgroundDark,
     fontFamily: GoogleFonts.inter().fontFamily,
-    textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme).apply(
-      bodyColor: textDark,
-      displayColor: primaryDark,
-    ),
+    textTheme: GoogleFonts.interTextTheme(
+      ThemeData.dark().textTheme,
+    ).apply(bodyColor: textDark, displayColor: primaryDark),
     appBarTheme: const AppBarTheme(
       backgroundColor: backgroundDark,
       foregroundColor: textDark,

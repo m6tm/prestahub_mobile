@@ -18,22 +18,25 @@ class HttpClient {
   final ISyncRepository? _syncRepository;
 
   HttpClient(
-    this._authLocalService, 
+    this._authLocalService,
     this._cacheRepository, {
     ISyncRepository? syncRepository,
     Dio? dio,
   }) : _syncRepository = syncRepository {
-    _dio = dio ?? Dio(
-      BaseOptions(
-        baseUrl: ApiConfig.baseUrl, // Utilisation de ApiConfig au lieu de AppConstants
-        connectTimeout: ApiConfig.connectTimeout,
-        receiveTimeout: ApiConfig.receiveTimeout,
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-      ),
-    );
+    _dio =
+        dio ??
+        Dio(
+          BaseOptions(
+            baseUrl: ApiConfig
+                .baseUrl, // Utilisation de ApiConfig au lieu de AppConstants
+            connectTimeout: ApiConfig.connectTimeout,
+            receiveTimeout: ApiConfig.receiveTimeout,
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+          ),
+        );
 
     // Ajout d'intercepteurs seulement si on n'a pas passé un Dio custom
     if (dio == null) {
@@ -216,11 +219,11 @@ class HttpClient {
         // 1. Priorité au message explicite
         if (data['message'] != null) {
           message = data['message'];
-        } 
+        }
         // 2. Erreur simple
         else if (data['error'] != null) {
-           message = data['error'].toString();
-        } 
+          message = data['error'].toString();
+        }
         // 3. Gestion des erreurs de validation (ex: API Laravel, NestJS, etc.)
         else if (data['errors'] != null) {
           final errors = data['errors'];

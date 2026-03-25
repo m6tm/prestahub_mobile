@@ -69,4 +69,3 @@ final routerProvider = Provider<GoRouter>((ref) {
         Scaffold(body: Center(child: Text('Page non trouvée: ${state.error}'))),
   );
 });
-

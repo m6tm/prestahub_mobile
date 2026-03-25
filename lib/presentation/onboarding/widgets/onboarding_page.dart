@@ -42,16 +42,12 @@ class OnboardingPage extends StatelessWidget {
                   color: baseColor.withValues(alpha: 0.15),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  icon,
-                  size: 70,
-                  color: baseColor,
-                ),
+                child: Icon(icon, size: 70, color: baseColor),
               ),
             ],
           ),
           const SizedBox(height: 48),
-          
+
           // Texte
           Text(
             title,

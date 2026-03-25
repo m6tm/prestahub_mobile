@@ -42,7 +42,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
-                            color: PrestaHubTheme.primary.withValues(alpha: 0.2),
+                            color: PrestaHubTheme.primary.withValues(
+                              alpha: 0.2,
+                            ),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
                           ),
@@ -67,10 +69,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                     Text(
                       t.auth.signup.subtitleEcosystem,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
+                      style: const TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                   ],
                 ),
@@ -190,7 +189,8 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   icon: Icons.lock_outline,
                   isPassword: true,
                   isPasswordVisible: _isPasswordVisible,
-                  onToggleVisibility: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
+                  onToggleVisibility: () =>
+                      setState(() => _isPasswordVisible = !_isPasswordVisible),
                 ),
                 const SizedBox(height: 32),
                 // Create Account Button
@@ -206,11 +206,16 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       elevation: 6,
-                      shadowColor: PrestaHubTheme.primary.withValues(alpha: 0.4),
+                      shadowColor: PrestaHubTheme.primary.withValues(
+                        alpha: 0.4,
+                      ),
                     ),
                     child: Text(
                       t.auth.signup.submit,
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -314,7 +319,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
             suffixIcon: isPassword
                 ? IconButton(
                     icon: Icon(
-                      isPasswordVisible ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                      isPasswordVisible
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined,
                       color: Colors.grey,
                       size: 20,
                     ),
@@ -329,7 +336,10 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide.none,
             ),
-            contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 16,
+            ),
           ),
         ),
       ],
@@ -346,9 +356,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
       style: OutlinedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 12),
         side: BorderSide(color: Colors.grey[200]!),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

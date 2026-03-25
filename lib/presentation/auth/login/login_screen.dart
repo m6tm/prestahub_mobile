@@ -36,11 +36,7 @@ class LoginScreen extends ConsumerWidget {
                     ),
                   ],
                 ),
-                child: const Icon(
-                  Icons.hub,
-                  color: Colors.white,
-                  size: 36,
-                ),
+                child: const Icon(Icons.hub, color: Colors.white, size: 36),
               ),
               const SizedBox(height: 16),
               const Text(
@@ -63,10 +59,7 @@ class LoginScreen extends ConsumerWidget {
               const SizedBox(height: 8),
               Text(
                 t.auth.login.welcomeSubtitle,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey,
-                ),
+                style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
               const SizedBox(height: 40),
               // Email Field
@@ -85,16 +78,25 @@ class LoginScreen extends ConsumerWidget {
                   ),
                   TextField(
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.person_outline, color: Colors.grey),
+                      prefixIcon: const Icon(
+                        Icons.person_outline,
+                        color: Colors.grey,
+                      ),
                       hintText: t.auth.login.emailPhonePlaceholder,
-                      hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+                      hintStyle: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 14,
+                      ),
                       filled: true,
                       fillColor: Colors.grey[50],
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide.none,
                       ),
-                      contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                      contentPadding: const EdgeInsets.symmetric(
+                        vertical: 16,
+                        horizontal: 16,
+                      ),
                     ),
                   ),
                 ],
@@ -116,7 +118,10 @@ class LoginScreen extends ConsumerWidget {
                   ),
                   child: Text(
                     t.auth.login.continueButton,
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -147,7 +152,11 @@ class LoginScreen extends ConsumerWidget {
                   Expanded(
                     child: OutlinedButton.icon(
                       onPressed: () {},
-                      icon: Icon(Icons.pin, color: PrestaHubTheme.primary, size: 18),
+                      icon: Icon(
+                        Icons.pin,
+                        color: PrestaHubTheme.primary,
+                        size: 18,
+                      ),
                       label: Text(t.auth.login.otpButton),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -162,7 +171,11 @@ class LoginScreen extends ConsumerWidget {
                   Expanded(
                     child: OutlinedButton.icon(
                       onPressed: () {},
-                      icon: Icon(Icons.lock_outline, color: PrestaHubTheme.primary, size: 18),
+                      icon: Icon(
+                        Icons.lock_outline,
+                        color: PrestaHubTheme.primary,
+                        size: 18,
+                      ),
                       label: Text(t.auth.login.passwordButton),
                       style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),

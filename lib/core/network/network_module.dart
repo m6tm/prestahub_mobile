@@ -10,7 +10,7 @@ import 'package:prestahub/data/services/service_module.dart';
 /// Elle inclut l'authentification mais pas l'intercepteur de synchro pour éviter les boucles.
 final syncDioProvider = Provider<Dio>((ref) {
   final authLocalService = ref.watch(authLocalServiceProvider);
-  
+
   final dio = Dio(
     BaseOptions(
       baseUrl: ApiConfig.baseUrl,
@@ -20,7 +20,7 @@ final syncDioProvider = Provider<Dio>((ref) {
   );
 
   dio.interceptors.add(AuthInterceptor(authLocalService));
-  
+
   return dio;
 });
 
@@ -30,8 +30,13 @@ final syncManagerProvider = Provider<SyncManager>((ref) {
   final connectivityService = ref.watch(connectivityServiceProvider);
   final syncDio = ref.watch(syncDioProvider);
   final notificationService = ref.watch(notificationServiceProvider);
-  
-  return SyncManager(syncRepository, connectivityService, syncDio, notificationService);
+
+  return SyncManager(
+    syncRepository,
+    connectivityService,
+    syncDio,
+    notificationService,
+  );
 });
 
 /// Provider pour le client HTTP principal.
@@ -39,13 +44,13 @@ final httpClientProvider = Provider<HttpClient>((ref) {
   final authLocalService = ref.watch(authLocalServiceProvider);
   final cacheRepository = ref.watch(cacheServiceProvider);
   final syncRepository = ref.watch(syncRepositoryProvider);
-  
+
   // On s'assure que le SyncManager est initialisé
   ref.read(syncManagerProvider);
-  
+
   return HttpClient(
-    authLocalService, 
-    cacheRepository, 
+    authLocalService,
+    cacheRepository,
     syncRepository: syncRepository,
   );
 });

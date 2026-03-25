@@ -11,17 +11,23 @@ class CacheInterceptor extends Interceptor {
   final Duration cacheDuration; // Temps de validité par défaut du cache
   final Logger _logger = Logger(printer: PrettyPrinter(printEmojis: false));
 
-  CacheInterceptor(this._cacheRepository, {this.cacheDuration = const Duration(days: 7)});
+  CacheInterceptor(
+    this._cacheRepository, {
+    this.cacheDuration = const Duration(days: 7),
+  });
 
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  void onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     // On ne cache rien si ce n'est pas une requête GET
     if (options.method.toUpperCase() != 'GET') {
       return handler.next(options);
     }
 
     final forceRefresh = options.extra['forceRefresh'] == true;
-    
+
     if (forceRefresh) {
       return handler.next(options);
     }
@@ -34,40 +40,44 @@ class CacheInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     // On met en cache uniquement le succès (200-299) des requêtes GET
-    if (response.requestOptions.method.toUpperCase() == 'GET' && 
-        response.statusCode != null && 
-        response.statusCode! >= 200 && 
+    if (response.requestOptions.method.toUpperCase() == 'GET' &&
+        response.statusCode != null &&
+        response.statusCode! >= 200 &&
         response.statusCode! < 300) {
-      
       final key = _generateKey(response.requestOptions);
-      
+
       try {
         await _cacheRepository.set(
-          key, 
-          response.data, 
+          key,
+          response.data,
           expiration: cacheDuration,
         );
       } catch (e, stackTrace) {
-        _logger.e('Échec de la sauvegarde dans le cache pour la clé: $key', error: e, stackTrace: stackTrace);
+        _logger.e(
+          'Échec de la sauvegarde dans le cache pour la clé: $key',
+          error: e,
+          stackTrace: stackTrace,
+        );
       }
     }
-    
+
     return handler.next(response);
   }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
-    final isNetworkError = err.type == DioExceptionType.connectionTimeout ||
+    final isNetworkError =
+        err.type == DioExceptionType.connectionTimeout ||
         err.type == DioExceptionType.receiveTimeout ||
         err.type == DioExceptionType.sendTimeout ||
         err.type == DioExceptionType.connectionError ||
         err.type == DioExceptionType.unknown;
-        
+
     // Si erreur réseau sur une requête GET, on tente de récupérer le cache
     if (isNetworkError && err.requestOptions.method.toUpperCase() == 'GET') {
       final key = _generateKey(err.requestOptions);
       final cacheData = await _cacheRepository.get(key);
-      
+
       if (cacheData != null) {
         // Succès depuis le cache, on évite l'erreur
         return handler.resolve(
@@ -80,7 +90,7 @@ class CacheInterceptor extends Interceptor {
         );
       }
     }
-    
+
     return handler.next(err);
   }
 
@@ -96,7 +106,9 @@ class CacheInterceptor extends Interceptor {
       ..sort((a, b) => a.key.compareTo(b.key));
 
     // 3. Créer une chaîne canonique
-    final queryString = sortedParams.map((e) => '${e.key}=${e.value}').join('&');
+    final queryString = sortedParams
+        .map((e) => '${e.key}=${e.value}')
+        .join('&');
     final canonicalString = queryString.isEmpty ? url : '$url?$queryString';
 
     // 4. Hacher la chaîne (SHA-256)

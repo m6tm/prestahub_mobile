@@ -12,7 +12,8 @@ class SyncManager {
   final ISyncRepository _syncRepository;
   final ConnectivityService _connectivityService;
   final INotificationService _notificationService;
-  final Dio _syncDio; // On utilise un Dio spécifique pour éviter les boucles infinies d'interception
+  final Dio
+  _syncDio; // On utilise un Dio spécifique pour éviter les boucles infinies d'interception
   final Logger _logger = Logger();
 
   bool _isSyncing = false;
@@ -36,7 +37,7 @@ class SyncManager {
         syncNow();
       }
     });
-    
+
     // Tentative de synchro initiale si on est déjà en ligne
     syncNow();
   }
@@ -44,7 +45,7 @@ class SyncManager {
   /// Déclenche manuellement ou automatiquement la synchronisation.
   Future<void> syncNow() async {
     if (_isSyncing) return;
-    
+
     final isOnline = await _connectivityService.isConnected();
     if (!isOnline) {
       _logger.i('SyncManager: Toujours hors ligne, synchronisation reportée.');
@@ -56,7 +57,7 @@ class SyncManager {
 
     try {
       final requests = await _syncRepository.getSyncRequests();
-      
+
       if (requests.isEmpty) {
         _logger.i('SyncManager: Aucune requête en attente.');
         _isSyncing = false;
@@ -67,19 +68,23 @@ class SyncManager {
         final success = await _replayRequest(request);
         if (success) {
           await _syncRepository.removeSyncRequest(request.id);
-          _logger.i('SyncManager: Requête ${request.id} synchronisée avec succès.');
+          _logger.i(
+            'SyncManager: Requête ${request.id} synchronisée avec succès.',
+          );
         } else {
           final updatedAttempts = request.attempts + 1;
           if (updatedAttempts >= maxAttempts) {
-             // Trop d'échecs, on peut soit supprimer, soit notifier l'utilisateur
-             // Ici on choisit de supprimer pour éviter de bloquer la file indéfiniment
-             await _syncRepository.removeSyncRequest(request.id);
-             _logger.e("SyncManager: Trop d'échecs pour ${request.id}, supprimée de la file.");
-             _notificationService.showError(
-               "La synchronisation de l'opération ${request.method} ${request.path} a échoué définitivement."
-             );
+            // Trop d'échecs, on peut soit supprimer, soit notifier l'utilisateur
+            // Ici on choisit de supprimer pour éviter de bloquer la file indéfiniment
+            await _syncRepository.removeSyncRequest(request.id);
+            _logger.e(
+              "SyncManager: Trop d'échecs pour ${request.id}, supprimée de la file.",
+            );
+            _notificationService.showError(
+              "La synchronisation de l'opération ${request.method} ${request.path} a échoué définitivement.",
+            );
           } else {
-             await _syncRepository.updateAttempts(request.id, updatedAttempts);
+            await _syncRepository.updateAttempts(request.id, updatedAttempts);
           }
         }
       }
@@ -95,7 +100,7 @@ class SyncManager {
   Future<bool> _replayRequest(SyncRequest request) async {
     try {
       _logger.d('SyncManager: Rejoue ${request.method} ${request.path}');
-      
+
       // Filtrage des headers critiques qui pourraient entrer en conflit avec Dio
       final filteredHeaders = Map<String, dynamic>.from(request.headers ?? {});
       filteredHeaders.removeWhere((key, value) {
@@ -107,7 +112,8 @@ class SyncManager {
         method: request.method,
         headers: {
           ...filteredHeaders,
-          'X-Offline-Sync-Replay': 'true', // Header utile pour le backend si besoin
+          'X-Offline-Sync-Replay':
+              'true', // Header utile pour le backend si besoin
         },
       );
 
@@ -118,17 +124,18 @@ class SyncManager {
         options: options,
       );
 
-      return response.statusCode != null && 
-             response.statusCode! >= 200 && 
-             response.statusCode! < 300;
-             
+      return response.statusCode != null &&
+          response.statusCode! >= 200 &&
+          response.statusCode! < 300;
     } on DioException catch (e) {
-      _logger.w('SyncManager: Échec du rejeu pour ${request.id} : ${e.message}');
-      
+      _logger.w(
+        'SyncManager: Échec du rejeu pour ${request.id} : ${e.message}',
+      );
+
       // Si c'est une erreur de validation (400-499), on ne réessaie pas car la requête est probablement invalide
       if (e.response != null && e.response!.statusCode != null) {
         if (e.response!.statusCode! >= 400 && e.response!.statusCode! < 500) {
-           return false; // On ne réessaiera pas
+          return false; // On ne réessaiera pas
         }
       }
       return false; // Erreur serveur (500) ou réseau (encore), on réessaiera

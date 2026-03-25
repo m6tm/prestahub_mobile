@@ -25,8 +25,12 @@ void main() {
     mockDio = MockDio();
     mockAuthLocalService = MockAuthLocalService();
     mockCacheRepository = MockCacheRepository();
-    
-    httpClient = HttpClient(mockAuthLocalService, mockCacheRepository, dio: mockDio);
+
+    httpClient = HttpClient(
+      mockAuthLocalService,
+      mockCacheRepository,
+      dio: mockDio,
+    );
   });
 
   group('HttpClient Error Handling', () {
@@ -43,35 +47,38 @@ void main() {
       expect(() => httpClient.get('/test'), throwsA(isA<NetworkException>()));
     });
 
-    test('should throw ServerException with aggregated messages on 422', () async {
-      // Arrange
-      when(() => mockDio.get(any())).thenThrow(
-        DioException(
-          requestOptions: RequestOptions(path: ''),
-          response: Response(
+    test(
+      'should throw ServerException with aggregated messages on 422',
+      () async {
+        // Arrange
+        when(() => mockDio.get(any())).thenThrow(
+          DioException(
             requestOptions: RequestOptions(path: ''),
-            statusCode: 422,
-            data: {
-              'errors': {
-                'email': ['Email invalide'],
-                'password': ['Trop court', 'Doit contenir un chiffre']
-              }
-            },
+            response: Response(
+              requestOptions: RequestOptions(path: ''),
+              statusCode: 422,
+              data: {
+                'errors': {
+                  'email': ['Email invalide'],
+                  'password': ['Trop court', 'Doit contenir un chiffre'],
+                },
+              },
+            ),
           ),
-        ),
-      );
+        );
 
-      // Act & Assert
-      try {
-        await httpClient.get('/test');
-        fail('Should have thrown ServerException');
-      } on ServerException catch (e) {
-        expect(e.statusCode, 422);
-        expect(e.message, contains('Email invalide'));
-        expect(e.message, contains('Trop court'));
-        expect(e.message, contains('Doit contenir un chiffre'));
-      }
-    });
+        // Act & Assert
+        try {
+          await httpClient.get('/test');
+          fail('Should have thrown ServerException');
+        } on ServerException catch (e) {
+          expect(e.statusCode, 422);
+          expect(e.message, contains('Email invalide'));
+          expect(e.message, contains('Trop court'));
+          expect(e.message, contains('Doit contenir un chiffre'));
+        }
+      },
+    );
 
     test('should throw ServerException on 401', () async {
       // Arrange

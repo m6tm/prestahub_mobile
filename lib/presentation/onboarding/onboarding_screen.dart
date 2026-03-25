@@ -57,14 +57,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
             ),
-            
+
             // Logo discret en haut à gauche
             Positioned(
               top: 20,
               left: 30,
               child: Row(
                 children: [
-                  const Icon(Icons.shield_rounded, color: PrestaHubTheme.primary, size: 24),
+                  const Icon(
+                    Icons.shield_rounded,
+                    color: PrestaHubTheme.primary,
+                    size: 24,
+                  ),
                   const SizedBox(width: 8),
                   Text(
                     'PrestaHub',
@@ -85,7 +89,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   height: 480,
                   child: PageView.builder(
                     controller: _pageController,
-                    onPageChanged: (index) => setState(() => _currentPage = index),
+                    onPageChanged: (index) =>
+                        setState(() => _currentPage = index),
                     itemCount: pages.length,
                     itemBuilder: (context, index) {
                       final page = pages[index];
@@ -98,7 +103,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
                 const Spacer(flex: 2),
-                
+
                 // Indicateur de progression (Dots)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -110,17 +115,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       height: 6,
                       width: _currentPage == index ? 24 : 6,
                       decoration: BoxDecoration(
-                        color: _currentPage == index 
-                            ? PrestaHubTheme.primary 
+                        color: _currentPage == index
+                            ? PrestaHubTheme.primary
                             : PrestaHubTheme.border,
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 40),
-                
+
                 // Bouton d'action principal
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -147,8 +152,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          _currentPage == pages.length - 1 
-                              ? t.onboarding.start 
+                          _currentPage == pages.length - 1
+                              ? t.onboarding.start
                               : t.onboarding.next,
                           style: const TextStyle(
                             fontSize: 18,
@@ -157,7 +162,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        const Icon(Icons.arrow_forward_rounded, color: Colors.white),
+                        const Icon(
+                          Icons.arrow_forward_rounded,
+                          color: Colors.white,
+                        ),
                       ],
                     ),
                   ),

@@ -13,7 +13,7 @@ class ApiEndpoints {
   static String profile(String id) => '/profiles/$id';
   static const String updateProfile = '/profiles/me';
   static const String deleteProfile = '/profiles/me';
-  
+
   // --- MISSIONS (Exemple) ---
   static const String missions = '/missions';
   static String missionDetail(String id) => '/missions/$id';
@@ -25,7 +25,7 @@ class ApiEndpoints {
 
   // --- NOTIFICATIONS (Exemple) ---
   static const String notifications = '/notifications';
-  
+
   // --- SERVICES (Exemple) ---
   static const String services = '/services';
   static const String popularServices = '/services/popular';

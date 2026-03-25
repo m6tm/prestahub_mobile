@@ -4,7 +4,7 @@ import 'package:logger/logger.dart';
 abstract class INotificationService {
   /// Affiche une notification à l'utilisateur.
   void showNotification(String title, String message);
-  
+
   /// Affiche une erreur critique.
   void showError(String message);
 }

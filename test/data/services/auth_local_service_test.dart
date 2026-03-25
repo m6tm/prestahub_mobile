@@ -19,7 +19,9 @@ void main() {
 
     test('doit appeler SharedPreferences pour sauvegarder le token', () async {
       // Arrange
-      when(() => mockPrefs.setString(any(), any())).thenAnswer((_) async => true);
+      when(
+        () => mockPrefs.setString(any(), any()),
+      ).thenAnswer((_) async => true);
 
       // Act
       await authLocalService.saveToken(tToken);
@@ -51,16 +53,21 @@ void main() {
       expect(result, isNull);
     });
 
-    test('doit appeler SharedPreferences pour sauvegarder le refresh token', () async {
-      // Arrange
-      when(() => mockPrefs.setString(any(), any())).thenAnswer((_) async => true);
+    test(
+      'doit appeler SharedPreferences pour sauvegarder le refresh token',
+      () async {
+        // Arrange
+        when(
+          () => mockPrefs.setString(any(), any()),
+        ).thenAnswer((_) async => true);
 
-      // Act
-      await authLocalService.saveRefreshToken(tToken);
+        // Act
+        await authLocalService.saveRefreshToken(tToken);
 
-      // Assert
-      verify(() => mockPrefs.setString('refresh_token', tToken)).called(1);
-    });
+        // Assert
+        verify(() => mockPrefs.setString('refresh_token', tToken)).called(1);
+      },
+    );
 
     test('doit appeler remove pour supprimer tous les jetons', () async {
       // Arrange

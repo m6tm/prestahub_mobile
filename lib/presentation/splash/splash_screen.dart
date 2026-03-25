@@ -80,7 +80,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ],
             ),
           ),
-          
+
           // État de connexion en bas
           Positioned(
             bottom: 60,
@@ -113,7 +113,9 @@ class _SplashScreenState extends State<SplashScreen> {
                   borderRadius: BorderRadius.circular(10),
                   child: const LinearProgressIndicator(
                     backgroundColor: PrestaHubTheme.surface2Light,
-                    valueColor: AlwaysStoppedAnimation<Color>(PrestaHubTheme.primary),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      PrestaHubTheme.primary,
+                    ),
                     minHeight: 4,
                   ),
                 ),

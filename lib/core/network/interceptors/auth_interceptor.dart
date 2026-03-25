@@ -23,16 +23,15 @@ class AuthInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     // Si l'erreur est un 401 (Non autorisé) et qu'on n'est pas déjà sur un endpoint d'auth
-    if (err.response?.statusCode == 401 && 
+    if (err.response?.statusCode == 401 &&
         !err.requestOptions.path.contains('/auth/')) {
-      
       final String? refreshToken = _authLocalService.getRefreshToken();
 
       if (refreshToken != null && refreshToken.isNotEmpty) {
         try {
           // On tente de rafraîchir le jeton via un client Dio "propre" pour éviter les boucles
           final dio = Dio(BaseOptions(baseUrl: err.requestOptions.baseUrl));
-          
+
           final response = await dio.post(
             '/auth/refresh-token',
             data: {'refresh_token': refreshToken},
@@ -51,13 +50,13 @@ class AuthInterceptor extends Interceptor {
 
             // Mettre à jour le header de la requête originale
             err.requestOptions.headers['Authorization'] = 'Bearer $newToken';
-            
+
             // Relancer la requête originale
             final opts = Options(
               method: err.requestOptions.method,
               headers: err.requestOptions.headers,
             );
-            
+
             final retryResponse = await dio.request(
               err.requestOptions.path,
               data: err.requestOptions.data,

@@ -16,8 +16,10 @@ class HiveCacheService implements ICacheRepository {
     const secureKeyName = 'hive_encryption_key';
 
     // 1. Lire ou générer la clé sécurisée de 256 bits
-    final containsEncryptionKey = await secureStorage.containsKey(key: secureKeyName);
-    
+    final containsEncryptionKey = await secureStorage.containsKey(
+      key: secureKeyName,
+    );
+
     if (!containsEncryptionKey) {
       final key = Hive.generateSecureKey();
       await secureStorage.write(
@@ -28,9 +30,11 @@ class HiveCacheService implements ICacheRepository {
 
     final encryptionKeyString = await secureStorage.read(key: secureKeyName);
     if (encryptionKeyString == null) {
-      throw Exception('Impossible de récupérer la clé de chiffrement du cache.');
+      throw Exception(
+        'Impossible de récupérer la clé de chiffrement du cache.',
+      );
     }
-    
+
     final encryptionKeyUint8List = base64Url.decode(encryptionKeyString);
 
     // 2. Ouvrir la boîte Hive avec chiffrement AES
@@ -42,27 +46,27 @@ class HiveCacheService implements ICacheRepository {
 
   @override
   Future<void> set(String key, dynamic value, {Duration? expiration}) async {
-    final expiresAt = expiration != null 
-        ? DateTime.now().add(expiration).millisecondsSinceEpoch 
+    final expiresAt = expiration != null
+        ? DateTime.now().add(expiration).millisecondsSinceEpoch
         : null;
-        
+
     final Map<String, dynamic> wrapper = {
       'value': value,
       'expires_at': expiresAt,
     };
-    
+
     await _box?.put(key, wrapper);
   }
 
   @override
   Future<dynamic> get(String key) async {
     final data = _box?.get(key);
-    
+
     // Si la donnée n'est pas trouvée ou n'est pas un Map
     if (data == null || data is! Map) return null;
 
     final expiresAt = data['expires_at'] as int?;
-    
+
     // Vérification de l'expiration
     // Si le timestamp actuel dépasse le temps d'expiration, le cache est invalide.
     if (expiresAt != null) {

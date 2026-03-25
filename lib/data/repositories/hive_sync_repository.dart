@@ -21,8 +21,10 @@ class HiveSyncRepository implements ISyncRepository {
     const secureKeyName = 'hive_encryption_key';
 
     // 1. Lire ou générer la clé sécurisée de 256 bits
-    final containsEncryptionKey = await secureStorage.containsKey(key: secureKeyName);
-    
+    final containsEncryptionKey = await secureStorage.containsKey(
+      key: secureKeyName,
+    );
+
     if (!containsEncryptionKey) {
       final key = Hive.generateSecureKey();
       await secureStorage.write(
@@ -33,9 +35,11 @@ class HiveSyncRepository implements ISyncRepository {
 
     final encryptionKeyString = await secureStorage.read(key: secureKeyName);
     if (encryptionKeyString == null) {
-      throw Exception('Impossible de récupérer la clé de chiffrement pour la synchronisation.');
+      throw Exception(
+        'Impossible de récupérer la clé de chiffrement pour la synchronisation.',
+      );
     }
-    
+
     final encryptionKeyUint8List = base64Url.decode(encryptionKeyString);
 
     // 2. Ouvrir la boîte Hive avec chiffrement AES
@@ -54,18 +58,19 @@ class HiveSyncRepository implements ISyncRepository {
   @override
   Future<List<SyncRequest>> getSyncRequests() async {
     await _ensureInitialized();
-    final List<SyncRequest> requests = _box?.values
+    final List<SyncRequest> requests =
+        _box?.values
             .map((e) => SyncRequest.fromJson(Map<String, dynamic>.from(e)))
             .toList() ??
         [];
-    
+
     // Trier par priorité (plus petit d'abord) puis par date de création
     requests.sort((a, b) {
       final priorityComparison = a.priority.compareTo(b.priority);
       if (priorityComparison != 0) return priorityComparison;
       return a.createdAt.compareTo(b.createdAt);
     });
-    
+
     return requests;
   }
 

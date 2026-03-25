@@ -32,16 +32,13 @@ class AuthRepository implements IAuthRepository {
     try {
       final response = await _client.post(
         ApiEndpoints.login,
-        data: {
-          'email': email,
-          'password': password,
-        },
+        data: {'email': email, 'password': password},
       );
 
       final user = UserModel.fromMap(response.data['user']);
       final token = response.data['token'];
       final refreshToken = response.data['refresh_token'];
-      
+
       if (token != null) {
         await _authLocalService.saveToken(token);
       }
@@ -111,7 +108,7 @@ class AuthRepository implements IAuthRepository {
     try {
       final response = await _client.get(ApiEndpoints.me);
       if (response.data == null) return const Right(null);
-      
+
       final user = UserModel.fromMap(response.data['user']);
       return Right(user);
     } on Exception catch (e) {

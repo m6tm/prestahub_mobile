@@ -64,12 +64,15 @@ class SyncRequest extends Equatable {
       id: json['id'] as String,
       path: json['path'] as String,
       method: json['method'] as String,
-      data: json['data'] != null ? Map<String, dynamic>.from(json['data']) : null,
+      data: json['data'] != null
+          ? Map<String, dynamic>.from(json['data'])
+          : null,
       queryParameters: json['queryParameters'] != null
           ? Map<String, dynamic>.from(json['queryParameters'])
           : null,
-      headers:
-          json['headers'] != null ? Map<String, dynamic>.from(json['headers']) : null,
+      headers: json['headers'] != null
+          ? Map<String, dynamic>.from(json['headers'])
+          : null,
       createdAt: DateTime.parse(json['createdAt'] as String),
       attempts: json['attempts'] as int? ?? 0,
       priority: json['priority'] as int? ?? 100,
@@ -78,16 +81,16 @@ class SyncRequest extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        path,
-        method,
-        data,
-        queryParameters,
-        headers,
-        createdAt,
-        attempts,
-        priority
-      ];
+    id,
+    path,
+    method,
+    data,
+    queryParameters,
+    headers,
+    createdAt,
+    attempts,
+    priority,
+  ];
 
   /// Crée une copie modifiée de la requête avec un nouveau nombre de tentatives.
   SyncRequest copyWith({int? attempts}) {
