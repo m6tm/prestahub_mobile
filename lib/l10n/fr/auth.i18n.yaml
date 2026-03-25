@@ -56,3 +56,12 @@ welcome: "Bienvenue $name !"
 logout:
   confirm_title: Déconnexion
   confirm_message: Êtes-vous sûr de vouloir vous déconnecter ?
+forgot_password_screen:
+  title: Mot de passe oublié
+  reset_title: Réinitialisation
+  reset_subtitle: Entrez votre email ou numéro de téléphone pour recevoir un lien de réinitialisation
+  email_phone_label: Email ou numéro de téléphone
+  email_phone_placeholder: "Ex: nom@email.com"
+  send_link_button: Envoyer le lien
+  back_to_login: Retour à la connexion
+

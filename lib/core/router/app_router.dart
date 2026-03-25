@@ -9,6 +9,7 @@ import 'package:prestahub/presentation/onboarding/onboarding_screen.dart';
 
 import 'package:prestahub/presentation/auth/login/login_screen.dart';
 import 'package:prestahub/presentation/auth/signup/signup_screen.dart';
+import 'package:prestahub/presentation/auth/forgot_password/forgot_password_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(isAuthenticatedProvider);
@@ -63,6 +64,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppConstants.routeRegister,
         builder: (context, state) => const SignupScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeForgotPassword,
+        builder: (context, state) => const ForgotPasswordScreen(),
       ),
     ],
     errorBuilder: (context, state) =>

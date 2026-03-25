@@ -56,3 +56,12 @@ welcome: "Welcome $name !"
 logout:
   confirm_title: Log Out
   confirm_message: Are you sure you want to log out?
+forgot_password_screen:
+  title: Forgot Password
+  reset_title: Reset Password
+  reset_subtitle: Enter your email or phone number to receive a reset link
+  email_phone_label: Email or phone number
+  email_phone_placeholder: "Ex: name@email.com"
+  send_link_button: Send Link
+  back_to_login: Back to login
+
