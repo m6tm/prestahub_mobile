@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_theme.dart';
+import '../../l10n/translations.g.dart';
 import 'widgets/home_header.widget.dart';
 import 'widgets/home_search_bar.widget.dart';
 import 'widgets/home_popular_categories.widget.dart';
@@ -51,23 +52,23 @@ class HomeScreen extends StatelessWidget {
         children: [
           _NavBarItem(
             icon: Icons.home_rounded,
-            label: "Accueil",
+            label: t.home.nav.home,
             isActive: true,
             onTap: () {},
           ),
           _NavBarItem(
             icon: Icons.search_rounded,
-            label: "Recherche",
+            label: t.home.nav.search,
             onTap: () {},
           ),
           _NavBarItem(
             icon: Icons.description_outlined,
-            label: "Commandes",
+            label: t.home.nav.orders,
             onTap: () {},
           ),
           _NavBarItem(
             icon: Icons.person_outline_rounded,
-            label: "Profil",
+            label: t.home.nav.profile,
             onTap: () {},
           ),
         ],

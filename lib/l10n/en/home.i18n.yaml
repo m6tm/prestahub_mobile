@@ -1,0 +1,18 @@
+welcome_back: "Welcome back,"
+hello_user: "Hello, ${name}"
+search_placeholder: "Search for a service..."
+popular_categories: "Popular categories"
+view_all: "See all"
+nearby_providers: "Providers near you"
+location_indicator: "Paris, FR"
+view: "View"
+categories:
+  plumbing: "Plumbing"
+  electricity: "Electricity"
+  cleaning: "Cleaning"
+  painting: "Painting"
+nav:
+  home: "Home"
+  search: "Search"
+  orders: "Orders"
+  profile: "Profile"

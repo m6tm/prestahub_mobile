@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../l10n/translations.g.dart';
 
 /// Barre de recherche pour trouver des services sur la page d'accueil.
 class HomeSearchBar extends StatelessWidget {
@@ -19,7 +20,7 @@ class HomeSearchBar extends StatelessWidget {
         ),
         child: TextField(
           decoration: InputDecoration(
-            hintText: 'Rechercher un service...',
+            hintText: t.home.searchPlaceholder,
             hintStyle: TextStyle(
               color: isDark ? PrestaHubTheme.textMutedDark : PrestaHubTheme.textMutedLight,
               fontSize: 14,

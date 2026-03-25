@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../l10n/translations.g.dart';
 
 /// Section affichant les catégories de services les plus populaires.
 class HomePopularCategories extends StatelessWidget {
@@ -17,18 +18,18 @@ class HomePopularCategories extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Catégories populaires',
-                  style: TextStyle(
+                Text(
+                  t.home.popularCategories,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 TextButton(
                   onPressed: () {},
-                  child: const Text(
-                    'Tout voir',
-                    style: TextStyle(
+                  child: Text(
+                    t.home.viewAll,
+                    style: const TextStyle(
                       color: PrestaHubTheme.primary,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -43,22 +44,22 @@ class HomePopularCategories extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
-              children: const [
+              children: [
                 _CategoryCard(
                   icon: Icons.plumbing_rounded,
-                  label: 'Plomberie',
+                  label: t.home.categories.plumbing,
                 ),
                 _CategoryCard(
                   icon: Icons.bolt_rounded,
-                  label: 'Électricité',
+                  label: t.home.categories.electricity,
                 ),
                 _CategoryCard(
                   icon: Icons.cleaning_services_rounded,
-                  label: 'Ménage',
+                  label: t.home.categories.cleaning,
                 ),
                 _CategoryCard(
                   icon: Icons.format_paint_rounded,
-                  label: 'Peinture',
+                  label: t.home.categories.painting,
                 ),
               ],
             ),

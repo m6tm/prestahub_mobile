@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../l10n/translations.g.dart';
 
 /// Carte individuelle affichant les informations d'un prestataire.
 class ProviderCard extends StatelessWidget {
@@ -131,9 +132,9 @@ class ProviderCard extends StatelessWidget {
               ),
               elevation: 0,
             ),
-            child: const Text(
-              'Voir',
-              style: TextStyle(
+            child: Text(
+              t.home.view,
+              style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
               ),

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 194 (97 per locale)
+/// Strings: 226 (113 per locale)
 ///
-/// Built on 2026-03-25 at 12:02 UTC
+/// Built on 2026-03-25 at 20:45 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -150,6 +150,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	// Translations
 	late final _TranslationsAuthFr auth = _TranslationsAuthFr._(_root);
 	late final _TranslationsCommonFr common = _TranslationsCommonFr._(_root);
+	late final _TranslationsHomeFr home = _TranslationsHomeFr._(_root);
 	late final _TranslationsOnboardingFr onboarding = _TranslationsOnboardingFr._(_root);
 }
 
@@ -179,6 +180,25 @@ class _TranslationsCommonFr {
 	late final _TranslationsCommonButtonsFr buttons = _TranslationsCommonButtonsFr._(_root);
 	late final _TranslationsCommonErrorsFr errors = _TranslationsCommonErrorsFr._(_root);
 	late final _TranslationsCommonLabelsFr labels = _TranslationsCommonLabelsFr._(_root);
+}
+
+// Path: home
+class _TranslationsHomeFr {
+	_TranslationsHomeFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get welcomeBack => 'Bon retour,';
+	String helloUser({required Object name}) => 'Bonjour, ${name}';
+	String get searchPlaceholder => 'Rechercher un service...';
+	String get popularCategories => 'Catégories populaires';
+	String get viewAll => 'Tout voir';
+	String get nearbyProviders => 'Prestataires près de vous';
+	String get locationIndicator => 'Paris, FR';
+	String get view => 'Voir';
+	late final _TranslationsHomeCategoriesFr categories = _TranslationsHomeCategoriesFr._(_root);
+	late final _TranslationsHomeNavFr nav = _TranslationsHomeNavFr._(_root);
 }
 
 // Path: onboarding
@@ -357,6 +377,32 @@ class _TranslationsCommonLabelsFr {
 	String get required => 'Champ obligatoire';
 }
 
+// Path: home.categories
+class _TranslationsHomeCategoriesFr {
+	_TranslationsHomeCategoriesFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get plumbing => 'Plomberie';
+	String get electricity => 'Électricité';
+	String get cleaning => 'Ménage';
+	String get painting => 'Peinture';
+}
+
+// Path: home.nav
+class _TranslationsHomeNavFr {
+	_TranslationsHomeNavFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get home => 'Accueil';
+	String get search => 'Recherche';
+	String get orders => 'Commandes';
+	String get profile => 'Profil';
+}
+
 // Path: onboarding.pages
 class _TranslationsOnboardingPagesFr {
 	_TranslationsOnboardingPagesFr._(this._root);
@@ -455,6 +501,7 @@ class _TranslationsEn extends Translations {
 	// Translations
 	@override late final _TranslationsAuthEn auth = _TranslationsAuthEn._(_root);
 	@override late final _TranslationsCommonEn common = _TranslationsCommonEn._(_root);
+	@override late final _TranslationsHomeEn home = _TranslationsHomeEn._(_root);
 	@override late final _TranslationsOnboardingEn onboarding = _TranslationsOnboardingEn._(_root);
 }
 
@@ -484,6 +531,25 @@ class _TranslationsCommonEn extends _TranslationsCommonFr {
 	@override late final _TranslationsCommonButtonsEn buttons = _TranslationsCommonButtonsEn._(_root);
 	@override late final _TranslationsCommonErrorsEn errors = _TranslationsCommonErrorsEn._(_root);
 	@override late final _TranslationsCommonLabelsEn labels = _TranslationsCommonLabelsEn._(_root);
+}
+
+// Path: home
+class _TranslationsHomeEn extends _TranslationsHomeFr {
+	_TranslationsHomeEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get welcomeBack => 'Welcome back,';
+	@override String helloUser({required Object name}) => 'Hello, ${name}';
+	@override String get searchPlaceholder => 'Search for a service...';
+	@override String get popularCategories => 'Popular categories';
+	@override String get viewAll => 'See all';
+	@override String get nearbyProviders => 'Providers near you';
+	@override String get locationIndicator => 'Paris, FR';
+	@override String get view => 'View';
+	@override late final _TranslationsHomeCategoriesEn categories = _TranslationsHomeCategoriesEn._(_root);
+	@override late final _TranslationsHomeNavEn nav = _TranslationsHomeNavEn._(_root);
 }
 
 // Path: onboarding
@@ -662,6 +728,32 @@ class _TranslationsCommonLabelsEn extends _TranslationsCommonLabelsFr {
 	@override String get required => 'Required field';
 }
 
+// Path: home.categories
+class _TranslationsHomeCategoriesEn extends _TranslationsHomeCategoriesFr {
+	_TranslationsHomeCategoriesEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get plumbing => 'Plumbing';
+	@override String get electricity => 'Electricity';
+	@override String get cleaning => 'Cleaning';
+	@override String get painting => 'Painting';
+}
+
+// Path: home.nav
+class _TranslationsHomeNavEn extends _TranslationsHomeNavFr {
+	_TranslationsHomeNavEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get home => 'Home';
+	@override String get search => 'Search';
+	@override String get orders => 'Orders';
+	@override String get profile => 'Profile';
+}
+
 // Path: onboarding.pages
 class _TranslationsOnboardingPagesEn extends _TranslationsOnboardingPagesFr {
 	_TranslationsOnboardingPagesEn._(_TranslationsEn root) : this._root = root, super._(root);
@@ -826,6 +918,22 @@ extension on Translations {
 			case 'common.labels.loading': return 'Chargement...';
 			case 'common.labels.success': return 'Succès';
 			case 'common.labels.required': return 'Champ obligatoire';
+			case 'home.welcomeBack': return 'Bon retour,';
+			case 'home.helloUser': return ({required Object name}) => 'Bonjour, ${name}';
+			case 'home.searchPlaceholder': return 'Rechercher un service...';
+			case 'home.popularCategories': return 'Catégories populaires';
+			case 'home.viewAll': return 'Tout voir';
+			case 'home.nearbyProviders': return 'Prestataires près de vous';
+			case 'home.locationIndicator': return 'Paris, FR';
+			case 'home.view': return 'Voir';
+			case 'home.categories.plumbing': return 'Plomberie';
+			case 'home.categories.electricity': return 'Électricité';
+			case 'home.categories.cleaning': return 'Ménage';
+			case 'home.categories.painting': return 'Peinture';
+			case 'home.nav.home': return 'Accueil';
+			case 'home.nav.search': return 'Recherche';
+			case 'home.nav.orders': return 'Commandes';
+			case 'home.nav.profile': return 'Profil';
 			case 'onboarding.skip': return 'Ignorer';
 			case 'onboarding.start': return 'Commencer';
 			case 'onboarding.next': return 'Suivant';
@@ -931,6 +1039,22 @@ extension on _TranslationsEn {
 			case 'common.labels.loading': return 'Loading...';
 			case 'common.labels.success': return 'Success';
 			case 'common.labels.required': return 'Required field';
+			case 'home.welcomeBack': return 'Welcome back,';
+			case 'home.helloUser': return ({required Object name}) => 'Hello, ${name}';
+			case 'home.searchPlaceholder': return 'Search for a service...';
+			case 'home.popularCategories': return 'Popular categories';
+			case 'home.viewAll': return 'See all';
+			case 'home.nearbyProviders': return 'Providers near you';
+			case 'home.locationIndicator': return 'Paris, FR';
+			case 'home.view': return 'View';
+			case 'home.categories.plumbing': return 'Plumbing';
+			case 'home.categories.electricity': return 'Electricity';
+			case 'home.categories.cleaning': return 'Cleaning';
+			case 'home.categories.painting': return 'Painting';
+			case 'home.nav.home': return 'Home';
+			case 'home.nav.search': return 'Search';
+			case 'home.nav.orders': return 'Orders';
+			case 'home.nav.profile': return 'Profile';
 			case 'onboarding.skip': return 'Skip';
 			case 'onboarding.start': return 'Get Started';
 			case 'onboarding.next': return 'Next';

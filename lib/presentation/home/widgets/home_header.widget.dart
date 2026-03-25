@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../l10n/translations.g.dart';
 
 /// En-tête de l'écran d'accueil affichant le profil et les notifications.
 class HomeHeader extends StatelessWidget {
@@ -38,16 +39,16 @@ class HomeHeader extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Bon retour,',
+                    t.home.welcomeBack,
                     style: TextStyle(
                       fontSize: 12,
                       color: isDark ? PrestaHubTheme.textMutedDark : PrestaHubTheme.textMutedLight,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const Text(
-                    'Bonjour, Alex',
-                    style: TextStyle(
+                  Text(
+                    t.home.helloUser(name: 'Alex'),
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       letterSpacing: -0.5,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../../l10n/translations.g.dart';
 import 'provider_card.widget.dart';
 
 /// Section listant les prestataires à proximité de l'utilisateur.
@@ -18,9 +19,9 @@ class HomeNearbyProviders extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Prestataires près de vous',
-                style: TextStyle(
+              Text(
+                t.home.nearbyProviders,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -30,7 +31,7 @@ class HomeNearbyProviders extends StatelessWidget {
                   const Icon(Icons.location_on_rounded, color: Colors.grey, size: 14),
                   const SizedBox(width: 4),
                   Text(
-                    'Paris, FR',
+                    t.home.locationIndicator,
                     style: TextStyle(
                       fontSize: 12,
                       color: isDark ? PrestaHubTheme.textMutedDark : PrestaHubTheme.textMutedLight,
