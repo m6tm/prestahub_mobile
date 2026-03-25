@@ -1,0 +1,18 @@
+welcome_back: "Bon retour,"
+hello_user: "Bonjour, %s"
+search_placeholder: "Rechercher un service..."
+popular_categories: "Catégories populaires"
+view_all: "Tout voir"
+nearby_providers: "Prestataires près de vous"
+location_indicator: "Paris, FR"
+view: "Voir"
+categories:
+  plumbing: "Plomberie"
+  electricity: "Électricité"
+  cleaning: "Ménage"
+  painting: "Peinture"
+nav:
+  home: "Accueil"
+  search: "Recherche"
+  orders: "Commandes"
+  profile: "Profil"
