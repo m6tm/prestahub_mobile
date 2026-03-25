@@ -64,4 +64,9 @@ forgot_password_screen:
   email_phone_placeholder: "Ex: name@email.com"
   send_link_button: Send Link
   back_to_login: Back to login
-
+otp_verification_screen:
+  title: Verification
+  instruction: "Enter the 6-digit code sent to "
+  did_not_receive: "Didn't receive the code?"
+  resend: Resend code
+  verify_button: Verify

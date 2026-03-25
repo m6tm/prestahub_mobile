@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:prestahub/core/constants/app_constants.dart';
 import 'package:prestahub/core/theme/app_theme.dart';
 import 'package:prestahub/l10n/translations.g.dart';
 
@@ -209,7 +210,7 @@ class ForgotPasswordScreen extends ConsumerWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => context.push(AppConstants.routeOtp),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: PrestaHubTheme.primary,
                           foregroundColor: Colors.white,

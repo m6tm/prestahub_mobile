@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 156 (78 per locale)
+/// Strings: 166 (83 per locale)
 ///
-/// Built on 2026-03-25 at 09:57 UTC
+/// Built on 2026-03-25 at 11:02 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -165,6 +165,7 @@ class _TranslationsAuthFr {
 	String welcome({required Object name}) => 'Bienvenue ${name} !';
 	late final _TranslationsAuthLogoutFr logout = _TranslationsAuthLogoutFr._(_root);
 	late final _TranslationsAuthForgotPasswordScreenFr forgotPasswordScreen = _TranslationsAuthForgotPasswordScreenFr._(_root);
+	late final _TranslationsAuthOtpVerificationScreenFr otpVerificationScreen = _TranslationsAuthOtpVerificationScreenFr._(_root);
 }
 
 // Path: common
@@ -280,6 +281,20 @@ class _TranslationsAuthForgotPasswordScreenFr {
 	String get emailPhonePlaceholder => 'Ex: nom@email.com';
 	String get sendLinkButton => 'Envoyer le lien';
 	String get backToLogin => 'Retour à la connexion';
+}
+
+// Path: auth.otpVerificationScreen
+class _TranslationsAuthOtpVerificationScreenFr {
+	_TranslationsAuthOtpVerificationScreenFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Vérification';
+	String get instruction => 'Entrez le code à 6 chiffres envoyé au ';
+	String get didNotReceive => 'Vous n\'avez pas reçu le code ?';
+	String get resend => 'Renvoyer le code';
+	String get verifyButton => 'Vérifier';
 }
 
 // Path: common.buttons
@@ -431,6 +446,7 @@ class _TranslationsAuthEn extends _TranslationsAuthFr {
 	@override String welcome({required Object name}) => 'Welcome ${name} !';
 	@override late final _TranslationsAuthLogoutEn logout = _TranslationsAuthLogoutEn._(_root);
 	@override late final _TranslationsAuthForgotPasswordScreenEn forgotPasswordScreen = _TranslationsAuthForgotPasswordScreenEn._(_root);
+	@override late final _TranslationsAuthOtpVerificationScreenEn otpVerificationScreen = _TranslationsAuthOtpVerificationScreenEn._(_root);
 }
 
 // Path: common
@@ -546,6 +562,20 @@ class _TranslationsAuthForgotPasswordScreenEn extends _TranslationsAuthForgotPas
 	@override String get emailPhonePlaceholder => 'Ex: name@email.com';
 	@override String get sendLinkButton => 'Send Link';
 	@override String get backToLogin => 'Back to login';
+}
+
+// Path: auth.otpVerificationScreen
+class _TranslationsAuthOtpVerificationScreenEn extends _TranslationsAuthOtpVerificationScreenFr {
+	_TranslationsAuthOtpVerificationScreenEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Verification';
+	@override String get instruction => 'Enter the 6-digit code sent to ';
+	@override String get didNotReceive => 'Didn\'t receive the code?';
+	@override String get resend => 'Resend code';
+	@override String get verifyButton => 'Verify';
 }
 
 // Path: common.buttons
@@ -720,6 +750,11 @@ extension on Translations {
 			case 'auth.forgotPasswordScreen.emailPhonePlaceholder': return 'Ex: nom@email.com';
 			case 'auth.forgotPasswordScreen.sendLinkButton': return 'Envoyer le lien';
 			case 'auth.forgotPasswordScreen.backToLogin': return 'Retour à la connexion';
+			case 'auth.otpVerificationScreen.title': return 'Vérification';
+			case 'auth.otpVerificationScreen.instruction': return 'Entrez le code à 6 chiffres envoyé au ';
+			case 'auth.otpVerificationScreen.didNotReceive': return 'Vous n\'avez pas reçu le code ?';
+			case 'auth.otpVerificationScreen.resend': return 'Renvoyer le code';
+			case 'auth.otpVerificationScreen.verifyButton': return 'Vérifier';
 			case 'common.buttons.cancel': return 'Annuler';
 			case 'common.buttons.confirm': return 'Confirmer';
 			case 'common.buttons.save': return 'Enregistrer';
@@ -806,6 +841,11 @@ extension on _TranslationsEn {
 			case 'auth.forgotPasswordScreen.emailPhonePlaceholder': return 'Ex: name@email.com';
 			case 'auth.forgotPasswordScreen.sendLinkButton': return 'Send Link';
 			case 'auth.forgotPasswordScreen.backToLogin': return 'Back to login';
+			case 'auth.otpVerificationScreen.title': return 'Verification';
+			case 'auth.otpVerificationScreen.instruction': return 'Enter the 6-digit code sent to ';
+			case 'auth.otpVerificationScreen.didNotReceive': return 'Didn\'t receive the code?';
+			case 'auth.otpVerificationScreen.resend': return 'Resend code';
+			case 'auth.otpVerificationScreen.verifyButton': return 'Verify';
 			case 'common.buttons.cancel': return 'Cancel';
 			case 'common.buttons.confirm': return 'Confirm';
 			case 'common.buttons.save': return 'Save';
