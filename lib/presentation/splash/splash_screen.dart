@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:prestahub/core/constants/app_constants.dart';
+import 'package:prestahub/core/services/onboarding_prefs_service.dart';
 import 'package:prestahub/core/theme/app_theme.dart';
 
 /// Écran de Splash affiché au démarrage de l'application.
@@ -19,12 +20,19 @@ class _SplashScreenState extends State<SplashScreen> {
     _navigateToNext();
   }
 
-  /// Simule un chargement initial avant de naviguer vers l'onboarding.
+  /// Chargement initial : vérifie si l'onboarding a déjà été vu.
+  /// - Premier lancement → onboarding
+  /// - Lancements suivants → login directement
   Future<void> _navigateToNext() async {
     await Future.delayed(const Duration(seconds: 3));
-    if (mounted) {
-      context.go(AppConstants.routeOnboarding);
-    }
+    if (!mounted) return;
+
+    final seen = await OnboardingPrefsService.hasSeen();
+    if (!mounted) return;
+
+    context.go(
+      seen ? AppConstants.routeLogin : AppConstants.routeOnboarding,
+    );
   }
 
   @override
