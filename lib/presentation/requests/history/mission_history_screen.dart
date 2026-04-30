@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../reviews/models/review_context.dart';
 import '../models/service_request_models.dart';
 
 class MissionHistoryScreen extends StatefulWidget {
@@ -512,40 +513,57 @@ class _MissionCard extends StatelessWidget {
             if (mission.status == RequestStatus.completed &&
                 !mission.hasReview) ...[
               const SizedBox(height: 12),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 10, vertical: 8),
-                decoration: BoxDecoration(
-                  color: PrestaHubTheme.warning.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: PrestaHubTheme.warning.withValues(alpha: 0.35),
+              GestureDetector(
+                onTap: () => context.push(
+                  AppConstants.routeClientMissionReview
+                      .replaceFirst(':id', mission.id),
+                  extra: ReviewMissionContext(
+                    missionId: mission.id,
+                    missionTitle: mission.title,
+                    providerName: mission.providerName,
+                    providerInitials: mission.providerInitials,
+                    completedOn: mission.completedOn,
                   ),
                 ),
-                child: Row(
-                  children: [
-                    const Icon(Icons.star_border_rounded,
-                        size: 14, color: PrestaHubTheme.warning),
-                    const SizedBox(width: 6),
-                    Expanded(
-                      child: Text(
-                        'Évaluation en attente',
+                behavior: HitTestBehavior.opaque,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: PrestaHubTheme.warning.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: PrestaHubTheme.warning.withValues(alpha: 0.35),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.star_border_rounded,
+                          size: 14, color: PrestaHubTheme.warning),
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          'Évaluation en attente',
+                          style: GoogleFonts.inter(
+                            fontSize: 11.5,
+                            fontWeight: FontWeight.w600,
+                            color: PrestaHubTheme.warning,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Noter',
                         style: GoogleFonts.inter(
                           fontSize: 11.5,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w700,
                           color: PrestaHubTheme.warning,
                         ),
                       ),
-                    ),
-                    Text(
-                      'Noter',
-                      style: GoogleFonts.inter(
-                        fontSize: 11.5,
-                        fontWeight: FontWeight.w700,
-                        color: PrestaHubTheme.warning,
-                      ),
-                    ),
-                  ],
+                      const SizedBox(width: 2),
+                      const Icon(Icons.chevron_right_rounded,
+                          size: 14, color: PrestaHubTheme.warning),
+                    ],
+                  ),
                 ),
               ),
             ],

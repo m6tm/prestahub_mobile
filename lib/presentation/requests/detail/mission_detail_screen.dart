@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../reviews/models/review_context.dart';
 
 class MissionDetailScreen extends StatelessWidget {
   final String missionId;
@@ -548,7 +551,17 @@ class MissionDetailScreen extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: GestureDetector(
-              onTap: () {},
+              onTap: () => context.push(
+                AppConstants.routeClientMissionReview
+                    .replaceFirst(':id', missionId),
+                extra: ReviewMissionContext(
+                  missionId: missionId,
+                  missionTitle: 'Installation chauffe-eau',
+                  providerName: 'Jean Dupont',
+                  providerInitials: 'JD',
+                  completedOn: '15 avril 2026',
+                ),
+              ),
               child: Container(
                 height: 48,
                 alignment: Alignment.center,
@@ -559,11 +572,11 @@ class MissionDetailScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.refresh_rounded,
+                    const Icon(Icons.star_rounded,
                         size: 16, color: PrestaHubTheme.primaryContent),
                     const SizedBox(width: 6),
                     Text(
-                      'Recommander',
+                      'Modifier mon avis',
                       style: GoogleFonts.inter(
                         fontSize: 13,
                         fontWeight: FontWeight.w700,

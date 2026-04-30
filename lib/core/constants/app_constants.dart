@@ -38,6 +38,8 @@ class AppConstants {
   static const String routeClientRequestDetail = '/client/request/:id';
   static const String routeClientMissionHistory = '/client/missions/history';
   static const String routeClientMissionDetail = '/client/mission/:id';
+  static const String routeClientMissionReview = '/client/mission/:id/review';
+  static const String routeClientReportReview = '/client/review/:id/report';
 
   // Provider routes
   static const String routeProviderHome = '/provider/home';

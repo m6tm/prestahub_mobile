@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../core/constants/app_constants.dart';
+import '../../reviews/models/review_context.dart';
 
 class ProviderDetailScreen extends StatefulWidget {
   final String providerId;
@@ -37,10 +41,10 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen>
       _ServiceData('Chaudière & chauffage',   Icons.local_fire_department_rounded,'45 €/h',   'Entretien, dépannage, remplacement'),
     ],
     reviews: [
-      _ReviewData('Arnaud G.', 'AG', 5, 'Il y a 3 jours',    'Intervention rapide pour une fuite. Travail soigné, je recommande vivement.'),
-      _ReviewData('Camille R.', 'CR', 5, 'Il y a 1 semaine', 'Très professionnel. Diagnostic immédiat, tarif respecté.'),
-      _ReviewData('Théo M.',   'TM', 4, 'Il y a 2 semaines', 'Bon travail dans l\'ensemble, léger retard mais résultat nickel.'),
-      _ReviewData('Isabelle K.','IK', 5, 'Il y a 1 mois',    'Chauffe-eau remplacé le jour même. Très efficace.'),
+      _ReviewData('rev-01', 'Arnaud G.', 'AG', 5, 'Il y a 3 jours',    'Intervention rapide pour une fuite. Travail soigné, je recommande vivement.'),
+      _ReviewData('rev-02', 'Camille R.', 'CR', 5, 'Il y a 1 semaine', 'Très professionnel. Diagnostic immédiat, tarif respecté.'),
+      _ReviewData('rev-03', 'Théo M.',   'TM', 4, 'Il y a 2 semaines', 'Bon travail dans l\'ensemble, léger retard mais résultat nickel.'),
+      _ReviewData('rev-04', 'Isabelle K.','IK', 5, 'Il y a 1 mois',    'Chauffe-eau remplacé le jour même. Très efficace.'),
     ],
     certifications: ['RGE Qualibat', 'Assurance décennale', 'Siret vérifié'],
     languages: ['Français', 'Anglais'],
@@ -732,6 +736,17 @@ class _ReviewRow extends StatelessWidget {
   final _ReviewData review;
   const _ReviewRow({required this.review});
 
+  void _report(BuildContext context) {
+    context.push(
+      AppConstants.routeClientReportReview.replaceFirst(':id', review.id),
+      extra: ReportReviewContext(
+        reviewId: review.id,
+        authorName: review.authorName,
+        excerpt: review.comment,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) => Container(
         margin: const EdgeInsets.only(bottom: 10),
@@ -788,6 +803,33 @@ class _ReviewRow extends StatelessWidget {
                       size: 12,
                       color: const Color(0xFFFBBF24),
                     ),
+                  ),
+                ),
+                const SizedBox(width: 4),
+                SizedBox(
+                  height: 28,
+                  width: 28,
+                  child: PopupMenuButton<String>(
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(Icons.more_horiz_rounded,
+                        size: 18, color: Color(0xFF9CA3AF)),
+                    onSelected: (v) {
+                      if (v == 'report') _report(context);
+                    },
+                    itemBuilder: (_) => [
+                      const PopupMenuItem(
+                        value: 'report',
+                        child: Row(
+                          children: [
+                            Icon(Icons.flag_outlined,
+                                size: 16, color: Color(0xFFDC2626)),
+                            SizedBox(width: 8),
+                            Text('Signaler cet avis',
+                                style: TextStyle(color: Color(0xFFDC2626))),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -938,8 +980,8 @@ class _ServiceData {
 }
 
 class _ReviewData {
-  final String authorName, initials, date, comment;
+  final String id, authorName, initials, date, comment;
   final int rating;
   const _ReviewData(
-      this.authorName, this.initials, this.rating, this.date, this.comment);
+      this.id, this.authorName, this.initials, this.rating, this.date, this.comment);
 }

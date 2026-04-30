@@ -51,6 +51,9 @@ import 'package:prestahub/presentation/settings/legal/terms_screen.dart';
 import 'package:prestahub/presentation/settings/legal/privacy_policy_screen.dart';
 import 'package:prestahub/presentation/settings/legal/legal_mentions_screen.dart';
 import 'package:prestahub/presentation/settings/legal/about_screen.dart';
+import 'package:prestahub/presentation/reviews/mission_review_screen.dart';
+import 'package:prestahub/presentation/reviews/report_review_screen.dart';
+import 'package:prestahub/presentation/reviews/models/review_context.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(isAuthenticatedProvider);
@@ -314,6 +317,28 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppConstants.routeSettingsAbout,
         builder: (context, state) => const AboutScreen(),
+      ),
+
+      // ── Avis / Notation ─────────────────────────────────────────────────
+      GoRoute(
+        path: AppConstants.routeClientMissionReview,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final ctx = state.extra is ReviewMissionContext
+              ? state.extra as ReviewMissionContext
+              : null;
+          return MissionReviewScreen(missionId: id, context: ctx);
+        },
+      ),
+      GoRoute(
+        path: AppConstants.routeClientReportReview,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final ctx = state.extra is ReportReviewContext
+              ? state.extra as ReportReviewContext
+              : null;
+          return ReportReviewScreen(reviewId: id, context: ctx);
+        },
       ),
     ],
     errorBuilder: (context, state) =>
