@@ -61,6 +61,51 @@ class AuthNotifier extends AsyncNotifier<UserModel?> {
     );
   }
 
+  /// Connexion fictive pour les démonstrations.
+  /// Identifiants acceptés :
+  ///   client@prestahub.com  / demo1234  → rôle client
+  ///   prestataire@prestahub.com / demo1234  → rôle provider
+  Future<String?> mockSignIn({
+    required String email,
+    required String password,
+  }) async {
+    const clientEmail = 'client@prestahub.com';
+    const providerEmail = 'prestataire@prestahub.com';
+    const demoPassword = 'demo1234';
+
+    final emailTrimmed = email.trim().toLowerCase();
+
+    if (password != demoPassword) return 'Mot de passe incorrect.';
+
+    late UserModel mock;
+    if (emailTrimmed == clientEmail) {
+      mock = UserModel(
+        id: 'demo-client-001',
+        email: clientEmail,
+        firstName: 'Alice',
+        lastName: 'Martin',
+        role: UserRole.client,
+        isVerified: true,
+        createdAt: DateTime(2024),
+      );
+    } else if (emailTrimmed == providerEmail) {
+      mock = UserModel(
+        id: 'demo-provider-001',
+        email: providerEmail,
+        firstName: 'Jean',
+        lastName: 'Dupont',
+        role: UserRole.provider,
+        isVerified: true,
+        createdAt: DateTime(2024),
+      );
+    } else {
+      return 'Identifiant inconnu. Utilisez un compte démo.';
+    }
+
+    state = AsyncValue.data(mock);
+    return null; // null = succès
+  }
+
   /// Déconnecte l'utilisateur actuel.
   Future<void> signOut() async {
     state = const AsyncLoading();

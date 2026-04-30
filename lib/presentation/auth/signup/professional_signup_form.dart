@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prestahub/core/theme/app_theme.dart';
 import 'package:prestahub/l10n/translations.g.dart';
 
 /// Formulaire d'inscription pour les prestataires professionnels.
@@ -97,13 +96,6 @@ class _ProfessionalSignupFormState extends State<ProfessionalSignupForm> {
                 setState(() => _isPasswordVisible = !_isPasswordVisible),
             textInputAction: TextInputAction.done,
           ),
-          const SizedBox(height: 20),
-          _SignupTermsText(
-            prefix: s.termsPrefix,
-            cguLabel: s.termsCgu,
-            andText: s.termsAnd,
-            privacyLabel: s.termsPrivacy,
-          ),
           const SizedBox(height: 28),
           _SubmitButton(label: s.submitProfessional),
         ],
@@ -183,7 +175,7 @@ class _SignupField extends StatelessWidget {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(
-                color: PrestaHubTheme.primary.withValues(alpha: 0.5),
+                color: const Color(0xFF7C3AED).withValues(alpha: 0.5),
                 width: 2,
               ),
             ),
@@ -265,7 +257,7 @@ class _CategoryDropdownField extends StatelessWidget {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide(
-                color: PrestaHubTheme.primary.withValues(alpha: 0.5),
+                color: const Color(0xFF7C3AED).withValues(alpha: 0.5),
                 width: 2,
               ),
             ),
@@ -313,7 +305,7 @@ class _SignupTermsText extends StatelessWidget {
           TextSpan(
             text: cguLabel,
             style: const TextStyle(
-              color: PrestaHubTheme.primary,
+              color: const Color(0xFF7C3AED),
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -321,7 +313,7 @@ class _SignupTermsText extends StatelessWidget {
           TextSpan(
             text: privacyLabel,
             style: const TextStyle(
-              color: PrestaHubTheme.primary,
+              color: const Color(0xFF7C3AED),
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -346,14 +338,13 @@ class _SubmitButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: PrestaHubTheme.primary,
+          backgroundColor: const Color(0xFF7C3AED),
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          elevation: 6,
-          shadowColor: PrestaHubTheme.primary.withValues(alpha: 0.4),
+          elevation: 0,
         ),
         child: Text(
           label,

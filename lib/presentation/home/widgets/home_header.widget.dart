@@ -1,88 +1,128 @@
 import 'package:flutter/material.dart';
-import '../../../core/theme/app_theme.dart';
-import '../../../l10n/translations.g.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-/// En-tête de l'écran d'accueil affichant le profil et les notifications.
 class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key});
+  final VoidCallback onNotificationTap;
+
+  const HomeHeader({super.key, required this.onNotificationTap});
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-    
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: PrestaHubTheme.primary.withOpacity(0.2),
-                    width: 2,
-                  ),
-                ),
-                padding: const EdgeInsets.all(2),
-                child: const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    'https://lh3.googleusercontent.com/aida-public/AB6AXuBi7IVwGCPfKI_Mzjff-sk6-QwX-ro2IlQvD8X2FNgM8vvSunr5AIy3CGxb4_cy5Ci5Kr44tw4fw5NZQ3XjP8ZX8HUrItkmpEk0QlROJ2u_rEx-kcZjQij8Mki5m53jhhCe-Q0PLGi4Bomk2N8txCe2vRfcrigI3uvHGUtF8j0TyNSszUblfhXxrY_I8kO4M1321vAMOq36SDHqIojMUokCcd1pw1EWoO4EOVgZ19cHjee45qzRWnfpIWUfM9f7SnuO-GImlewAGCoI',
-                  ),
+          // Avatar
+          Container(
+            width: 42,
+            height: 42,
+            decoration: BoxDecoration(
+              color: const Color(0xFF7C3AED),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Center(
+              child: Text(
+                'A',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 18,
                 ),
               ),
-              const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    t.home.welcomeBack,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: isDark ? PrestaHubTheme.textMutedDark : PrestaHubTheme.textMutedLight,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Text(
-                    t.home.helloUser(name: 'Alex'),
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: -0.5,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+            ),
           ),
-          _NotificationButton(isDark: isDark),
+          const SizedBox(width: 12),
+
+          // Salutation
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Bonjour 👋',
+                  style: GoogleFonts.inter(
+                    fontSize: 12,
+                    color: const Color(0xFF6B7280),
+                  ),
+                ),
+                Text(
+                  'Alex Martin',
+                  style: GoogleFonts.plusJakartaSans(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF111827),
+                    letterSpacing: -0.3,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          // Localisation
+          Container(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF3F4F6),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.location_on_rounded,
+                    size: 13, color: Color(0xFF7C3AED)),
+                const SizedBox(width: 4),
+                Text(
+                  'Paris 75001',
+                  style: GoogleFonts.inter(
+                    fontSize: 11,
+                    color: const Color(0xFF374151),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(width: 2),
+                const Icon(Icons.keyboard_arrow_down_rounded,
+                    size: 14, color: Color(0xFF6B7280)),
+              ],
+            ),
+          ),
+          const SizedBox(width: 10),
+
+          // Cloche notification
+          GestureDetector(
+            onTap: onNotificationTap,
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF9FAFB),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: const Color(0xFFE5E7EB)),
+                  ),
+                  child: const Icon(Icons.notifications_none_rounded,
+                      color: Color(0xFF374151), size: 20),
+                ),
+                Positioned(
+                  top: -2,
+                  right: -2,
+                  child: Container(
+                    width: 9,
+                    height: 9,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFDC2626),
+                      shape: BoxShape.circle,
+                      border: Border.fromBorderSide(
+                          BorderSide(color: Colors.white, width: 1.5)),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
-      ),
-    );
-  }
-}
-
-class _NotificationButton extends StatelessWidget {
-  final bool isDark;
-
-  const _NotificationButton({required this.isDark});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 40,
-      height: 40,
-      decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1F2937) : const Color(0xFFF1F5F9),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Icon(
-        Icons.notifications_none_rounded,
-        color: isDark ? Colors.white70 : Colors.black54,
-        size: 24,
       ),
     );
   }

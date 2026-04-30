@@ -1,111 +1,120 @@
 import 'package:flutter/material.dart';
-import '../../../core/theme/app_theme.dart';
-import '../../../l10n/translations.g.dart';
+import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../../core/constants/app_constants.dart';
 
-/// Section affichant les catégories de services les plus populaires.
 class HomePopularCategories extends StatelessWidget {
   const HomePopularCategories({super.key});
 
+  static const _categories = [
+    _Category('Plomberie', Icons.plumbing_rounded),
+    _Category('Électricité', Icons.bolt_rounded),
+    _Category('Ménage', Icons.cleaning_services_rounded),
+    _Category('Peinture', Icons.format_paint_rounded),
+    _Category('Jardinage', Icons.yard_rounded),
+    _Category('Déménagement', Icons.local_shipping_rounded),
+    _Category('Rénovation', Icons.construction_rounded),
+    _Category('Serrurerie', Icons.lock_rounded),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  t.home.popularCategories,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 24, 20, 12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Catégories',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xFF111827),
+                  letterSpacing: -0.2,
+                ),
+              ),
+              GestureDetector(
+                onTap: () =>
+                    context.push(AppConstants.routeClientCategories),
+                child: Text(
+                  'Voir tout',
+                  style: GoogleFonts.inter(
+                    fontSize: 13,
+                    color: const Color(0xFF7C3AED),
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    t.home.viewAll,
-                    style: const TextStyle(
-                      color: PrestaHubTheme.primary,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-          SingleChildScrollView(
+        ),
+        SizedBox(
+          height: 100,
+          child: ListView.separated(
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              children: [
-                _CategoryCard(
-                  icon: Icons.plumbing_rounded,
-                  label: t.home.categories.plumbing,
-                ),
-                _CategoryCard(
-                  icon: Icons.bolt_rounded,
-                  label: t.home.categories.electricity,
-                ),
-                _CategoryCard(
-                  icon: Icons.cleaning_services_rounded,
-                  label: t.home.categories.cleaning,
-                ),
-                _CategoryCard(
-                  icon: Icons.format_paint_rounded,
-                  label: t.home.categories.painting,
-                ),
-              ],
-            ),
+            itemCount: _categories.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 10),
+            itemBuilder: (context, i) =>
+                _CategoryTile(category: _categories[i]),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
 
-class _CategoryCard extends StatelessWidget {
-  final IconData icon;
+class _Category {
   final String label;
+  final IconData icon;
+  const _Category(this.label, this.icon);
+}
 
-  const _CategoryCard({required this.icon, required this.label});
+class _CategoryTile extends StatelessWidget {
+  final _Category category;
+  const _CategoryTile({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      margin: const EdgeInsets.only(right: 16),
-      child: Column(
-        children: [
-          Container(
-            width: 64,
-            height: 64,
-            decoration: BoxDecoration(
-              color: PrestaHubTheme.primary.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12),
+    return GestureDetector(
+      onTap: () => context.push(
+        AppConstants.routeClientSearch,
+        extra: {'category': category.label},
+      ),
+      child: SizedBox(
+        width: 72,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 52,
+              height: 52,
+              decoration: BoxDecoration(
+                color: const Color(0xFFF3F0FF),
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: const Color(0xFFE9D5FF)),
+              ),
+              child: Icon(category.icon,
+                  color: const Color(0xFF7C3AED), size: 24),
             ),
-            child: Icon(
-              icon,
-              color: PrestaHubTheme.primary,
-              size: 30,
+            const SizedBox(height: 6),
+            Text(
+              category.label,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              style: GoogleFonts.inter(
+                fontSize: 10,
+                fontWeight: FontWeight.w500,
+                color: const Color(0xFF374151),
+                height: 1.2,
+              ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

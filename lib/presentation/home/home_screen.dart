@@ -1,115 +1,152 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_theme.dart';
-import '../../l10n/translations.g.dart';
-import 'widgets/home_header.widget.dart';
-import 'widgets/home_search_bar.widget.dart';
-import 'widgets/home_popular_categories.widget.dart';
-import 'widgets/home_nearby_providers.widget.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:prestahub/application/auth/auth_notifier.dart';
+import 'package:prestahub/core/constants/app_constants.dart';
+import 'package:prestahub/presentation/home/widgets/home_header.widget.dart';
+import 'package:prestahub/presentation/home/widgets/home_search_bar.widget.dart';
+import 'package:prestahub/presentation/home/widgets/home_popular_categories.widget.dart';
+import 'package:prestahub/presentation/home/widgets/home_nearby_providers.widget.dart';
 
-/// Écran d'accueil principal de l'application PrestaHub.
-/// Affiche le profil utilisateur, une barre de recherche, les catégories et les prestataires à proximité.
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).brightness == Brightness.light
-          ? const Color(0xFFF7F6F8)
-          : PrestaHubTheme.backgroundDark,
-      body: SafeArea(
-        child: Column(
-          children: [
-            const HomeHeader(),
-            const HomeSearchBar(),
-            const HomePopularCategories(),
-            Expanded(
-              child: const HomeNearbyProviders(),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: _buildBottomNavBar(context),
-    );
-  }
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
 
-  Widget _buildBottomNavBar(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    return Container(
-      height: 80,
-      decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF111827).withOpacity(0.95) : Colors.white.withOpacity(0.95),
-        border: Border(
-          top: BorderSide(
-            color: isDark ? Colors.white10 : Colors.black12,
-            width: 1,
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  int _navIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.transparent,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        extendBody: true,
+        body: SafeArea(
+          bottom: false,
+          child: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(child: HomeHeader(onNotificationTap: () {})),
+              SliverToBoxAdapter(
+                child: HomeSearchBar(
+                  onTap: () => context.push(AppConstants.routeClientSearch),
+                ),
+              ),
+              const SliverToBoxAdapter(child: HomePopularCategories()),
+              const SliverToBoxAdapter(child: HomeNearbyProviders()),
+              const SliverToBoxAdapter(child: SizedBox(height: 100)),
+            ],
           ),
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _NavBarItem(
-            icon: Icons.home_rounded,
-            label: t.home.nav.home,
-            isActive: true,
-            onTap: () {},
-          ),
-          _NavBarItem(
-            icon: Icons.search_rounded,
-            label: t.home.nav.search,
-            onTap: () {},
-          ),
-          _NavBarItem(
-            icon: Icons.description_outlined,
-            label: t.home.nav.orders,
-            onTap: () {},
-          ),
-          _NavBarItem(
-            icon: Icons.person_outline_rounded,
-            label: t.home.nav.profile,
-            onTap: () {},
-          ),
-        ],
+        bottomNavigationBar: _BottomNavBar(
+          currentIndex: _navIndex,
+          onTap: (i) async {
+            if (i == 3) {
+              final confirm = await showDialog<bool>(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14)),
+                  title: const Text('Se déconnecter ?'),
+                  content: const Text(
+                      'Voulez-vous vraiment quitter votre session ?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(ctx, false),
+                      child: const Text('Annuler'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(ctx, true),
+                      child: const Text('Déconnexion',
+                          style: TextStyle(color: Color(0xFFDC2626))),
+                    ),
+                  ],
+                ),
+              );
+              if (confirm == true && mounted) {
+                await ref.read(authNotifierProvider.notifier).signOut();
+                if (mounted) context.go(AppConstants.routeLogin);
+              }
+            } else {
+              setState(() => _navIndex = i);
+            }
+          },
+        ),
       ),
     );
   }
 }
 
-class _NavBarItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final bool isActive;
-  final VoidCallback onTap;
+// ─── Bottom Navigation Bar ────────────────────────────────────────────────────
+class _BottomNavBar extends StatelessWidget {
+  final int currentIndex;
+  final ValueChanged<int> onTap;
 
-  const _NavBarItem({
-    required this.icon,
-    required this.label,
-    this.isActive = false,
-    required this.onTap,
-  });
+  const _BottomNavBar({required this.currentIndex, required this.onTap});
+
+  static const _items = [
+    (Icons.home_rounded, Icons.home_outlined, 'Accueil'),
+    (Icons.search_rounded, Icons.search_outlined, 'Recherche'),
+    (Icons.description_rounded, Icons.description_outlined, 'Missions'),
+    (Icons.person_rounded, Icons.person_outline_rounded, 'Profil'),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final color = isActive ? PrestaHubTheme.primary : Colors.grey;
-    
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, color: color),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              color: color,
-              fontSize: 10,
-              fontWeight: FontWeight.bold,
+    final bottomPad = MediaQuery.of(context).padding.bottom;
+    return Container(
+      height: 64 + bottomPad,
+      padding: EdgeInsets.only(bottom: bottomPad),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        border: Border(top: BorderSide(color: Color(0xFFE5E7EB))),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: _items.asMap().entries.map((e) {
+          final i = e.key;
+          final (activeIcon, inactiveIcon, label) = e.value;
+          final isActive = currentIndex == i;
+          return GestureDetector(
+            onTap: () => onTap(i),
+            behavior: HitTestBehavior.opaque,
+            child: SizedBox(
+              width: 72,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    isActive ? activeIcon : inactiveIcon,
+                    size: 22,
+                    color: isActive
+                        ? const Color(0xFF7C3AED)
+                        : const Color(0xFF9CA3AF),
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    label,
+                    style: GoogleFonts.inter(
+                      fontSize: 10,
+                      fontWeight:
+                          isActive ? FontWeight.w600 : FontWeight.w400,
+                      color: isActive
+                          ? const Color(0xFF7C3AED)
+                          : const Color(0xFF9CA3AF),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          );
+        }).toList(),
       ),
     );
   }

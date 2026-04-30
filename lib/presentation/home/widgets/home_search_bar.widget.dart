@@ -1,37 +1,45 @@
 import 'package:flutter/material.dart';
-import '../../../core/theme/app_theme.dart';
-import '../../../l10n/translations.g.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-/// Barre de recherche pour trouver des services sur la page d'accueil.
 class HomeSearchBar extends StatelessWidget {
-  const HomeSearchBar({super.key});
+  final VoidCallback onTap;
+
+  const HomeSearchBar({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-    
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: Container(
-        height: 48,
-        decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF1F2937) : const Color(0xFFF1F5F9),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: TextField(
-          decoration: InputDecoration(
-            hintText: t.home.searchPlaceholder,
-            hintStyle: TextStyle(
-              color: isDark ? PrestaHubTheme.textMutedDark : PrestaHubTheme.textMutedLight,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
-            prefixIcon: const Icon(
-              Icons.search_rounded,
-              color: Colors.grey,
-            ),
-            border: InputBorder.none,
-            contentPadding: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          height: 48,
+          decoration: BoxDecoration(
+            color: const Color(0xFFF9FAFB),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: const Color(0xFFE5E7EB)),
+          ),
+          child: Row(
+            children: [
+              const SizedBox(width: 14),
+              const Icon(Icons.search_rounded,
+                  color: Color(0xFF9CA3AF), size: 20),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  'Plombier, électricien, ménage…',
+                  style: GoogleFonts.inter(
+                    fontSize: 14,
+                    color: const Color(0xFF9CA3AF),
+                  ),
+                ),
+              ),
+              Container(width: 1, height: 20, color: const Color(0xFFE5E7EB)),
+              const SizedBox(width: 14),
+              const Icon(Icons.tune_rounded,
+                  size: 18, color: Color(0xFF7C3AED)),
+              const SizedBox(width: 14),
+            ],
           ),
         ),
       ),

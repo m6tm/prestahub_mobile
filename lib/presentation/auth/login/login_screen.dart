@@ -1,17 +1,87 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:prestahub/application/auth/auth_notifier.dart';
 import 'package:prestahub/core/constants/app_constants.dart';
-import 'package:prestahub/core/theme/app_theme.dart';
+import 'package:prestahub/core/enums/user_role.dart';
 import 'package:prestahub/l10n/translations.g.dart';
 
-/// Écran de connexion de l'application.
-class LoginScreen extends ConsumerWidget {
-  /// Crée une instance de [LoginScreen].
+/// Écran de connexion — deux comptes démo disponibles :
+///   client@prestahub.com / demo1234
+///   prestataire@prestahub.com / demo1234
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends ConsumerState<LoginScreen> {
+  final _emailCtrl = TextEditingController();
+  final _passwordCtrl = TextEditingController();
+  bool _isPasswordVisible = false;
+  bool _isLoading = false;
+  String? _errorMessage;
+
+  @override
+  void dispose() {
+    _emailCtrl.dispose();
+    _passwordCtrl.dispose();
+    super.dispose();
+  }
+
+  Future<void> _handleLogin() async {
+    final email = _emailCtrl.text.trim();
+    final password = _passwordCtrl.text;
+
+    if (email.isEmpty || password.isEmpty) {
+      setState(() => _errorMessage = 'Veuillez remplir tous les champs.');
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+
+    // Petite pause pour simuler un appel réseau
+    await Future.delayed(const Duration(milliseconds: 800));
+
+    final error = await ref.read(authNotifierProvider.notifier).mockSignIn(
+          email: email,
+          password: password,
+        );
+
+    if (!mounted) return;
+
+    if (error != null) {
+      setState(() {
+        _isLoading = false;
+        _errorMessage = error;
+      });
+      return;
+    }
+
+    // Succès : le router redirige automatiquement selon le rôle.
+    // On force le setState pour arrêter le spinner au cas où la navigation
+    // tarde légèrement.
+    setState(() => _isLoading = false);
+
+    final role = ref.read(userRoleProvider);
+    switch (role) {
+      case UserRole.client:
+        context.go(AppConstants.routeClientHome);
+        break;
+      case UserRole.provider:
+        context.go(AppConstants.routeProviderHome);
+        break;
+      default:
+        context.go(AppConstants.routeClientHome);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -26,15 +96,8 @@ class LoginScreen extends ConsumerWidget {
                 width: 64,
                 height: 64,
                 decoration: BoxDecoration(
-                  color: PrestaHubTheme.primary,
+                  color: const Color(0xFF7C3AED),
                   borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: PrestaHubTheme.primary.withValues(alpha: 0.2),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
                 ),
                 child: const Icon(Icons.hub, color: Colors.white, size: 36),
               ),
@@ -48,7 +111,6 @@ class LoginScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              // Welcome Text
               Text(
                 t.auth.login.welcomeTitle,
                 style: const TextStyle(
@@ -62,7 +124,23 @@ class LoginScreen extends ConsumerWidget {
                 style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
               const SizedBox(height: 40),
-              // Email Field
+
+              // ── Comptes démo ──────────────────────────────────────────────
+              _DemoCredentialCard(
+                onSelectClient: () {
+                  _emailCtrl.text = 'client@prestahub.com';
+                  _passwordCtrl.text = 'demo1234';
+                  setState(() => _errorMessage = null);
+                },
+                onSelectProvider: () {
+                  _emailCtrl.text = 'prestataire@prestahub.com';
+                  _passwordCtrl.text = 'demo1234';
+                  setState(() => _errorMessage = null);
+                },
+              ),
+              const SizedBox(height: 28),
+
+              // ── Email ─────────────────────────────────────────────────────
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -77,16 +155,17 @@ class LoginScreen extends ConsumerWidget {
                     ),
                   ),
                   TextField(
+                    controller: _emailCtrl,
+                    keyboardType: TextInputType.emailAddress,
+                    onChanged: (_) => setState(() => _errorMessage = null),
                     decoration: InputDecoration(
                       prefixIcon: const Icon(
                         Icons.person_outline,
                         color: Colors.grey,
                       ),
                       hintText: t.auth.login.emailPhonePlaceholder,
-                      hintStyle: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                      ),
+                      hintStyle:
+                          const TextStyle(color: Colors.grey, fontSize: 14),
                       filled: true,
                       fillColor: Colors.grey[50],
                       border: OutlineInputBorder(
@@ -101,11 +180,105 @@ class LoginScreen extends ConsumerWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 16),
+
+              // ── Mot de passe ──────────────────────────────────────────────
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 4, bottom: 8),
+                    child: Text(
+                      'Mot de passe',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  TextField(
+                    controller: _passwordCtrl,
+                    obscureText: !_isPasswordVisible,
+                    onChanged: (_) => setState(() => _errorMessage = null),
+                    onSubmitted: (_) => _handleLogin(),
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(
+                        Icons.lock_outline,
+                        color: Colors.grey,
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isPasswordVisible
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          color: Colors.grey,
+                          size: 20,
+                        ),
+                        onPressed: () => setState(
+                          () => _isPasswordVisible = !_isPasswordVisible,
+                        ),
+                      ),
+                      hintText: 'Entrez votre mot de passe',
+                      hintStyle:
+                          const TextStyle(color: Colors.grey, fontSize: 14),
+                      filled: true,
+                      fillColor: Colors.grey[50],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none,
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        vertical: 16,
+                        horizontal: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+
+              // ── Message d'erreur ──────────────────────────────────────────
+              if (_errorMessage != null) ...[
+                const SizedBox(height: 4),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFEF2F2),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: const Color(0xFFFCA5A5)),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.error_outline_rounded,
+                        size: 16,
+                        color: Color(0xFFDC2626),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          _errorMessage!,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            color: Color(0xFFDC2626),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+
+              // ── Mot de passe oublié ───────────────────────────────────────
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () => context.push(AppConstants.routeForgotPassword),
+                  onPressed: () =>
+                      context.push(AppConstants.routeForgotPassword),
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
                     minimumSize: const Size(0, 0),
@@ -115,101 +288,50 @@ class LoginScreen extends ConsumerWidget {
                     t.auth.login.forgotPassword,
                     style: const TextStyle(
                       fontSize: 14,
-                      color: PrestaHubTheme.primary,
+                      color: const Color(0xFF7C3AED),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
-              // Continue Button
+              const SizedBox(height: 28),
+
+              // ── Bouton Se connecter ───────────────────────────────────────
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: _isLoading ? null : _handleLogin,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: PrestaHubTheme.primary,
+                    backgroundColor: const Color(0xFF7C3AED),
                     foregroundColor: Colors.white,
+                    disabledBackgroundColor: const Color(0xFFDDD6FE),
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    elevation: 4,
+                    elevation: 0,
                   ),
-                  child: Text(
-                    t.auth.login.continueButton,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  child: _isLoading
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2.5,
+                            color: Colors.white,
+                          ),
+                        )
+                      : const Text(
+                          'Se connecter',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                 ),
               ),
-              const SizedBox(height: 32),
-              // Divider
-              Row(
-                children: [
-                  Expanded(child: Divider(color: Colors.grey[200])),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      t.auth.login.alternativeTitle,
-                      style: const TextStyle(
-                        fontSize: 11,
-                        color: Colors.grey,
-                        letterSpacing: 1.2,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  Expanded(child: Divider(color: Colors.grey[200])),
-                ],
-              ),
-              const SizedBox(height: 24),
-              // Alternative Buttons
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.pin,
-                        color: PrestaHubTheme.primary,
-                        size: 18,
-                      ),
-                      label: Text(t.auth.login.otpButton),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        side: BorderSide(color: Colors.grey[200]!),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.lock_outline,
-                        color: PrestaHubTheme.primary,
-                        size: 18,
-                      ),
-                      label: Text(t.auth.login.passwordButton),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        side: BorderSide(color: Colors.grey[200]!),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               const SizedBox(height: 40),
-              // Footer
+
+              // ── Lien inscription ──────────────────────────────────────────
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -223,7 +345,7 @@ class LoginScreen extends ConsumerWidget {
                       t.auth.login.createAccountLink,
                       style: const TextStyle(
                         fontSize: 14,
-                        color: PrestaHubTheme.primary,
+                        color: const Color(0xFF7C3AED),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -232,6 +354,156 @@ class LoginScreen extends ConsumerWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Carte comptes démo ───────────────────────────────────────────────────────
+class _DemoCredentialCard extends StatelessWidget {
+  final VoidCallback onSelectClient;
+  final VoidCallback onSelectProvider;
+
+  const _DemoCredentialCard({
+    required this.onSelectClient,
+    required this.onSelectProvider,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF5F3FF),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFFC4B5FD).withValues(alpha: 0.50)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(
+                Icons.info_outline_rounded,
+                size: 15,
+                color: Color(0xFF7C3AED),
+              ),
+              const SizedBox(width: 6),
+              Text(
+                'Comptes de démonstration',
+                style: TextStyle(
+                  fontSize: 12.5,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xFF7C3AED),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: _DemoButton(
+                  label: 'Client',
+                  email: 'client@prestahub.com',
+                  icon: Icons.person_rounded,
+                  color: const Color(0xFF7C3AED),
+                  onTap: onSelectClient,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _DemoButton(
+                  label: 'Prestataire',
+                  email: 'prestataire@prestahub.com',
+                  icon: Icons.handyman_rounded,
+                  color: const Color(0xFF7C3AED),
+                  onTap: onSelectProvider,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Center(
+            child: Text(
+              'Mot de passe commun : demo1234',
+              style: TextStyle(
+                fontSize: 11,
+                color: Colors.grey[500],
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DemoButton extends StatelessWidget {
+  final String label;
+  final String email;
+  final IconData icon;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _DemoButton({
+    required this.label,
+    required this.email,
+    required this.icon,
+    required this.color,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: color.withValues(alpha: 0.25)),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.12),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(icon, size: 16, color: color),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.w700,
+                      color: color,
+                    ),
+                  ),
+                  Text(
+                    'Remplir',
+                    style: TextStyle(
+                      fontSize: 10.5,
+                      color: color.withValues(alpha: 0.70),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Icon(Icons.arrow_forward_ios_rounded, size: 10, color: color),
+          ],
         ),
       ),
     );

@@ -1,146 +1,198 @@
 import 'package:flutter/material.dart';
-import '../../../core/theme/app_theme.dart';
-import '../../../l10n/translations.g.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-/// Carte individuelle affichant les informations d'un prestataire.
+/// Carte prestataire — design épuré, palette neutre
 class ProviderCard extends StatelessWidget {
   final String name;
   final String expertise;
   final double rating;
+  final int reviewCount;
   final String distance;
   final String price;
-  final String imageUrl;
+  final String initials;
+  final bool isVerified;
+  final bool isAvailable;
+  final VoidCallback? onTap;
 
   const ProviderCard({
     super.key,
     required this.name,
     required this.expertise,
     required this.rating,
+    this.reviewCount = 0,
     required this.distance,
     required this.price,
-    required this.imageUrl,
+    required this.initials,
+    this.isVerified = true,
+    this.isAvailable = true,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = Theme.of(context).brightness == Brightness.dark;
-    
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1F2937).withOpacity(0.5) : Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isDark ? const Color(0xFF374151) : const Color(0xFFF1F5F9),
-        ),
-        boxShadow: [
-          if (!isDark)
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: const Color(0xFFE5E7EB)),
+          boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+              color: Colors.black.withOpacity(0.04),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
             ),
-        ],
+          ],
+        ),
+        child: Row(
+          children: [
+            _buildAvatar(),
+            const SizedBox(width: 12),
+            Expanded(child: _buildInfo()),
+            _buildCta(),
+          ],
+        ),
       ),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              imageUrl,
-              width: 64,
-              height: 64,
-              fit: BoxFit.cover,
-            ),
+    );
+  }
+
+  Widget _buildAvatar() {
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          width: 52,
+          height: 52,
+          decoration: BoxDecoration(
+            color: const Color(0xFFF3F0FF),
+            borderRadius: BorderRadius.circular(14),
           ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      name,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.star_rounded,
-                          color: Color(0xFFF59E0B),
-                          size: 16,
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          rating.toString(),
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFFF59E0B),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                Text(
-                  expertise,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: isDark ? PrestaHubTheme.textMutedDark : PrestaHubTheme.textMutedLight,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.location_on_rounded,
-                      color: Colors.grey,
-                      size: 14,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      '$distance • $price',
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 16),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: PrestaHubTheme.primary,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              minimumSize: const Size(0, 32),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              elevation: 0,
-            ),
+          child: Center(
             child: Text(
-              t.home.view,
+              initials,
               style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
+                color: Color(0xFF7C3AED),
+                fontWeight: FontWeight.w700,
+                fontSize: 16,
               ),
             ),
           ),
-        ],
+        ),
+        if (isAvailable)
+          Positioned(
+            bottom: -2,
+            right: -2,
+            child: Container(
+              width: 12,
+              height: 12,
+              decoration: BoxDecoration(
+                color: const Color(0xFF22C55E),
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white, width: 2),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildInfo() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Flexible(
+              child: Text(
+                name,
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xFF111827),
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            if (isVerified) ...[
+              const SizedBox(width: 4),
+              const Icon(Icons.verified_rounded,
+                  size: 13, color: Color(0xFF7C3AED)),
+            ],
+          ],
+        ),
+        const SizedBox(height: 2),
+        Text(
+          expertise,
+          style: GoogleFonts.inter(
+              fontSize: 12, color: const Color(0xFF6B7280)),
+        ),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            const Icon(Icons.star_rounded,
+                color: Color(0xFFFBBF24), size: 13),
+            const SizedBox(width: 3),
+            Text(
+              rating.toStringAsFixed(1),
+              style: GoogleFonts.inter(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: const Color(0xFF374151),
+              ),
+            ),
+            if (reviewCount > 0)
+              Text(
+                ' ($reviewCount)',
+                style: GoogleFonts.inter(
+                    fontSize: 11, color: const Color(0xFF9CA3AF)),
+              ),
+            const SizedBox(width: 8),
+            const Icon(Icons.location_on_rounded,
+                color: Color(0xFF9CA3AF), size: 12),
+            const SizedBox(width: 2),
+            Text(
+              distance,
+              style: GoogleFonts.inter(
+                  fontSize: 11, color: const Color(0xFF6B7280)),
+            ),
+            const Spacer(),
+            Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF3F0FF),
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Text(
+                price,
+                style: GoogleFonts.inter(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xFF7C3AED),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildCta() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10),
+      child: Container(
+        width: 32,
+        height: 32,
+        decoration: BoxDecoration(
+          color: const Color(0xFFF3F0FF),
+          borderRadius: BorderRadius.circular(9),
+        ),
+        child: const Icon(Icons.arrow_forward_ios_rounded,
+            color: Color(0xFF7C3AED), size: 13),
       ),
     );
   }

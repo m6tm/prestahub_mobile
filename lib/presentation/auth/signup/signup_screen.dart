@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:prestahub/core/theme/app_theme.dart';
 import 'package:prestahub/l10n/translations.g.dart';
 import 'package:prestahub/presentation/auth/signup/professional_signup_form.dart';
 
@@ -38,17 +36,8 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                       width: 64,
                       height: 64,
                       decoration: BoxDecoration(
-                        color: PrestaHubTheme.primary,
+                        color: const Color(0xFF7C3AED),
                         borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: PrestaHubTheme.primary.withValues(
-                              alpha: 0.2,
-                            ),
-                            blurRadius: 10,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
                       ),
                       child: const Icon(
                         Icons.hub,
@@ -124,7 +113,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                   color: _selectedSegment == 0
-                                      ? PrestaHubTheme.primary
+                                      ? const Color(0xFF7C3AED)
                                       : Colors.grey[600],
                                 ),
                               ),
@@ -142,7 +131,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
                                   color: _selectedSegment == 1
-                                      ? PrestaHubTheme.primary
+                                      ? const Color(0xFF7C3AED)
                                       : Colors.grey[600],
                                 ),
                               ),
@@ -199,16 +188,13 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: PrestaHubTheme.primary,
+                      backgroundColor: const Color(0xFF7C3AED),
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      elevation: 6,
-                      shadowColor: PrestaHubTheme.primary.withValues(
-                        alpha: 0.4,
-                      ),
+                      elevation: 0,
                     ),
                     child: Text(
                       t.auth.signup.submit,
@@ -221,45 +207,6 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                 ),
               ],
               const SizedBox(height: 32),
-              // Social Login
-              Row(
-                children: [
-                  Expanded(child: Divider(color: Colors.grey[200])),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      t.auth.signup.socialDivider,
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color: Colors.grey,
-                        letterSpacing: 1.0,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  Expanded(child: Divider(color: Colors.grey[200])),
-                ],
-              ),
-              const SizedBox(height: 24),
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildSocialButton(
-                      label: t.auth.signup.social.google,
-                      icon: FontAwesomeIcons.google,
-                      iconColor: Colors.red,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: _buildSocialButton(
-                      label: t.auth.signup.social.apple,
-                      icon: FontAwesomeIcons.apple,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40),
               // Login Footer
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -274,7 +221,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                       t.auth.signup.loginLink,
                       style: const TextStyle(
                         fontSize: 14,
-                        color: PrestaHubTheme.primary,
+                        color: const Color(0xFF7C3AED),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -346,34 +293,4 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     );
   }
 
-  Widget _buildSocialButton({
-    required String label,
-    IconData? icon,
-    Color? iconColor,
-  }) {
-    return OutlinedButton(
-      onPressed: () {},
-      style: OutlinedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        side: BorderSide(color: Colors.grey[200]!),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (icon != null)
-            FaIcon(icon, color: iconColor ?? Colors.black, size: 18),
-          const SizedBox(width: 8),
-          Text(
-            label,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: Color(0xFF1E293B),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
