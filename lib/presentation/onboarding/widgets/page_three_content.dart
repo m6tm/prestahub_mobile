@@ -131,7 +131,7 @@ class _PageThreeContentState extends State<PageThreeContent>
                           gradient: RadialGradient(
                             colors: [
                               const Color(0xFF7C3AED)
-                                  .withOpacity(0.22 + _glowCtrl.value * 0.10),
+                                  .withValues(alpha: 0.22 + _glowCtrl.value * 0.10),
                               Colors.transparent,
                             ],
                           ),
@@ -326,8 +326,8 @@ class _PageThreeContentState extends State<PageThreeContent>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: i.isEven
-                        ? const Color(0xFFA78BFA).withOpacity(0.65)
-                        : const Color(0xFF60A5FA).withOpacity(0.55),
+                        ? const Color(0xFFA78BFA).withValues(alpha: 0.65)
+                        : const Color(0xFF60A5FA).withValues(alpha: 0.55),
                   ),
                 ),
               ),
@@ -358,7 +358,7 @@ class _ShieldBadge extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: const Color(0xFF6D28D9)
-                  .withOpacity(0.45 + glowCtrl.value * 0.20),
+                  .withValues(alpha: 0.45 + glowCtrl.value * 0.20),
               blurRadius: 40 + glowCtrl.value * 20,
               spreadRadius: 4,
             ),
@@ -394,7 +394,7 @@ class _ShieldBadge extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          Colors.white.withOpacity(0.22),
+                          Colors.white.withValues(alpha: 0.22),
                           Colors.transparent,
                         ],
                       ),
@@ -442,14 +442,14 @@ class _ReviewCard extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           constraints: const BoxConstraints(maxWidth: 162),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.08),
+            color: Colors.white.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(18),
             border: Border.all(
-              color: const Color(0xFFA78BFA).withOpacity(0.22),
+              color: const Color(0xFFA78BFA).withValues(alpha: 0.22),
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF6D28D9).withOpacity(0.18),
+                color: const Color(0xFF6D28D9).withValues(alpha: 0.18),
                 blurRadius: 22,
               ),
             ],
@@ -543,14 +543,14 @@ class _VerifiedCountBadge extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
-            color: const Color(0xFF4ADE80).withOpacity(0.10),
+            color: const Color(0xFF4ADE80).withValues(alpha: 0.10),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: const Color(0xFF4ADE80).withOpacity(0.28),
+              color: const Color(0xFF4ADE80).withValues(alpha: 0.28),
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF16A34A).withOpacity(0.15),
+                color: const Color(0xFF16A34A).withValues(alpha: 0.15),
                 blurRadius: 14,
               ),
             ],
@@ -610,7 +610,7 @@ class _AnimatedStarsRow extends StatelessWidget {
                   size: 32,
                   shadows: [
                     Shadow(
-                      color: const Color(0xFFFBBF24).withOpacity(0.50),
+                      color: const Color(0xFFFBBF24).withValues(alpha: 0.50),
                       blurRadius: 12,
                     ),
                   ],

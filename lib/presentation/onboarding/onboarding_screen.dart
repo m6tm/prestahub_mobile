@@ -218,7 +218,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  const Color(0xFF6D28D9).withOpacity(0.32 + v * 0.06),
+                  const Color(0xFF6D28D9).withValues(alpha: 0.32 + v * 0.06),
                   Colors.transparent,
                 ],
               ),
@@ -244,7 +244,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  const Color(0xFFA78BFA).withOpacity(0.18 + v * 0.05),
+                  const Color(0xFFA78BFA).withValues(alpha: 0.18 + v * 0.05),
                   Colors.transparent,
                 ],
               ),
@@ -270,7 +270,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  const Color(0xFF8B5CF6).withOpacity(0.10 + v * 0.04),
+                  const Color(0xFF8B5CF6).withValues(alpha: 0.10 + v * 0.04),
                   Colors.transparent,
                 ],
               ),
@@ -304,7 +304,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
-                      color: _primary.withOpacity(0.40),
+                      color: _primary.withValues(alpha: 0.40),
                       blurRadius: 12,
                       offset: const Offset(0, 4),
                     ),
@@ -342,10 +342,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.07),
+                    color: Colors.white.withValues(alpha: 0.07),
                     borderRadius: BorderRadius.circular(22),
                     border: Border.all(
-                      color: Colors.white.withOpacity(0.12),
+                      color: Colors.white.withValues(alpha: 0.12),
                     ),
                   ),
                   child: Text(
@@ -401,11 +401,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                     colors: [_primary, _accent],
                   )
                 : null,
-            color: isActive ? null : Colors.white.withOpacity(0.18),
+            color: isActive ? null : Colors.white.withValues(alpha: 0.18),
             boxShadow: isActive
                 ? [
                     BoxShadow(
-                      color: _primary.withOpacity(0.40),
+                      color: _primary.withValues(alpha: 0.40),
                       blurRadius: 8,
                     ),
                   ]
@@ -436,12 +436,12 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               borderRadius: BorderRadius.circular(18),
               boxShadow: [
                 BoxShadow(
-                  color: _primary.withOpacity(0.28 + glow * 0.22),
+                  color: _primary.withValues(alpha: 0.28 + glow * 0.22),
                   blurRadius: 18 + glow * 22,
                   offset: const Offset(0, 6),
                 ),
                 BoxShadow(
-                  color: Colors.white.withOpacity(0.06),
+                  color: Colors.white.withValues(alpha: 0.06),
                   blurRadius: 1,
                   offset: const Offset(0, 1),
                 ),
@@ -460,7 +460,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Colors.white.withOpacity(0.18),
+                          Colors.white.withValues(alpha: 0.18),
                           Colors.transparent,
                         ],
                         begin: Alignment.topCenter,

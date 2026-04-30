@@ -71,9 +71,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ],
                 ),
               );
-              if (confirm == true && mounted) {
+              if (confirm == true && context.mounted) {
                 await ref.read(authNotifierProvider.notifier).signOut();
-                if (mounted) context.go(AppConstants.routeLogin);
+                if (context.mounted) context.go(AppConstants.routeLogin);
               }
             } else {
               setState(() => _navIndex = i);

@@ -330,19 +330,19 @@ class _CalendarCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.07),
+            color: Colors.white.withValues(alpha: 0.07),
             borderRadius: BorderRadius.circular(24),
             border: Border.all(
-              color: const Color(0xFFA78BFA).withOpacity(0.20),
+              color: const Color(0xFFA78BFA).withValues(alpha: 0.20),
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF6D28D9).withOpacity(0.22),
+                color: const Color(0xFF6D28D9).withValues(alpha: 0.22),
                 blurRadius: 36,
                 offset: const Offset(0, 10),
               ),
               BoxShadow(
-                color: Colors.white.withOpacity(0.04),
+                color: Colors.white.withValues(alpha: 0.04),
                 blurRadius: 1,
                 offset: const Offset(0, 1),
               ),
@@ -423,13 +423,13 @@ class _CalendarCard extends StatelessWidget {
                             )
                           : null,
                       color: isToday && !isSelected
-                          ? const Color(0xFF7C3AED).withOpacity(0.18)
+                          ? const Color(0xFF7C3AED).withValues(alpha: 0.18)
                           : null,
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: isSelected
                           ? [
                               BoxShadow(
-                                color: const Color(0xFF6D28D9).withOpacity(0.40),
+                                color: const Color(0xFF6D28D9).withValues(alpha: 0.40),
                                 blurRadius: 12,
                                 offset: const Offset(0, 4),
                               ),
@@ -475,17 +475,17 @@ class _CalendarCard extends StatelessWidget {
                             : null,
                         color: isSelected
                             ? null
-                            : Colors.white.withOpacity(0.05),
+                            : Colors.white.withValues(alpha: 0.05),
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
                           color: isSelected
                               ? Colors.transparent
-                              : const Color(0xFFA78BFA).withOpacity(0.14),
+                              : const Color(0xFFA78BFA).withValues(alpha: 0.14),
                         ),
                         boxShadow: isSelected
                             ? [
                                 BoxShadow(
-                                  color: const Color(0xFF6D28D9).withOpacity(0.35),
+                                  color: const Color(0xFF6D28D9).withValues(alpha: 0.35),
                                   blurRadius: 10,
                                 ),
                               ]
@@ -542,19 +542,19 @@ class _ChatBubble extends StatelessWidget {
           constraints: const BoxConstraints(maxWidth: 185),
           decoration: BoxDecoration(
             color: isClient
-                ? const Color(0xFF7C3AED).withOpacity(0.65)
-                : Colors.white.withOpacity(0.09),
+                ? const Color(0xFF7C3AED).withValues(alpha: 0.65)
+                : Colors.white.withValues(alpha: 0.09),
             borderRadius: radius,
             border: Border.all(
               color: isClient
-                  ? const Color(0xFFA78BFA).withOpacity(0.30)
-                  : Colors.white.withOpacity(0.10),
+                  ? const Color(0xFFA78BFA).withValues(alpha: 0.30)
+                  : Colors.white.withValues(alpha: 0.10),
             ),
             boxShadow: [
               BoxShadow(
                 color: isClient
-                    ? const Color(0xFF6D28D9).withOpacity(0.30)
-                    : Colors.black.withOpacity(0.15),
+                    ? const Color(0xFF6D28D9).withValues(alpha: 0.30)
+                    : Colors.black.withValues(alpha: 0.15),
                 blurRadius: 16,
               ),
             ],
@@ -588,14 +588,14 @@ class _ConfirmBadge extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           decoration: BoxDecoration(
-            color: const Color(0xFF16A34A).withOpacity(0.15),
+            color: const Color(0xFF16A34A).withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: const Color(0xFF4ADE80).withOpacity(0.32),
+              color: const Color(0xFF4ADE80).withValues(alpha: 0.32),
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF16A34A).withOpacity(0.25),
+                color: const Color(0xFF16A34A).withValues(alpha: 0.25),
                 blurRadius: 18,
               ),
             ],
@@ -641,10 +641,10 @@ class _TimeChip extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.07),
+            color: Colors.white.withValues(alpha: 0.07),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: const Color(0xFF60A5FA).withOpacity(0.25),
+              color: const Color(0xFF60A5FA).withValues(alpha: 0.25),
             ),
           ),
           child: Row(
@@ -692,13 +692,13 @@ class _TypingIndicator extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.08),
+            color: Colors.white.withValues(alpha: 0.08),
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(14),
               topRight: Radius.circular(14),
               bottomRight: Radius.circular(14),
             ),
-            border: Border.all(color: Colors.white.withOpacity(0.10)),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.10)),
           ),
           child: AnimatedBuilder(
             animation: dotCtrl,
@@ -716,10 +716,10 @@ class _TypingIndicator extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: const Color(0xFFC4B5FD)
-                          .withOpacity(0.4 + scale * 0.5),
+                          .withValues(alpha: 0.4 + scale * 0.5),
                     ),
                     transform: Matrix4.identity()
-                      ..translate(0.0, -scale * 3),
+                      ..translateByDouble(0.0, -scale * 3, 0.0, 1.0),
                   );
                 }),
               );

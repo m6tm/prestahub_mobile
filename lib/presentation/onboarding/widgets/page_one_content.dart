@@ -262,7 +262,7 @@ class _PageOneContentState extends State<PageOneContent>
                 child: Icon(
                   i.isEven ? Icons.star_rounded : Icons.auto_awesome_rounded,
                   size: 13.0 + i * 1.8,
-                  color: const Color(0xFFA78BFA).withOpacity(0.85),
+                  color: const Color(0xFFA78BFA).withValues(alpha: 0.85),
                 ),
               ),
             );
@@ -290,19 +290,19 @@ class _ProviderCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.08),
+            color: Colors.white.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(24),
             border: Border.all(
-              color: const Color(0xFFA78BFA).withOpacity(0.22),
+              color: const Color(0xFFA78BFA).withValues(alpha: 0.22),
             ),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xFF6D28D9).withOpacity(0.28),
+                color: const Color(0xFF6D28D9).withValues(alpha: 0.28),
                 blurRadius: 36,
                 offset: const Offset(0, 10),
               ),
               BoxShadow(
-                color: Colors.white.withOpacity(0.04),
+                color: Colors.white.withValues(alpha: 0.04),
                 blurRadius: 1,
                 offset: const Offset(0, 1),
               ),
@@ -403,10 +403,10 @@ class _ProviderCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.05),
+          color: Colors.white.withValues(alpha: 0.05),
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: Colors.white.withOpacity(0.06),
+            color: Colors.white.withValues(alpha: 0.06),
           ),
         ),
         child: Row(
@@ -430,10 +430,10 @@ class _ProviderCard extends StatelessWidget {
         return Container(
           padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
           decoration: BoxDecoration(
-            color: const Color(0xFF7C3AED).withOpacity(0.15),
+            color: const Color(0xFF7C3AED).withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: const Color(0xFFA78BFA).withOpacity(0.22),
+              color: const Color(0xFFA78BFA).withValues(alpha: 0.22),
             ),
           ),
           child: Text(
@@ -456,7 +456,7 @@ class _VerifiedBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
-        color: const Color(0xFF4ADE80).withOpacity(0.15),
+        color: const Color(0xFF4ADE80).withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
@@ -523,7 +523,7 @@ class _VertDivider extends StatelessWidget {
     return Container(
       width: 1,
       height: 30,
-      color: Colors.white.withOpacity(0.08),
+      color: Colors.white.withValues(alpha: 0.08),
     );
   }
 }
@@ -575,12 +575,12 @@ class _FloatingChip extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.07),
+                color: Colors.white.withValues(alpha: 0.07),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: color.withOpacity(0.28)),
+                border: Border.all(color: color.withValues(alpha: 0.28)),
                 boxShadow: [
                   BoxShadow(
-                    color: color.withOpacity(0.15),
+                    color: color.withValues(alpha: 0.15),
                     blurRadius: 12,
                   ),
                 ],

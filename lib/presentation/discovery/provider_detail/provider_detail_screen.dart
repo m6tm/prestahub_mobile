@@ -123,7 +123,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen>
                     width: 38,
                     height: 38,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.12),
+                      color: Colors.white.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: const Icon(Icons.arrow_back_ios_new_rounded,
@@ -192,7 +192,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen>
                     _provider.expertise,
                     style: GoogleFonts.inter(
                       fontSize: 13,
-                      color: Colors.white.withOpacity(0.60),
+                      color: Colors.white.withValues(alpha: 0.60),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -200,10 +200,10 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen>
                     padding: const EdgeInsets.symmetric(
                         horizontal: 12, vertical: 5),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.10),
+                      color: Colors.white.withValues(alpha: 0.10),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                          color: Colors.white.withOpacity(0.20)),
+                          color: Colors.white.withValues(alpha: 0.20)),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -222,7 +222,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen>
                           style: GoogleFonts.inter(
                             fontSize: 11.5,
                             fontWeight: FontWeight.w500,
-                            color: Colors.white.withOpacity(0.85),
+                            color: Colors.white.withValues(alpha: 0.85),
                           ),
                         ),
                       ],
@@ -249,7 +249,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen>
           border: Border.all(color: const Color(0xFFE5E7EB)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.04),
+              color: Colors.black.withValues(alpha: 0.04),
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),
@@ -532,7 +532,7 @@ class _ProviderDetailScreenState extends State<ProviderDetailScreen>
                       width: 34,
                       height: 34,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.10),
+                        color: Colors.white.withValues(alpha: 0.10),
                         borderRadius: BorderRadius.circular(9),
                       ),
                       child: const Icon(Icons.arrow_back_ios_new_rounded,
@@ -932,10 +932,9 @@ class _ProviderData {
 }
 
 class _ServiceData {
-  final String title, icon_unused, price, description;
+  final String title, price, description;
   final IconData icon;
-  const _ServiceData(this.title, this.icon, this.price, this.description)
-      : icon_unused = '';
+  const _ServiceData(this.title, this.icon, this.price, this.description);
 }
 
 class _ReviewData {

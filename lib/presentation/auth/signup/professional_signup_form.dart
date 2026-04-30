@@ -281,50 +281,6 @@ class _CategoryDropdownField extends StatelessWidget {
   }
 }
 
-/// Texte des conditions générales avec liens cliquables.
-class _SignupTermsText extends StatelessWidget {
-  const _SignupTermsText({
-    required this.prefix,
-    required this.cguLabel,
-    required this.andText,
-    required this.privacyLabel,
-  });
-
-  final String prefix;
-  final String cguLabel;
-  final String andText;
-  final String privacyLabel;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text.rich(
-      TextSpan(
-        style: const TextStyle(fontSize: 12, color: Color(0xFF64748B)),
-        children: [
-          TextSpan(text: prefix),
-          TextSpan(
-            text: cguLabel,
-            style: const TextStyle(
-              color: const Color(0xFF7C3AED),
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          TextSpan(text: andText),
-          TextSpan(
-            text: privacyLabel,
-            style: const TextStyle(
-              color: const Color(0xFF7C3AED),
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const TextSpan(text: '.'),
-        ],
-      ),
-      textAlign: TextAlign.center,
-    );
-  }
-}
-
 /// Bouton de soumission principal.
 class _SubmitButton extends StatelessWidget {
   const _SubmitButton({required this.label});

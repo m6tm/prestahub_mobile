@@ -221,7 +221,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                       t.auth.signup.loginLink,
                       style: const TextStyle(
                         fontSize: 14,
-                        color: const Color(0xFF7C3AED),
+                        color: Color(0xFF7C3AED),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

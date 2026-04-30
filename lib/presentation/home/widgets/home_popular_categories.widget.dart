@@ -58,7 +58,7 @@ class HomePopularCategories extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             padding: const EdgeInsets.symmetric(horizontal: 20),
             itemCount: _categories.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 10),
+            separatorBuilder: (_, _) => const SizedBox(width: 10),
             itemBuilder: (context, i) =>
                 _CategoryTile(category: _categories[i]),
           ),
@@ -76,7 +76,7 @@ class _Category {
 
 class _CategoryTile extends StatelessWidget {
   final _Category category;
-  const _CategoryTile({super.key, required this.category});
+  const _CategoryTile({required this.category});
 
   @override
   Widget build(BuildContext context) {

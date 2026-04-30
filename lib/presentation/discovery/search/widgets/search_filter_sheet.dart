@@ -212,7 +212,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                       inactiveTrackColor: const Color(0xFFE5E7EB),
                       thumbColor: const Color(0xFF7C3AED),
                       overlayColor:
-                          const Color(0xFF7C3AED).withOpacity(0.10),
+                          const Color(0xFF7C3AED).withValues(alpha: 0.10),
                       trackHeight: 3,
                       thumbShape:
                           const RoundSliderThumbShape(enabledThumbRadius: 7),
@@ -274,7 +274,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
         activeTrackColor: const Color(0xFF7C3AED),
         inactiveTrackColor: const Color(0xFFE5E7EB),
         thumbColor: const Color(0xFF7C3AED),
-        overlayColor: const Color(0xFF7C3AED).withOpacity(0.10),
+        overlayColor: const Color(0xFF7C3AED).withValues(alpha: 0.10),
         trackHeight: 3,
         thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 7),
       ),
@@ -402,7 +402,7 @@ class _FilterToggle extends StatelessWidget {
         Switch(
           value: value,
           onChanged: onChanged,
-          activeColor: const Color(0xFF7C3AED),
+          activeThumbColor: const Color(0xFF7C3AED),
           activeTrackColor: const Color(0xFFEDE9FE),
           inactiveThumbColor: const Color(0xFFD1D5DB),
           inactiveTrackColor: const Color(0xFFF3F4F6),
