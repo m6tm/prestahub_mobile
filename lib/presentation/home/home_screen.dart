@@ -49,6 +49,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         bottomNavigationBar: _BottomNavBar(
           currentIndex: _navIndex,
           onTap: (i) async {
+            if (i == 1) {
+              context.push(AppConstants.routeClientSearch);
+              return;
+            }
+            if (i == 2) {
+              context.push(AppConstants.routeClientRequests);
+              return;
+            }
             if (i == 3) {
               final confirm = await showDialog<bool>(
                 context: context,
@@ -75,9 +83,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 await ref.read(authNotifierProvider.notifier).signOut();
                 if (context.mounted) context.go(AppConstants.routeLogin);
               }
-            } else {
-              setState(() => _navIndex = i);
+              return;
             }
+            setState(() => _navIndex = i);
           },
         ),
       ),
