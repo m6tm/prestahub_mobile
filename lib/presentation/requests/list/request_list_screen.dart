@@ -14,9 +14,8 @@ class RequestListScreen extends StatefulWidget {
   State<RequestListScreen> createState() => _RequestListScreenState();
 }
 
-class _RequestListScreenState extends State<RequestListScreen>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabCtrl;
+class _RequestListScreenState extends State<RequestListScreen> {
+  int _selectedIndex = 0;
 
   static final _mockRequests = <ServiceRequestSummary>[
     ServiceRequestSummary(
@@ -64,23 +63,8 @@ class _RequestListScreenState extends State<RequestListScreen>
     ),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    _tabCtrl = TabController(length: 3, vsync: this);
-    _tabCtrl.addListener(() {
-      if (mounted) setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    _tabCtrl.dispose();
-    super.dispose();
-  }
-
   List<ServiceRequestSummary> get _filtered {
-    switch (_tabCtrl.index) {
+    switch (_selectedIndex) {
       case 0:
         return _mockRequests
             .where((r) => r.status == RequestStatus.pending)
@@ -213,12 +197,16 @@ class _RequestListScreenState extends State<RequestListScreen>
         child: Row(
           children: List.generate(3, (i) {
             const labels = ['En attente', 'En cours', 'Toutes'];
-            final isSelected = _tabCtrl.index == i;
+            final isSelected = _selectedIndex == i;
             return Expanded(
               child: GestureDetector(
-                onTap: () => _tabCtrl.animateTo(i),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
+                behavior: HitTestBehavior.opaque,
+                onTap: () {
+                  if (_selectedIndex != i) {
+                    setState(() => _selectedIndex = i);
+                  }
+                },
+                child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: isSelected
