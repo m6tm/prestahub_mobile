@@ -49,6 +49,14 @@
 	</dict>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>PrestaHub a besoin d'accéder à votre appareil photo pour vous permettre de prendre une photo de profil.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>PrestaHub a besoin d'accéder à vos photos pour vous permettre de choisir une photo de profil.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>PrestaHub a besoin d'ajouter des photos à votre photothèque.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>PrestaHub a besoin d'accéder au microphone pour enregistrer des vidéos.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

@@ -49,19 +49,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           currentIndex: _navIndex,
           onTap: (i) async {
             if (i == 1) {
-              context.push(AppConstants.routeClientSearch);
-              return;
-            }
-            if (i == 2) {
               context.push(AppConstants.routeClientRequests);
               return;
             }
-            if (i == 3) {
+            if (i == 2) {
               context.push(AppConstants.routeClientMessages);
               return;
             }
-            if (i == 4) {
-              context.push(AppConstants.routeClientProfile);
+            if (i == 3) {
+              context.push(AppConstants.routeSettings);
               return;
             }
             setState(() => _navIndex = i);
@@ -81,10 +77,9 @@ class _BottomNavBar extends StatelessWidget {
 
   static const _items = [
     (Icons.home_rounded, Icons.home_outlined, 'Accueil'),
-    (Icons.search_rounded, Icons.search_outlined, 'Recherche'),
     (Icons.description_rounded, Icons.description_outlined, 'Missions'),
     (Icons.chat_bubble_rounded, Icons.chat_bubble_outline_rounded, 'Messages'),
-    (Icons.person_rounded, Icons.person_outline_rounded, 'Profil'),
+    (Icons.settings_rounded, Icons.settings_outlined, 'Paramètres'),
   ];
 
   @override
@@ -121,8 +116,7 @@ class _BottomNavBar extends StatelessWidget {
                     label,
                     style: GoogleFonts.inter(
                       fontSize: 10,
-                      fontWeight:
-                          isActive ? FontWeight.w600 : FontWeight.w400,
+                      fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
                       color: isActive
                           ? const Color(0xFF7C3AED)
                           : const Color(0xFF9CA3AF),

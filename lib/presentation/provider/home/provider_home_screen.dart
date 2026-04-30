@@ -206,7 +206,13 @@ class _ProviderHomeScreenState extends ConsumerState<ProviderHomeScreen> {
         ),
         bottomNavigationBar: _ProviderNavBar(
           currentIndex: _navIndex,
-          onTap: (i) => setState(() => _navIndex = i),
+          onTap: (i) {
+            if (i == 3) {
+              context.push(AppConstants.routeSettings);
+              return;
+            }
+            setState(() => _navIndex = i);
+          },
         ),
       ),
     );
@@ -224,7 +230,7 @@ class _ProviderNavBar extends StatelessWidget {
     (Icons.home_rounded,       Icons.home_outlined,        'Accueil'),
     (Icons.assignment_rounded, Icons.assignment_outlined,  'Missions'),
     (Icons.chat_bubble_rounded,Icons.chat_bubble_outline_rounded, 'Messages'),
-    (Icons.person_rounded,     Icons.person_outline_rounded,     'Profil'),
+    (Icons.settings_rounded,   Icons.settings_outlined,    'Paramètres'),
   ];
 
   @override

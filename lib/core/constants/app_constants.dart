@@ -30,7 +30,6 @@ class AppConstants {
   static const String routeClientMessages = '/client/messages';
   static const String routeClientConversation = '/client/messages/:id';
   static const String routeClientCall = '/client/call/:id';
-  static const String routeClientProfile = '/client/profile';
 
   // Client — demandes de service
   static const String routeClientRequestCreate = '/client/request/create';
@@ -45,8 +44,40 @@ class AppConstants {
   static const String routeProviderRequests = '/provider/requests';
   static const String routeProviderMissions = '/provider/missions';
   static const String routeProviderMessages = '/provider/messages';
-  static const String routeProviderProfile = '/provider/profile';
 
   // Admin routes
   static const String routeAdminDashboard = '/admin/dashboard';
+
+  // Paramètres — partagés client / prestataire
+  static const String routeSettings = '/settings';
+
+  // Profil personnel
+  static const String routeSettingsProfile = '/settings/profile';
+  static const String routeSettingsProfileEdit = '/settings/profile/edit';
+  static const String routeSettingsAddresses = '/settings/addresses';
+  static const String routeSettingsAddressEdit = '/settings/addresses/edit';
+
+  // Sécurité
+  static const String routeSettingsSecurity = '/settings/security';
+  static const String routeSettingsChangePassword = '/settings/security/password';
+  static const String routeSettingsOtp = '/settings/security/otp';
+  static const String routeSettingsDevices = '/settings/security/devices';
+
+  // Préférences
+  static const String routeSettingsLanguage = '/settings/preferences/language';
+  static const String routeSettingsNotifications = '/settings/preferences/notifications';
+  static const String routeSettingsTheme = '/settings/preferences/theme';
+  static const String routeSettingsPrivacy = '/settings/preferences/privacy';
+  static const String routeSettingsGeolocation = '/settings/preferences/geolocation';
+
+  // Aide et support
+  static const String routeSettingsHelp = '/settings/help';
+  static const String routeSettingsContactSupport = '/settings/help/contact';
+  static const String routeSettingsReportIssue = '/settings/help/report';
+
+  // Légal
+  static const String routeSettingsTerms = '/settings/legal/terms';
+  static const String routeSettingsPrivacyPolicy = '/settings/legal/privacy';
+  static const String routeSettingsLegalMentions = '/settings/legal/mentions';
+  static const String routeSettingsAbout = '/settings/legal/about';
 }

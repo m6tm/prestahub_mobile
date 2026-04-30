@@ -29,6 +29,28 @@ import 'package:prestahub/presentation/messages/list/conversation_list_screen.da
 import 'package:prestahub/presentation/messages/conversation/conversation_screen.dart';
 import 'package:prestahub/presentation/messages/call/call_screen.dart';
 import 'package:prestahub/presentation/messages/models/conversation_models.dart';
+import 'package:prestahub/presentation/settings/settings_screen.dart';
+import 'package:prestahub/presentation/settings/profile/profile_screen.dart';
+import 'package:prestahub/presentation/settings/profile/profile_edit_screen.dart';
+import 'package:prestahub/presentation/settings/profile/addresses_screen.dart';
+import 'package:prestahub/presentation/settings/profile/address_edit_screen.dart';
+import 'package:prestahub/presentation/settings/models/address_model.dart';
+import 'package:prestahub/presentation/settings/security/security_screen.dart';
+import 'package:prestahub/presentation/settings/security/change_password_screen.dart';
+import 'package:prestahub/presentation/settings/security/otp_settings_screen.dart';
+import 'package:prestahub/presentation/settings/security/connected_devices_screen.dart';
+import 'package:prestahub/presentation/settings/preferences/language_screen.dart';
+import 'package:prestahub/presentation/settings/preferences/notifications_screen.dart';
+import 'package:prestahub/presentation/settings/preferences/theme_screen.dart';
+import 'package:prestahub/presentation/settings/preferences/privacy_screen.dart';
+import 'package:prestahub/presentation/settings/preferences/geolocation_screen.dart';
+import 'package:prestahub/presentation/settings/support/help_screen.dart';
+import 'package:prestahub/presentation/settings/support/contact_support_screen.dart';
+import 'package:prestahub/presentation/settings/support/report_issue_screen.dart';
+import 'package:prestahub/presentation/settings/legal/terms_screen.dart';
+import 'package:prestahub/presentation/settings/legal/privacy_policy_screen.dart';
+import 'package:prestahub/presentation/settings/legal/legal_mentions_screen.dart';
+import 'package:prestahub/presentation/settings/legal/about_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(isAuthenticatedProvider);
@@ -201,6 +223,97 @@ final routerProvider = Provider<GoRouter>((ref) {
               : null;
           return CallScreen(callId: id, peer: peer);
         },
+      ),
+
+      // ── Paramètres (partagés client / prestataire) ──────────────────────
+      GoRoute(
+        path: AppConstants.routeSettings,
+        builder: (context, state) => const SettingsScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsProfile,
+        builder: (context, state) => const ProfileScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsProfileEdit,
+        builder: (context, state) => const ProfileEditScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsAddresses,
+        builder: (context, state) => const AddressesScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsAddressEdit,
+        builder: (context, state) {
+          final initial = state.extra is AddressModel
+              ? state.extra as AddressModel
+              : null;
+          return AddressEditScreen(initial: initial);
+        },
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsSecurity,
+        builder: (context, state) => const SecurityScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsChangePassword,
+        builder: (context, state) => const ChangePasswordScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsOtp,
+        builder: (context, state) => const OtpSettingsScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsDevices,
+        builder: (context, state) => const ConnectedDevicesScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsLanguage,
+        builder: (context, state) => const LanguageScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsNotifications,
+        builder: (context, state) => const NotificationsScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsTheme,
+        builder: (context, state) => const ThemeScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsPrivacy,
+        builder: (context, state) => const PrivacyScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsGeolocation,
+        builder: (context, state) => const GeolocationScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsHelp,
+        builder: (context, state) => const HelpScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsContactSupport,
+        builder: (context, state) => const ContactSupportScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsReportIssue,
+        builder: (context, state) => const ReportIssueScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsTerms,
+        builder: (context, state) => const TermsScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsPrivacyPolicy,
+        builder: (context, state) => const PrivacyPolicyScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsLegalMentions,
+        builder: (context, state) => const LegalMentionsScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeSettingsAbout,
+        builder: (context, state) => const AboutScreen(),
       ),
     ],
     errorBuilder: (context, state) =>
