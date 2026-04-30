@@ -63,14 +63,17 @@ class AuthNotifier extends AsyncNotifier<UserModel?> {
 
   /// Connexion fictive pour les démonstrations.
   /// Identifiants acceptés :
-  ///   client@prestahub.com  / demo1234  → rôle client
-  ///   prestataire@prestahub.com / demo1234  → rôle provider
+  ///   client@prestahub.com     / demo1234  → rôle client
+  ///   prestataire@prestahub.com / demo1234 → rôle provider (profil vierge)
+  ///   prestataire2@prestahub.com / demo1234 → rôle provider (profil configuré,
+  ///     utilisé pour tester les demandes reçues et les missions)
   Future<String?> mockSignIn({
     required String email,
     required String password,
   }) async {
     const clientEmail = 'client@prestahub.com';
     const providerEmail = 'prestataire@prestahub.com';
+    const providerConfiguredEmail = 'prestataire2@prestahub.com';
     const demoPassword = 'demo1234';
 
     final emailTrimmed = email.trim().toLowerCase();
@@ -97,6 +100,17 @@ class AuthNotifier extends AsyncNotifier<UserModel?> {
         role: UserRole.provider,
         isVerified: true,
         createdAt: DateTime(2024),
+      );
+    } else if (emailTrimmed == providerConfiguredEmail) {
+      mock = UserModel(
+        id: 'demo-provider-002',
+        email: providerConfiguredEmail,
+        phone: '+33 6 12 34 56 78',
+        firstName: 'Marc',
+        lastName: 'Dubois',
+        role: UserRole.provider,
+        isVerified: true,
+        createdAt: DateTime(2023, 6, 15),
       );
     } else {
       return 'Identifiant inconnu. Utilisez un compte démo.';

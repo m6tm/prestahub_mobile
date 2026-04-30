@@ -6,9 +6,11 @@ import 'package:prestahub/core/constants/app_constants.dart';
 import 'package:prestahub/core/enums/user_role.dart';
 import 'package:prestahub/l10n/translations.g.dart';
 
-/// Écran de connexion — deux comptes démo disponibles :
-///   client@prestahub.com / demo1234
-///   prestataire@prestahub.com / demo1234
+/// Écran de connexion — trois comptes démo disponibles :
+///   client@prestahub.com / demo1234 (client vérifié)
+///   prestataire@prestahub.com / demo1234 (prestataire profil vierge)
+///   prestataire2@prestahub.com / demo1234 (prestataire profil configuré
+///   avec demandes reçues et historique de missions)
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
@@ -134,6 +136,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 },
                 onSelectProvider: () {
                   _emailCtrl.text = 'prestataire@prestahub.com';
+                  _passwordCtrl.text = 'demo1234';
+                  setState(() => _errorMessage = null);
+                },
+                onSelectProviderConfigured: () {
+                  _emailCtrl.text = 'prestataire2@prestahub.com';
                   _passwordCtrl.text = 'demo1234';
                   setState(() => _errorMessage = null);
                 },
@@ -364,10 +371,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 class _DemoCredentialCard extends StatelessWidget {
   final VoidCallback onSelectClient;
   final VoidCallback onSelectProvider;
+  final VoidCallback onSelectProviderConfigured;
 
   const _DemoCredentialCard({
     required this.onSelectClient,
     required this.onSelectProvider,
+    required this.onSelectProviderConfigured,
   });
 
   @override
@@ -424,6 +433,14 @@ class _DemoCredentialCard extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          const SizedBox(height: 10),
+          _DemoButton(
+            label: 'Prestataire (profil configuré)',
+            email: 'prestataire2@prestahub.com',
+            icon: Icons.verified_rounded,
+            color: const Color(0xFF651BE4),
+            onTap: onSelectProviderConfigured,
           ),
           const SizedBox(height: 8),
           Center(

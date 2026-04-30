@@ -43,9 +43,18 @@ class AppConstants {
 
   // Provider routes
   static const String routeProviderHome = '/provider/home';
-  static const String routeProviderRequests = '/provider/requests';
-  static const String routeProviderMissions = '/provider/missions';
   static const String routeProviderMessages = '/provider/messages';
+
+  // Provider — demandes reçues et missions
+  static const String routeProviderRequests = '/provider/requests';
+  static const String routeProviderRequestDetail = '/provider/requests/:id';
+  static const String routeProviderRequestRefusal =
+      '/provider/requests/:id/refusal';
+  static const String routeProviderMissions = '/provider/missions';
+  static const String routeProviderMissionDetail = '/provider/missions/:id';
+  static const String routeProviderMissionHistory = '/provider/missions/history';
+  static const String routeProviderPastMissionDetail =
+      '/provider/missions/history/:id';
 
   // Provider — configuration du profil professionnel
   static const String routeProviderSetup = '/provider/setup';

@@ -17,6 +17,14 @@ import 'package:prestahub/presentation/discovery/categories/category_selection_s
 import 'package:prestahub/presentation/discovery/search/search_results_screen.dart';
 import 'package:prestahub/presentation/discovery/provider_detail/provider_detail_screen.dart';
 import 'package:prestahub/presentation/provider/home/provider_home_screen.dart';
+import 'package:prestahub/presentation/provider/missions/models/provider_mission_models.dart';
+import 'package:prestahub/presentation/provider/missions/provider_mission_detail_screen.dart';
+import 'package:prestahub/presentation/provider/missions/provider_mission_history_screen.dart';
+import 'package:prestahub/presentation/provider/missions/provider_missions_screen.dart';
+import 'package:prestahub/presentation/provider/missions/provider_past_mission_detail_screen.dart';
+import 'package:prestahub/presentation/provider/missions/provider_refusal_screen.dart';
+import 'package:prestahub/presentation/provider/missions/provider_request_detail_screen.dart';
+import 'package:prestahub/presentation/provider/missions/provider_requests_screen.dart';
 import 'package:prestahub/presentation/provider/profile_setup/models/provider_profile_models.dart';
 import 'package:prestahub/presentation/provider/profile_setup/provider_availability_screen.dart';
 import 'package:prestahub/presentation/provider/profile_setup/provider_documents_screen.dart';
@@ -143,6 +151,69 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppConstants.routeProviderHome,
         builder: (context, state) => const ProviderHomeScreen(),
+      ),
+
+      // ── Prestataire — demandes reçues et missions ───────────────────────
+      GoRoute(
+        path: AppConstants.routeProviderRequests,
+        builder: (context, state) => const ProviderRequestsScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderRequestDetail,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final initial = state.extra is ProviderRequestSummary
+              ? state.extra as ProviderRequestSummary
+              : null;
+          return ProviderRequestDetailScreen(
+            requestId: id,
+            initial: initial,
+          );
+        },
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderRequestRefusal,
+        builder: (context, state) {
+          final initial = state.extra is ProviderRequestSummary
+              ? state.extra as ProviderRequestSummary
+              : null;
+          return ProviderRefusalScreen(summary: initial);
+        },
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderMissions,
+        builder: (context, state) => const ProviderMissionsScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderMissionHistory,
+        builder: (context, state) =>
+            const ProviderMissionHistoryScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderMissionDetail,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final initial = state.extra is ProviderMissionSummary
+              ? state.extra as ProviderMissionSummary
+              : null;
+          return ProviderMissionDetailScreen(
+            missionId: id,
+            initial: initial,
+          );
+        },
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderPastMissionDetail,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final initial = state.extra is ProviderMissionSummary
+              ? state.extra as ProviderMissionSummary
+              : null;
+          return ProviderPastMissionDetailScreen(
+            missionId: id,
+            initial: initial,
+          );
+        },
       ),
 
       // ── Prestataire — configuration du profil professionnel ─────────────

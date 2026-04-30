@@ -74,6 +74,36 @@ class SettingsScreen extends ConsumerWidget {
                 ),
             ],
           ),
+          if (isProvider)
+            SettingsSection(
+              title: 'Profil professionnel',
+              children: [
+                SettingsTile(
+                  icon: Icons.rocket_launch_rounded,
+                  iconColor: PrestaHubTheme.primary,
+                  label: 'Configurer mon profil',
+                  value: 'Services, zones, tarifs, disponibilités',
+                  onTap: () =>
+                      context.push(AppConstants.routeProviderSetup),
+                ),
+                SettingsTile(
+                  icon: Icons.verified_rounded,
+                  iconColor: PrestaHubTheme.success,
+                  label: 'Statut de vérification',
+                  value: 'Suivi de la validation de votre profil',
+                  onTap: () =>
+                      context.push(AppConstants.routeProviderVerification),
+                ),
+                SettingsTile(
+                  icon: Icons.folder_copy_rounded,
+                  iconColor: PrestaHubTheme.warning,
+                  label: 'Justificatifs',
+                  value: 'Pièce d\'identité, registre du commerce',
+                  onTap: () =>
+                      context.push(AppConstants.routeProviderDocuments),
+                ),
+              ],
+            ),
           SettingsSection(
             title: 'Sécurité',
             children: [
