@@ -64,7 +64,17 @@ class SyncManager {
         return;
       }
 
+      const allowedMethods = {'POST', 'PUT', 'PATCH', 'DELETE'};
+
       for (final request in requests) {
+        if (!allowedMethods.contains(request.method.toUpperCase())) {
+          await _syncRepository.removeSyncRequest(request.id);
+          _logger.i(
+            'SyncManager: Requête ${request.id} (${request.method} ${request.path}) ignorée et supprimée de la file (méthode non mutation).',
+          );
+          continue;
+        }
+
         final success = await _replayRequest(request);
         if (success) {
           await _syncRepository.removeSyncRequest(request.id);
