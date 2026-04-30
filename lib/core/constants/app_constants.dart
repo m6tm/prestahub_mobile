@@ -44,6 +44,9 @@ class AppConstants {
   // Provider routes
   static const String routeProviderHome = '/provider/home';
   static const String routeProviderMessages = '/provider/messages';
+  static const String routeProviderConversation = '/provider/messages/:id';
+  static const String routeProviderReviews = '/provider/reviews';
+  static const String routeProviderReviewDetail = '/provider/reviews/:id';
 
   // Provider — demandes reçues et missions
   static const String routeProviderRequests = '/provider/requests';

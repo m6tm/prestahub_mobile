@@ -25,6 +25,10 @@ import 'package:prestahub/presentation/provider/missions/provider_past_mission_d
 import 'package:prestahub/presentation/provider/missions/provider_refusal_screen.dart';
 import 'package:prestahub/presentation/provider/missions/provider_request_detail_screen.dart';
 import 'package:prestahub/presentation/provider/missions/provider_requests_screen.dart';
+import 'package:prestahub/presentation/provider/messages/provider_conversation_list_screen.dart';
+import 'package:prestahub/presentation/provider/reviews/models/provider_review_models.dart';
+import 'package:prestahub/presentation/provider/reviews/provider_review_detail_screen.dart';
+import 'package:prestahub/presentation/provider/reviews/provider_reviews_screen.dart';
 import 'package:prestahub/presentation/provider/profile_setup/models/provider_profile_models.dart';
 import 'package:prestahub/presentation/provider/profile_setup/provider_availability_screen.dart';
 import 'package:prestahub/presentation/provider/profile_setup/provider_documents_screen.dart';
@@ -213,6 +217,38 @@ final routerProvider = Provider<GoRouter>((ref) {
             missionId: id,
             initial: initial,
           );
+        },
+      ),
+
+      // ── Prestataire — messagerie ───────────────────────────────────────
+      GoRoute(
+        path: AppConstants.routeProviderMessages,
+        builder: (context, state) => const ProviderConversationListScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderConversation,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final extra = state.extra is ConversationSummary
+              ? state.extra as ConversationSummary
+              : null;
+          return ConversationScreen(conversationId: id, initial: extra);
+        },
+      ),
+
+      // ── Prestataire — avis reçus ───────────────────────────────────────
+      GoRoute(
+        path: AppConstants.routeProviderReviews,
+        builder: (context, state) => const ProviderReviewsScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderReviewDetail,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final extra = state.extra is ProviderReview
+              ? state.extra as ProviderReview
+              : null;
+          return ProviderReviewDetailScreen(reviewId: id, initial: extra);
         },
       ),
 

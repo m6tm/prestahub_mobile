@@ -164,14 +164,7 @@ class _ProviderHomeScreenState extends ConsumerState<ProviderHomeScreen> {
                 context.push(AppConstants.routeProviderMissions);
                 return;
               case 3:
-                // Messagerie prestataire — non encore implémentée.
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                      'La messagerie prestataire sera disponible prochainement.',
-                    ),
-                  ),
-                );
+                context.push(AppConstants.routeProviderMessages);
                 return;
               case 4:
                 context.push(AppConstants.routeSettings);
@@ -384,15 +377,19 @@ class _StatsGrid extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: _StatCard(
-                  icon: Icons.star_rounded,
-                  label: 'Note moyenne',
-                  value: avgRating != null
-                      ? avgRating!.toStringAsFixed(1)
-                      : '—',
-                  suffix: avgRating != null ? '/ 5' : null,
-                  color: PrestaHubTheme.warning,
-                ),
+                child: Builder(builder: (ctx) {
+                  return _StatCard(
+                    icon: Icons.star_rounded,
+                    label: 'Note moyenne',
+                    value: avgRating != null
+                        ? avgRating!.toStringAsFixed(1)
+                        : '—',
+                    suffix: avgRating != null ? '/ 5' : null,
+                    color: PrestaHubTheme.warning,
+                    onTap: () =>
+                        ctx.push(AppConstants.routeProviderReviews),
+                  );
+                }),
               ),
               const SizedBox(width: 10),
               Expanded(
@@ -420,6 +417,7 @@ class _StatCard extends StatelessWidget {
   final String value;
   final String? suffix;
   final Color color;
+  final VoidCallback? onTap;
 
   const _StatCard({
     required this.icon,
@@ -427,11 +425,12 @@ class _StatCard extends StatelessWidget {
     required this.value,
     required this.color,
     this.suffix,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final card = Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -494,6 +493,15 @@ class _StatCard extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+    if (onTap == null) return card;
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(14),
+        child: card,
       ),
     );
   }
@@ -881,7 +889,6 @@ class _ProviderNavBar extends StatelessWidget {
       activeIcon: Icons.chat_bubble_rounded,
       inactiveIcon: Icons.chat_bubble_outline_rounded,
       label: 'Messages',
-      disabled: true,
     ),
     _NavItem(
       activeIcon: Icons.settings_rounded,
@@ -906,9 +913,6 @@ class _ProviderNavBar extends StatelessWidget {
           final i = e.key;
           final item = e.value;
           final isActive = currentIndex == i;
-          final mutedColor = item.disabled
-              ? PrestaHubTheme.borderStrong
-              : PrestaHubTheme.textMutedLight;
           return GestureDetector(
             onTap: () => onTap(i),
             behavior: HitTestBehavior.opaque,
@@ -917,41 +921,12 @@ class _ProviderNavBar extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Icon(
-                        isActive ? item.activeIcon : item.inactiveIcon,
-                        size: 22,
-                        color: isActive
-                            ? PrestaHubTheme.primary
-                            : mutedColor,
-                      ),
-                      if (item.disabled)
-                        Positioned(
-                          right: -10,
-                          top: -6,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 5,
-                              vertical: 1,
-                            ),
-                            decoration: BoxDecoration(
-                              color: PrestaHubTheme.warning,
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: Text(
-                              'Bientôt',
-                              style: GoogleFonts.inter(
-                                fontSize: 8,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                                height: 1.1,
-                              ),
-                            ),
-                          ),
-                        ),
-                    ],
+                  Icon(
+                    isActive ? item.activeIcon : item.inactiveIcon,
+                    size: 22,
+                    color: isActive
+                        ? PrestaHubTheme.primary
+                        : PrestaHubTheme.textMutedLight,
                   ),
                   const SizedBox(height: 3),
                   Text(
@@ -962,7 +937,7 @@ class _ProviderNavBar extends StatelessWidget {
                           isActive ? FontWeight.w600 : FontWeight.w400,
                       color: isActive
                           ? PrestaHubTheme.primary
-                          : mutedColor,
+                          : PrestaHubTheme.textMutedLight,
                     ),
                   ),
                 ],
@@ -979,12 +954,10 @@ class _NavItem {
   final IconData activeIcon;
   final IconData inactiveIcon;
   final String label;
-  final bool disabled;
 
   const _NavItem({
     required this.activeIcon,
     required this.inactiveIcon,
     required this.label,
-    this.disabled = false,
   });
 }

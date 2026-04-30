@@ -87,6 +87,14 @@ class SettingsScreen extends ConsumerWidget {
                       context.push(AppConstants.routeProviderSetup),
                 ),
                 SettingsTile(
+                  icon: Icons.star_rounded,
+                  iconColor: PrestaHubTheme.warning,
+                  label: 'Mes avis',
+                  value: 'Retours clients et réponses',
+                  onTap: () =>
+                      context.push(AppConstants.routeProviderReviews),
+                ),
+                SettingsTile(
                   icon: Icons.verified_rounded,
                   iconColor: PrestaHubTheme.success,
                   label: 'Statut de vérification',
