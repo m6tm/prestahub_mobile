@@ -47,6 +47,18 @@ class AppConstants {
   static const String routeProviderMissions = '/provider/missions';
   static const String routeProviderMessages = '/provider/messages';
 
+  // Provider — configuration du profil professionnel
+  static const String routeProviderSetup = '/provider/setup';
+  static const String routeProviderProfileEdit = '/provider/setup/profile';
+  static const String routeProviderServices = '/provider/setup/services';
+  static const String routeProviderServiceEdit = '/provider/setup/services/edit';
+  static const String routeProviderZones = '/provider/setup/zones';
+  static const String routeProviderZoneEdit = '/provider/setup/zones/edit';
+  static const String routeProviderPricing = '/provider/setup/pricing';
+  static const String routeProviderAvailability = '/provider/setup/availability';
+  static const String routeProviderDocuments = '/provider/setup/documents';
+  static const String routeProviderVerification = '/provider/setup/verification';
+
   // Admin routes
   static const String routeAdminDashboard = '/admin/dashboard';
 

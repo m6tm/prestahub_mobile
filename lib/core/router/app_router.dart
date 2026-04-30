@@ -17,6 +17,17 @@ import 'package:prestahub/presentation/discovery/categories/category_selection_s
 import 'package:prestahub/presentation/discovery/search/search_results_screen.dart';
 import 'package:prestahub/presentation/discovery/provider_detail/provider_detail_screen.dart';
 import 'package:prestahub/presentation/provider/home/provider_home_screen.dart';
+import 'package:prestahub/presentation/provider/profile_setup/models/provider_profile_models.dart';
+import 'package:prestahub/presentation/provider/profile_setup/provider_availability_screen.dart';
+import 'package:prestahub/presentation/provider/profile_setup/provider_documents_screen.dart';
+import 'package:prestahub/presentation/provider/profile_setup/provider_pricing_screen.dart';
+import 'package:prestahub/presentation/provider/profile_setup/provider_profile_edit_screen.dart';
+import 'package:prestahub/presentation/provider/profile_setup/provider_service_edit_screen.dart';
+import 'package:prestahub/presentation/provider/profile_setup/provider_services_screen.dart';
+import 'package:prestahub/presentation/provider/profile_setup/provider_setup_guide_screen.dart';
+import 'package:prestahub/presentation/provider/profile_setup/provider_verification_status_screen.dart';
+import 'package:prestahub/presentation/provider/profile_setup/provider_zone_edit_screen.dart';
+import 'package:prestahub/presentation/provider/profile_setup/provider_zones_screen.dart';
 import 'package:prestahub/presentation/requests/create/request_create_screen.dart';
 import 'package:prestahub/presentation/requests/review/request_review_screen.dart';
 import 'package:prestahub/presentation/requests/confirmation/request_confirmation_screen.dart';
@@ -132,6 +143,59 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppConstants.routeProviderHome,
         builder: (context, state) => const ProviderHomeScreen(),
+      ),
+
+      // ── Prestataire — configuration du profil professionnel ─────────────
+      GoRoute(
+        path: AppConstants.routeProviderSetup,
+        builder: (context, state) => const ProviderSetupGuideScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderProfileEdit,
+        builder: (context, state) => const ProviderProfileEditScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderServices,
+        builder: (context, state) => const ProviderServicesScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderServiceEdit,
+        builder: (context, state) {
+          final initial = state.extra is ProviderService
+              ? state.extra as ProviderService
+              : null;
+          return ProviderServiceEditScreen(initial: initial);
+        },
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderZones,
+        builder: (context, state) => const ProviderZonesScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderZoneEdit,
+        builder: (context, state) {
+          final initial = state.extra is ProviderZone
+              ? state.extra as ProviderZone
+              : null;
+          return ProviderZoneEditScreen(initial: initial);
+        },
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderPricing,
+        builder: (context, state) => const ProviderPricingScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderAvailability,
+        builder: (context, state) => const ProviderAvailabilityScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderDocuments,
+        builder: (context, state) => const ProviderDocumentsScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeProviderVerification,
+        builder: (context, state) =>
+            const ProviderVerificationStatusScreen(),
       ),
       GoRoute(
         path: AppConstants.routeClientCategories,
