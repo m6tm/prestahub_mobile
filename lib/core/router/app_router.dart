@@ -25,6 +25,10 @@ import 'package:prestahub/presentation/requests/detail/request_detail_screen.dar
 import 'package:prestahub/presentation/requests/detail/mission_detail_screen.dart';
 import 'package:prestahub/presentation/requests/history/mission_history_screen.dart';
 import 'package:prestahub/presentation/requests/models/service_request_models.dart';
+import 'package:prestahub/presentation/messages/list/conversation_list_screen.dart';
+import 'package:prestahub/presentation/messages/conversation/conversation_screen.dart';
+import 'package:prestahub/presentation/messages/call/call_screen.dart';
+import 'package:prestahub/presentation/messages/models/conversation_models.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(isAuthenticatedProvider);
@@ -170,6 +174,32 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) {
           final id = state.pathParameters['id'] ?? '';
           return MissionDetailScreen(missionId: id);
+        },
+      ),
+
+      // ── Client messagerie ───────────────────────────────────────────────
+      GoRoute(
+        path: AppConstants.routeClientMessages,
+        builder: (context, state) => const ConversationListScreen(),
+      ),
+      GoRoute(
+        path: AppConstants.routeClientConversation,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final extra = state.extra is ConversationSummary
+              ? state.extra as ConversationSummary
+              : null;
+          return ConversationScreen(conversationId: id, initial: extra);
+        },
+      ),
+      GoRoute(
+        path: AppConstants.routeClientCall,
+        builder: (context, state) {
+          final id = state.pathParameters['id'] ?? '';
+          final peer = state.extra is ConversationSummary
+              ? state.extra as ConversationSummary
+              : null;
+          return CallScreen(callId: id, peer: peer);
         },
       ),
     ],

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/constants/app_constants.dart';
 import '../../../core/theme/app_theme.dart';
+import '../../messages/models/conversation_models.dart';
 import '../models/service_request_models.dart';
 
 class RequestDetailScreen extends StatelessWidget {
@@ -451,6 +454,21 @@ class RequestDetailScreen extends StatelessWidget {
     );
   }
 
+  ConversationSummary _buildPeerConversation() {
+    return ConversationSummary(
+      id: 'CONV-$requestId',
+      requestId: requestId,
+      requestTitle: 'Remplacement tableau électrique',
+      requestStatus: _status,
+      peerName: 'Marie Leroi',
+      peerInitials: 'ML',
+      peerColor: PrestaHubTheme.primary,
+      lastMessage: '',
+      lastMessageTime: '',
+      isPeerOnline: true,
+    );
+  }
+
   Widget _buildBottomBar(BuildContext context) {
     final bottomPad = MediaQuery.of(context).padding.bottom;
     return Container(
@@ -463,7 +481,15 @@ class RequestDetailScreen extends StatelessWidget {
         children: [
           Expanded(
             child: GestureDetector(
-              onTap: () {},
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                final peer = _buildPeerConversation();
+                context.push(
+                  AppConstants.routeClientCall
+                      .replaceFirst(':id', peer.id),
+                  extra: peer,
+                );
+              },
               child: Container(
                 height: 48,
                 alignment: Alignment.center,
@@ -494,7 +520,15 @@ class RequestDetailScreen extends StatelessWidget {
           const SizedBox(width: 10),
           Expanded(
             child: GestureDetector(
-              onTap: () {},
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                final peer = _buildPeerConversation();
+                context.push(
+                  AppConstants.routeClientConversation
+                      .replaceFirst(':id', peer.id),
+                  extra: peer,
+                );
+              },
               child: Container(
                 height: 48,
                 alignment: Alignment.center,

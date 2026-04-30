@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:prestahub/application/auth/auth_notifier.dart';
 import 'package:prestahub/core/constants/app_constants.dart';
 import 'package:prestahub/presentation/home/widgets/home_header.widget.dart';
 import 'package:prestahub/presentation/home/widgets/home_search_bar.widget.dart';
@@ -58,31 +57,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               return;
             }
             if (i == 3) {
-              final confirm = await showDialog<bool>(
-                context: context,
-                builder: (ctx) => AlertDialog(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14)),
-                  title: const Text('Se déconnecter ?'),
-                  content: const Text(
-                      'Voulez-vous vraiment quitter votre session ?'),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(ctx, false),
-                      child: const Text('Annuler'),
-                    ),
-                    TextButton(
-                      onPressed: () => Navigator.pop(ctx, true),
-                      child: const Text('Déconnexion',
-                          style: TextStyle(color: Color(0xFFDC2626))),
-                    ),
-                  ],
-                ),
-              );
-              if (confirm == true && context.mounted) {
-                await ref.read(authNotifierProvider.notifier).signOut();
-                if (context.mounted) context.go(AppConstants.routeLogin);
-              }
+              context.push(AppConstants.routeClientMessages);
+              return;
+            }
+            if (i == 4) {
+              context.push(AppConstants.routeClientProfile);
               return;
             }
             setState(() => _navIndex = i);
@@ -104,6 +83,7 @@ class _BottomNavBar extends StatelessWidget {
     (Icons.home_rounded, Icons.home_outlined, 'Accueil'),
     (Icons.search_rounded, Icons.search_outlined, 'Recherche'),
     (Icons.description_rounded, Icons.description_outlined, 'Missions'),
+    (Icons.chat_bubble_rounded, Icons.chat_bubble_outline_rounded, 'Messages'),
     (Icons.person_rounded, Icons.person_outline_rounded, 'Profil'),
   ];
 
@@ -118,16 +98,14 @@ class _BottomNavBar extends StatelessWidget {
         border: Border(top: BorderSide(color: Color(0xFFE5E7EB))),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: _items.asMap().entries.map((e) {
           final i = e.key;
           final (activeIcon, inactiveIcon, label) = e.value;
           final isActive = currentIndex == i;
-          return GestureDetector(
-            onTap: () => onTap(i),
-            behavior: HitTestBehavior.opaque,
-            child: SizedBox(
-              width: 72,
+          return Expanded(
+            child: GestureDetector(
+              onTap: () => onTap(i),
+              behavior: HitTestBehavior.opaque,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

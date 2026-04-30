@@ -28,6 +28,8 @@ class AppConstants {
   static const String routeClientProviderDetail = '/client/provider/:id';
   static const String routeClientRequests = '/client/requests';
   static const String routeClientMessages = '/client/messages';
+  static const String routeClientConversation = '/client/messages/:id';
+  static const String routeClientCall = '/client/call/:id';
   static const String routeClientProfile = '/client/profile';
 
   // Client — demandes de service
