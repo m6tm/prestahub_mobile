@@ -1,0 +1,30 @@
+search:
+  placeholder: Search for a service...
+  filters: Filters
+  distance: Distance
+  price_per_hour: Price per hour
+  min: Min
+  max: Max
+  apply: Apply
+  reset: Reset
+categories:
+  title: Popular categories
+  view_all: View all
+  plumbing: Plumbing
+  electricity: Electricity
+  cleaning: Cleaning
+  painting: Painting
+  it: IT & Technology
+  events: Events
+  health: Health & Wellness
+  construction: Building & Construction
+providers:
+  nearby: Nearby providers
+  rating: "${count} reviews"
+  view_profile: View profile
+  request_quote: Request a quote
+  free_quote: Free quote
+  about: About
+  services: Services
+  reviews: Latest reviews
+  report_review: Report this review

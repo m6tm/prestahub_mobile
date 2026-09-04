@@ -1,0 +1,9 @@
+title: Messages
+empty: No conversations
+placeholder: Write a message...
+send: Send
+call: Call
+status:
+  delivered: Delivered
+  read: Read
+  typing: Typing...

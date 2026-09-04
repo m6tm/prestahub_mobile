@@ -1,0 +1,30 @@
+search:
+  placeholder: Rechercher un service...
+  filters: Filtres
+  distance: Distance
+  price_per_hour: Prix/heure
+  min: Min
+  max: Max
+  apply: Appliquer
+  reset: Réinitialiser
+categories:
+  title: Catégories populaires
+  view_all: Tout voir
+  plumbing: Plomberie
+  electricity: Électricité
+  cleaning: Ménage
+  painting: Peinture
+  it: Informatique
+  events: Événementiel
+  health: Santé & Bien-être
+  construction: Bâtiment & Travaux
+providers:
+  nearby: Prestataires près de vous
+  rating: "${count} avis"
+  view_profile: Voir le profil
+  request_quote: Demander un devis
+  free_quote: Devis gratuit
+  about: À propos
+  services: Prestations
+  reviews: Derniers avis
+  report_review: Signaler cet avis

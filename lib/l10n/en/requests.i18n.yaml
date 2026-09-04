@@ -1,0 +1,26 @@
+title: Requests
+status:
+  pending: Pending
+  accepted: Accepted
+  refused: Refused
+  in_progress: In progress
+  completed: Completed
+  cancelled: Cancelled
+actions:
+  accept: Accept
+  refuse: Refuse
+  cancel: Cancel
+  complete: Complete
+  confirm: Confirm
+  view_details: View details
+messages:
+  request_accepted: Request accepted. The client will be notified.
+  request_refused: Request refused. The client will be informed.
+  status_updated: Status updated.
+  chat_after_accept: Messaging will open after acceptance.
+  select_rating: Please select a rating before submitting.
+  review_thanks: Thank you for your review!
+  report_reason: Please specify the reason (minimum 10 characters).
+mission:
+  title: Mission
+  chat_coming_soon: Messaging coming soon.

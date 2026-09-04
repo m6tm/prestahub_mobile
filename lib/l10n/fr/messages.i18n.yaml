@@ -1,0 +1,9 @@
+title: Messages
+empty: Aucune conversation
+placeholder: Écrivez un message...
+send: Envoyer
+call: Appeler
+status:
+  delivered: Livré
+  read: Lu
+  typing: En train d'écrire...

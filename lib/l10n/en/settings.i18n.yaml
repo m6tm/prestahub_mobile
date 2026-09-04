@@ -1,0 +1,47 @@
+title: Settings
+sections:
+  account: Account
+  preferences: Preferences
+  security: Security
+  support: Support
+  legal: Legal
+actions:
+  edit_profile: Edit profile
+  addresses: My addresses
+  payment_methods: Payment methods
+  notifications: Notifications
+  theme: Theme
+  language: Language
+  privacy: Privacy
+  change_password: Change password
+  two_factor: Two-factor authentication
+  connected_devices: Connected devices
+  contact_support: Contact support
+  report_issue: Report an issue
+  terms: Terms of service
+  privacy_policy: Privacy policy
+  logout: Log out
+  delete_account: Delete my account
+  export_data: Export my data
+  save: Save
+  cancel: Cancel
+  confirm: Confirm
+  delete: Delete
+  edit: Edit
+themes:
+  system: System
+  light: Light
+  dark: Dark
+languages:
+  french: Français
+  english: English
+messages:
+  profile_updated: Profile updated.
+  password_updated: Password updated.
+  logout_confirm: Are you sure you want to log out?
+  delete_account_confirm: This action is irreversible. Continue?
+  data_export_info: An archive will be sent to you by email within 24 hours.
+  issue_reported: Report saved. Thank you for your feedback.
+  message_sent: Message sent. We will reply within 24 hours.
+  device_disconnected: Device disconnected.
+  all_devices_disconnected: All other sessions have been disconnected.

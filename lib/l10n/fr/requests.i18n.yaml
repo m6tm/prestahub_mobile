@@ -1,0 +1,26 @@
+title: Demandes
+status:
+  pending: En attente
+  accepted: Acceptée
+  refused: Refusée
+  in_progress: En cours
+  completed: Terminée
+  cancelled: Annulée
+actions:
+  accept: Accepter
+  refuse: Refuser
+  cancel: Annuler
+  complete: Terminer
+  confirm: Confirmer
+  view_details: Voir les détails
+messages:
+  request_accepted: Demande acceptée. Le client sera notifié.
+  request_refused: Demande refusée. Le client sera informé.
+  status_updated: Statut mis à jour.
+  chat_after_accept: La messagerie s'ouvrira après acceptation.
+  select_rating: Sélectionnez une note avant d'envoyer.
+  review_thanks: Merci pour votre avis !
+  report_reason: Précisez le motif (minimum 10 caractères).
+mission:
+  title: Mission
+  chat_coming_soon: Messagerie à venir.

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 2
-/// Strings: 226 (113 per locale)
+/// Strings: 448 (224 per locale)
 ///
-/// Built on 2026-03-25 at 20:45 UTC
+/// Built on 2026-08-21 at 08:00 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -150,8 +150,13 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	// Translations
 	late final _TranslationsAuthFr auth = _TranslationsAuthFr._(_root);
 	late final _TranslationsCommonFr common = _TranslationsCommonFr._(_root);
+	late final _TranslationsDiscoveryFr discovery = _TranslationsDiscoveryFr._(_root);
+	late final _TranslationsErrorsFr errors = _TranslationsErrorsFr._(_root);
 	late final _TranslationsHomeFr home = _TranslationsHomeFr._(_root);
+	late final _TranslationsMessagesFr messages = _TranslationsMessagesFr._(_root);
 	late final _TranslationsOnboardingFr onboarding = _TranslationsOnboardingFr._(_root);
+	late final _TranslationsRequestsFr requests = _TranslationsRequestsFr._(_root);
+	late final _TranslationsSettingsFr settings = _TranslationsSettingsFr._(_root);
 }
 
 // Path: auth
@@ -182,6 +187,33 @@ class _TranslationsCommonFr {
 	late final _TranslationsCommonLabelsFr labels = _TranslationsCommonLabelsFr._(_root);
 }
 
+// Path: discovery
+class _TranslationsDiscoveryFr {
+	_TranslationsDiscoveryFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	late final _TranslationsDiscoverySearchFr search = _TranslationsDiscoverySearchFr._(_root);
+	late final _TranslationsDiscoveryCategoriesFr categories = _TranslationsDiscoveryCategoriesFr._(_root);
+	late final _TranslationsDiscoveryProvidersFr providers = _TranslationsDiscoveryProvidersFr._(_root);
+}
+
+// Path: errors
+class _TranslationsErrorsFr {
+	_TranslationsErrorsFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get generic => 'Une erreur est survenue. Veuillez réessayer.';
+	String get noConnection => 'Pas de connexion internet.';
+	String get notFound => 'Ressource introuvable.';
+	String get unauthorized => 'Session expirée. Veuillez vous reconnecter.';
+	late final _TranslationsErrorsValidationFr validation = _TranslationsErrorsValidationFr._(_root);
+	late final _TranslationsErrorsFileFr file = _TranslationsErrorsFileFr._(_root);
+}
+
 // Path: home
 class _TranslationsHomeFr {
 	_TranslationsHomeFr._(this._root);
@@ -201,6 +233,21 @@ class _TranslationsHomeFr {
 	late final _TranslationsHomeNavFr nav = _TranslationsHomeNavFr._(_root);
 }
 
+// Path: messages
+class _TranslationsMessagesFr {
+	_TranslationsMessagesFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Messages';
+	String get empty => 'Aucune conversation';
+	String get placeholder => 'Écrivez un message...';
+	String get send => 'Envoyer';
+	String get call => 'Appeler';
+	late final _TranslationsMessagesStatusFr status = _TranslationsMessagesStatusFr._(_root);
+}
+
 // Path: onboarding
 class _TranslationsOnboardingFr {
 	_TranslationsOnboardingFr._(this._root);
@@ -212,6 +259,35 @@ class _TranslationsOnboardingFr {
 	String get start => 'Commencer';
 	String get next => 'Suivant';
 	late final _TranslationsOnboardingPagesFr pages = _TranslationsOnboardingPagesFr._(_root);
+}
+
+// Path: requests
+class _TranslationsRequestsFr {
+	_TranslationsRequestsFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Demandes';
+	late final _TranslationsRequestsStatusFr status = _TranslationsRequestsStatusFr._(_root);
+	late final _TranslationsRequestsActionsFr actions = _TranslationsRequestsActionsFr._(_root);
+	late final _TranslationsRequestsMessagesFr messages = _TranslationsRequestsMessagesFr._(_root);
+	late final _TranslationsRequestsMissionFr mission = _TranslationsRequestsMissionFr._(_root);
+}
+
+// Path: settings
+class _TranslationsSettingsFr {
+	_TranslationsSettingsFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Paramètres';
+	late final _TranslationsSettingsSectionsFr sections = _TranslationsSettingsSectionsFr._(_root);
+	late final _TranslationsSettingsActionsFr actions = _TranslationsSettingsActionsFr._(_root);
+	late final _TranslationsSettingsThemesFr themes = _TranslationsSettingsThemesFr._(_root);
+	late final _TranslationsSettingsLanguagesFr languages = _TranslationsSettingsLanguagesFr._(_root);
+	late final _TranslationsSettingsMessagesFr messages = _TranslationsSettingsMessagesFr._(_root);
 }
 
 // Path: auth.login
@@ -377,6 +453,86 @@ class _TranslationsCommonLabelsFr {
 	String get required => 'Champ obligatoire';
 }
 
+// Path: discovery.search
+class _TranslationsDiscoverySearchFr {
+	_TranslationsDiscoverySearchFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get placeholder => 'Rechercher un service...';
+	String get filters => 'Filtres';
+	String get distance => 'Distance';
+	String get pricePerHour => 'Prix/heure';
+	String get min => 'Min';
+	String get max => 'Max';
+	String get apply => 'Appliquer';
+	String get reset => 'Réinitialiser';
+}
+
+// Path: discovery.categories
+class _TranslationsDiscoveryCategoriesFr {
+	_TranslationsDiscoveryCategoriesFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Catégories populaires';
+	String get viewAll => 'Tout voir';
+	String get plumbing => 'Plomberie';
+	String get electricity => 'Électricité';
+	String get cleaning => 'Ménage';
+	String get painting => 'Peinture';
+	String get it => 'Informatique';
+	String get events => 'Événementiel';
+	String get health => 'Santé & Bien-être';
+	String get construction => 'Bâtiment & Travaux';
+}
+
+// Path: discovery.providers
+class _TranslationsDiscoveryProvidersFr {
+	_TranslationsDiscoveryProvidersFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get nearby => 'Prestataires près de vous';
+	String rating({required Object count}) => '${count} avis';
+	String get viewProfile => 'Voir le profil';
+	String get requestQuote => 'Demander un devis';
+	String get freeQuote => 'Devis gratuit';
+	String get about => 'À propos';
+	String get services => 'Prestations';
+	String get reviews => 'Derniers avis';
+	String get reportReview => 'Signaler cet avis';
+}
+
+// Path: errors.validation
+class _TranslationsErrorsValidationFr {
+	_TranslationsErrorsValidationFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get required => 'Champ obligatoire';
+	String get invalidEmail => 'Adresse email invalide';
+	String get invalidPhone => 'Numéro de téléphone invalide';
+	String get passwordTooWeak => 'Mot de passe trop faible';
+	String get passwordsMismatch => 'Les mots de passe ne correspondent pas';
+	String minLength({required Object min}) => 'Doit contenir au moins ${min} caractères';
+}
+
+// Path: errors.file
+class _TranslationsErrorsFileFr {
+	_TranslationsErrorsFileFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get uploadFailed => 'Impossible de charger le fichier.';
+	String get imagePickerFailed => 'Impossible de sélectionner l\'image.';
+}
+
 // Path: home.categories
 class _TranslationsHomeCategoriesFr {
 	_TranslationsHomeCategoriesFr._(this._root);
@@ -403,6 +559,18 @@ class _TranslationsHomeNavFr {
 	String get profile => 'Profil';
 }
 
+// Path: messages.status
+class _TranslationsMessagesStatusFr {
+	_TranslationsMessagesStatusFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get delivered => 'Livré';
+	String get read => 'Lu';
+	String get typing => 'En train d\'écrire...';
+}
+
 // Path: onboarding.pages
 class _TranslationsOnboardingPagesFr {
 	_TranslationsOnboardingPagesFr._(this._root);
@@ -413,6 +581,149 @@ class _TranslationsOnboardingPagesFr {
 	late final _TranslationsOnboardingPagesFindFr find = _TranslationsOnboardingPagesFindFr._(_root);
 	late final _TranslationsOnboardingPagesBookFr book = _TranslationsOnboardingPagesBookFr._(_root);
 	late final _TranslationsOnboardingPagesRateFr rate = _TranslationsOnboardingPagesRateFr._(_root);
+}
+
+// Path: requests.status
+class _TranslationsRequestsStatusFr {
+	_TranslationsRequestsStatusFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get pending => 'En attente';
+	String get accepted => 'Acceptée';
+	String get refused => 'Refusée';
+	String get inProgress => 'En cours';
+	String get completed => 'Terminée';
+	String get cancelled => 'Annulée';
+}
+
+// Path: requests.actions
+class _TranslationsRequestsActionsFr {
+	_TranslationsRequestsActionsFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get accept => 'Accepter';
+	String get refuse => 'Refuser';
+	String get cancel => 'Annuler';
+	String get complete => 'Terminer';
+	String get confirm => 'Confirmer';
+	String get viewDetails => 'Voir les détails';
+}
+
+// Path: requests.messages
+class _TranslationsRequestsMessagesFr {
+	_TranslationsRequestsMessagesFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get requestAccepted => 'Demande acceptée. Le client sera notifié.';
+	String get requestRefused => 'Demande refusée. Le client sera informé.';
+	String get statusUpdated => 'Statut mis à jour.';
+	String get chatAfterAccept => 'La messagerie s\'ouvrira après acceptation.';
+	String get selectRating => 'Sélectionnez une note avant d\'envoyer.';
+	String get reviewThanks => 'Merci pour votre avis !';
+	String get reportReason => 'Précisez le motif (minimum 10 caractères).';
+}
+
+// Path: requests.mission
+class _TranslationsRequestsMissionFr {
+	_TranslationsRequestsMissionFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get title => 'Mission';
+	String get chatComingSoon => 'Messagerie à venir.';
+}
+
+// Path: settings.sections
+class _TranslationsSettingsSectionsFr {
+	_TranslationsSettingsSectionsFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get account => 'Compte';
+	String get preferences => 'Préférences';
+	String get security => 'Sécurité';
+	String get support => 'Support';
+	String get legal => 'Légal';
+}
+
+// Path: settings.actions
+class _TranslationsSettingsActionsFr {
+	_TranslationsSettingsActionsFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get editProfile => 'Modifier le profil';
+	String get addresses => 'Mes adresses';
+	String get paymentMethods => 'Moyens de paiement';
+	String get notifications => 'Notifications';
+	String get theme => 'Thème';
+	String get language => 'Langue';
+	String get privacy => 'Confidentialité';
+	String get changePassword => 'Changer le mot de passe';
+	String get twoFactor => 'Authentification à deux facteurs';
+	String get connectedDevices => 'Appareils connectés';
+	String get contactSupport => 'Contacter le support';
+	String get reportIssue => 'Signaler un problème';
+	String get terms => 'Conditions générales';
+	String get privacyPolicy => 'Politique de confidentialité';
+	String get logout => 'Se déconnecter';
+	String get deleteAccount => 'Supprimer mon compte';
+	String get exportData => 'Exporter mes données';
+	String get save => 'Enregistrer';
+	String get cancel => 'Annuler';
+	String get confirm => 'Confirmer';
+	String get delete => 'Supprimer';
+	String get edit => 'Modifier';
+}
+
+// Path: settings.themes
+class _TranslationsSettingsThemesFr {
+	_TranslationsSettingsThemesFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get system => 'Système';
+	String get light => 'Clair';
+	String get dark => 'Sombre';
+}
+
+// Path: settings.languages
+class _TranslationsSettingsLanguagesFr {
+	_TranslationsSettingsLanguagesFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get french => 'Français';
+	String get english => 'English';
+}
+
+// Path: settings.messages
+class _TranslationsSettingsMessagesFr {
+	_TranslationsSettingsMessagesFr._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get profileUpdated => 'Profil mis à jour.';
+	String get passwordUpdated => 'Mot de passe mis à jour.';
+	String get logoutConfirm => 'Êtes-vous sûr de vouloir vous déconnecter ?';
+	String get deleteAccountConfirm => 'Cette action est irréversible. Continuer ?';
+	String get dataExportInfo => 'Une archive vous sera envoyée par email sous 24h.';
+	String get issueReported => 'Signalement enregistré. Merci pour votre retour.';
+	String get messageSent => 'Message envoyé. Nous vous répondrons sous 24h.';
+	String get deviceDisconnected => 'Appareil déconnecté.';
+	String get allDevicesDisconnected => 'Toutes les autres sessions ont été déconnectées.';
 }
 
 // Path: auth.signup.categories
@@ -501,8 +812,13 @@ class _TranslationsEn extends Translations {
 	// Translations
 	@override late final _TranslationsAuthEn auth = _TranslationsAuthEn._(_root);
 	@override late final _TranslationsCommonEn common = _TranslationsCommonEn._(_root);
+	@override late final _TranslationsDiscoveryEn discovery = _TranslationsDiscoveryEn._(_root);
+	@override late final _TranslationsErrorsEn errors = _TranslationsErrorsEn._(_root);
 	@override late final _TranslationsHomeEn home = _TranslationsHomeEn._(_root);
+	@override late final _TranslationsMessagesEn messages = _TranslationsMessagesEn._(_root);
 	@override late final _TranslationsOnboardingEn onboarding = _TranslationsOnboardingEn._(_root);
+	@override late final _TranslationsRequestsEn requests = _TranslationsRequestsEn._(_root);
+	@override late final _TranslationsSettingsEn settings = _TranslationsSettingsEn._(_root);
 }
 
 // Path: auth
@@ -533,6 +849,33 @@ class _TranslationsCommonEn extends _TranslationsCommonFr {
 	@override late final _TranslationsCommonLabelsEn labels = _TranslationsCommonLabelsEn._(_root);
 }
 
+// Path: discovery
+class _TranslationsDiscoveryEn extends _TranslationsDiscoveryFr {
+	_TranslationsDiscoveryEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsDiscoverySearchEn search = _TranslationsDiscoverySearchEn._(_root);
+	@override late final _TranslationsDiscoveryCategoriesEn categories = _TranslationsDiscoveryCategoriesEn._(_root);
+	@override late final _TranslationsDiscoveryProvidersEn providers = _TranslationsDiscoveryProvidersEn._(_root);
+}
+
+// Path: errors
+class _TranslationsErrorsEn extends _TranslationsErrorsFr {
+	_TranslationsErrorsEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get generic => 'An error occurred. Please try again.';
+	@override String get noConnection => 'No internet connection.';
+	@override String get notFound => 'Resource not found.';
+	@override String get unauthorized => 'Session expired. Please log in again.';
+	@override late final _TranslationsErrorsValidationEn validation = _TranslationsErrorsValidationEn._(_root);
+	@override late final _TranslationsErrorsFileEn file = _TranslationsErrorsFileEn._(_root);
+}
+
 // Path: home
 class _TranslationsHomeEn extends _TranslationsHomeFr {
 	_TranslationsHomeEn._(_TranslationsEn root) : this._root = root, super._(root);
@@ -552,6 +895,21 @@ class _TranslationsHomeEn extends _TranslationsHomeFr {
 	@override late final _TranslationsHomeNavEn nav = _TranslationsHomeNavEn._(_root);
 }
 
+// Path: messages
+class _TranslationsMessagesEn extends _TranslationsMessagesFr {
+	_TranslationsMessagesEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Messages';
+	@override String get empty => 'No conversations';
+	@override String get placeholder => 'Write a message...';
+	@override String get send => 'Send';
+	@override String get call => 'Call';
+	@override late final _TranslationsMessagesStatusEn status = _TranslationsMessagesStatusEn._(_root);
+}
+
 // Path: onboarding
 class _TranslationsOnboardingEn extends _TranslationsOnboardingFr {
 	_TranslationsOnboardingEn._(_TranslationsEn root) : this._root = root, super._(root);
@@ -563,6 +921,35 @@ class _TranslationsOnboardingEn extends _TranslationsOnboardingFr {
 	@override String get start => 'Get Started';
 	@override String get next => 'Next';
 	@override late final _TranslationsOnboardingPagesEn pages = _TranslationsOnboardingPagesEn._(_root);
+}
+
+// Path: requests
+class _TranslationsRequestsEn extends _TranslationsRequestsFr {
+	_TranslationsRequestsEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Requests';
+	@override late final _TranslationsRequestsStatusEn status = _TranslationsRequestsStatusEn._(_root);
+	@override late final _TranslationsRequestsActionsEn actions = _TranslationsRequestsActionsEn._(_root);
+	@override late final _TranslationsRequestsMessagesEn messages = _TranslationsRequestsMessagesEn._(_root);
+	@override late final _TranslationsRequestsMissionEn mission = _TranslationsRequestsMissionEn._(_root);
+}
+
+// Path: settings
+class _TranslationsSettingsEn extends _TranslationsSettingsFr {
+	_TranslationsSettingsEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Settings';
+	@override late final _TranslationsSettingsSectionsEn sections = _TranslationsSettingsSectionsEn._(_root);
+	@override late final _TranslationsSettingsActionsEn actions = _TranslationsSettingsActionsEn._(_root);
+	@override late final _TranslationsSettingsThemesEn themes = _TranslationsSettingsThemesEn._(_root);
+	@override late final _TranslationsSettingsLanguagesEn languages = _TranslationsSettingsLanguagesEn._(_root);
+	@override late final _TranslationsSettingsMessagesEn messages = _TranslationsSettingsMessagesEn._(_root);
 }
 
 // Path: auth.login
@@ -728,6 +1115,86 @@ class _TranslationsCommonLabelsEn extends _TranslationsCommonLabelsFr {
 	@override String get required => 'Required field';
 }
 
+// Path: discovery.search
+class _TranslationsDiscoverySearchEn extends _TranslationsDiscoverySearchFr {
+	_TranslationsDiscoverySearchEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get placeholder => 'Search for a service...';
+	@override String get filters => 'Filters';
+	@override String get distance => 'Distance';
+	@override String get pricePerHour => 'Price per hour';
+	@override String get min => 'Min';
+	@override String get max => 'Max';
+	@override String get apply => 'Apply';
+	@override String get reset => 'Reset';
+}
+
+// Path: discovery.categories
+class _TranslationsDiscoveryCategoriesEn extends _TranslationsDiscoveryCategoriesFr {
+	_TranslationsDiscoveryCategoriesEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Popular categories';
+	@override String get viewAll => 'View all';
+	@override String get plumbing => 'Plumbing';
+	@override String get electricity => 'Electricity';
+	@override String get cleaning => 'Cleaning';
+	@override String get painting => 'Painting';
+	@override String get it => 'IT & Technology';
+	@override String get events => 'Events';
+	@override String get health => 'Health & Wellness';
+	@override String get construction => 'Building & Construction';
+}
+
+// Path: discovery.providers
+class _TranslationsDiscoveryProvidersEn extends _TranslationsDiscoveryProvidersFr {
+	_TranslationsDiscoveryProvidersEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get nearby => 'Nearby providers';
+	@override String rating({required Object count}) => '${count} reviews';
+	@override String get viewProfile => 'View profile';
+	@override String get requestQuote => 'Request a quote';
+	@override String get freeQuote => 'Free quote';
+	@override String get about => 'About';
+	@override String get services => 'Services';
+	@override String get reviews => 'Latest reviews';
+	@override String get reportReview => 'Report this review';
+}
+
+// Path: errors.validation
+class _TranslationsErrorsValidationEn extends _TranslationsErrorsValidationFr {
+	_TranslationsErrorsValidationEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get required => 'Required field';
+	@override String get invalidEmail => 'Invalid email address';
+	@override String get invalidPhone => 'Invalid phone number';
+	@override String get passwordTooWeak => 'Password is too weak';
+	@override String get passwordsMismatch => 'Passwords do not match';
+	@override String minLength({required Object min}) => 'Must contain at least ${min} characters';
+}
+
+// Path: errors.file
+class _TranslationsErrorsFileEn extends _TranslationsErrorsFileFr {
+	_TranslationsErrorsFileEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get uploadFailed => 'Unable to upload the file.';
+	@override String get imagePickerFailed => 'Unable to select the image.';
+}
+
 // Path: home.categories
 class _TranslationsHomeCategoriesEn extends _TranslationsHomeCategoriesFr {
 	_TranslationsHomeCategoriesEn._(_TranslationsEn root) : this._root = root, super._(root);
@@ -754,6 +1221,18 @@ class _TranslationsHomeNavEn extends _TranslationsHomeNavFr {
 	@override String get profile => 'Profile';
 }
 
+// Path: messages.status
+class _TranslationsMessagesStatusEn extends _TranslationsMessagesStatusFr {
+	_TranslationsMessagesStatusEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get delivered => 'Delivered';
+	@override String get read => 'Read';
+	@override String get typing => 'Typing...';
+}
+
 // Path: onboarding.pages
 class _TranslationsOnboardingPagesEn extends _TranslationsOnboardingPagesFr {
 	_TranslationsOnboardingPagesEn._(_TranslationsEn root) : this._root = root, super._(root);
@@ -764,6 +1243,149 @@ class _TranslationsOnboardingPagesEn extends _TranslationsOnboardingPagesFr {
 	@override late final _TranslationsOnboardingPagesFindEn find = _TranslationsOnboardingPagesFindEn._(_root);
 	@override late final _TranslationsOnboardingPagesBookEn book = _TranslationsOnboardingPagesBookEn._(_root);
 	@override late final _TranslationsOnboardingPagesRateEn rate = _TranslationsOnboardingPagesRateEn._(_root);
+}
+
+// Path: requests.status
+class _TranslationsRequestsStatusEn extends _TranslationsRequestsStatusFr {
+	_TranslationsRequestsStatusEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get pending => 'Pending';
+	@override String get accepted => 'Accepted';
+	@override String get refused => 'Refused';
+	@override String get inProgress => 'In progress';
+	@override String get completed => 'Completed';
+	@override String get cancelled => 'Cancelled';
+}
+
+// Path: requests.actions
+class _TranslationsRequestsActionsEn extends _TranslationsRequestsActionsFr {
+	_TranslationsRequestsActionsEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get accept => 'Accept';
+	@override String get refuse => 'Refuse';
+	@override String get cancel => 'Cancel';
+	@override String get complete => 'Complete';
+	@override String get confirm => 'Confirm';
+	@override String get viewDetails => 'View details';
+}
+
+// Path: requests.messages
+class _TranslationsRequestsMessagesEn extends _TranslationsRequestsMessagesFr {
+	_TranslationsRequestsMessagesEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get requestAccepted => 'Request accepted. The client will be notified.';
+	@override String get requestRefused => 'Request refused. The client will be informed.';
+	@override String get statusUpdated => 'Status updated.';
+	@override String get chatAfterAccept => 'Messaging will open after acceptance.';
+	@override String get selectRating => 'Please select a rating before submitting.';
+	@override String get reviewThanks => 'Thank you for your review!';
+	@override String get reportReason => 'Please specify the reason (minimum 10 characters).';
+}
+
+// Path: requests.mission
+class _TranslationsRequestsMissionEn extends _TranslationsRequestsMissionFr {
+	_TranslationsRequestsMissionEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Mission';
+	@override String get chatComingSoon => 'Messaging coming soon.';
+}
+
+// Path: settings.sections
+class _TranslationsSettingsSectionsEn extends _TranslationsSettingsSectionsFr {
+	_TranslationsSettingsSectionsEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get account => 'Account';
+	@override String get preferences => 'Preferences';
+	@override String get security => 'Security';
+	@override String get support => 'Support';
+	@override String get legal => 'Legal';
+}
+
+// Path: settings.actions
+class _TranslationsSettingsActionsEn extends _TranslationsSettingsActionsFr {
+	_TranslationsSettingsActionsEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get editProfile => 'Edit profile';
+	@override String get addresses => 'My addresses';
+	@override String get paymentMethods => 'Payment methods';
+	@override String get notifications => 'Notifications';
+	@override String get theme => 'Theme';
+	@override String get language => 'Language';
+	@override String get privacy => 'Privacy';
+	@override String get changePassword => 'Change password';
+	@override String get twoFactor => 'Two-factor authentication';
+	@override String get connectedDevices => 'Connected devices';
+	@override String get contactSupport => 'Contact support';
+	@override String get reportIssue => 'Report an issue';
+	@override String get terms => 'Terms of service';
+	@override String get privacyPolicy => 'Privacy policy';
+	@override String get logout => 'Log out';
+	@override String get deleteAccount => 'Delete my account';
+	@override String get exportData => 'Export my data';
+	@override String get save => 'Save';
+	@override String get cancel => 'Cancel';
+	@override String get confirm => 'Confirm';
+	@override String get delete => 'Delete';
+	@override String get edit => 'Edit';
+}
+
+// Path: settings.themes
+class _TranslationsSettingsThemesEn extends _TranslationsSettingsThemesFr {
+	_TranslationsSettingsThemesEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get system => 'System';
+	@override String get light => 'Light';
+	@override String get dark => 'Dark';
+}
+
+// Path: settings.languages
+class _TranslationsSettingsLanguagesEn extends _TranslationsSettingsLanguagesFr {
+	_TranslationsSettingsLanguagesEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get french => 'Français';
+	@override String get english => 'English';
+}
+
+// Path: settings.messages
+class _TranslationsSettingsMessagesEn extends _TranslationsSettingsMessagesFr {
+	_TranslationsSettingsMessagesEn._(_TranslationsEn root) : this._root = root, super._(root);
+
+	@override final _TranslationsEn _root; // ignore: unused_field
+
+	// Translations
+	@override String get profileUpdated => 'Profile updated.';
+	@override String get passwordUpdated => 'Password updated.';
+	@override String get logoutConfirm => 'Are you sure you want to log out?';
+	@override String get deleteAccountConfirm => 'This action is irreversible. Continue?';
+	@override String get dataExportInfo => 'An archive will be sent to you by email within 24 hours.';
+	@override String get issueReported => 'Report saved. Thank you for your feedback.';
+	@override String get messageSent => 'Message sent. We will reply within 24 hours.';
+	@override String get deviceDisconnected => 'Device disconnected.';
+	@override String get allDevicesDisconnected => 'All other sessions have been disconnected.';
 }
 
 // Path: auth.signup.categories
@@ -918,6 +1540,45 @@ extension on Translations {
 			case 'common.labels.loading': return 'Chargement...';
 			case 'common.labels.success': return 'Succès';
 			case 'common.labels.required': return 'Champ obligatoire';
+			case 'discovery.search.placeholder': return 'Rechercher un service...';
+			case 'discovery.search.filters': return 'Filtres';
+			case 'discovery.search.distance': return 'Distance';
+			case 'discovery.search.pricePerHour': return 'Prix/heure';
+			case 'discovery.search.min': return 'Min';
+			case 'discovery.search.max': return 'Max';
+			case 'discovery.search.apply': return 'Appliquer';
+			case 'discovery.search.reset': return 'Réinitialiser';
+			case 'discovery.categories.title': return 'Catégories populaires';
+			case 'discovery.categories.viewAll': return 'Tout voir';
+			case 'discovery.categories.plumbing': return 'Plomberie';
+			case 'discovery.categories.electricity': return 'Électricité';
+			case 'discovery.categories.cleaning': return 'Ménage';
+			case 'discovery.categories.painting': return 'Peinture';
+			case 'discovery.categories.it': return 'Informatique';
+			case 'discovery.categories.events': return 'Événementiel';
+			case 'discovery.categories.health': return 'Santé & Bien-être';
+			case 'discovery.categories.construction': return 'Bâtiment & Travaux';
+			case 'discovery.providers.nearby': return 'Prestataires près de vous';
+			case 'discovery.providers.rating': return ({required Object count}) => '${count} avis';
+			case 'discovery.providers.viewProfile': return 'Voir le profil';
+			case 'discovery.providers.requestQuote': return 'Demander un devis';
+			case 'discovery.providers.freeQuote': return 'Devis gratuit';
+			case 'discovery.providers.about': return 'À propos';
+			case 'discovery.providers.services': return 'Prestations';
+			case 'discovery.providers.reviews': return 'Derniers avis';
+			case 'discovery.providers.reportReview': return 'Signaler cet avis';
+			case 'errors.generic': return 'Une erreur est survenue. Veuillez réessayer.';
+			case 'errors.noConnection': return 'Pas de connexion internet.';
+			case 'errors.notFound': return 'Ressource introuvable.';
+			case 'errors.unauthorized': return 'Session expirée. Veuillez vous reconnecter.';
+			case 'errors.validation.required': return 'Champ obligatoire';
+			case 'errors.validation.invalidEmail': return 'Adresse email invalide';
+			case 'errors.validation.invalidPhone': return 'Numéro de téléphone invalide';
+			case 'errors.validation.passwordTooWeak': return 'Mot de passe trop faible';
+			case 'errors.validation.passwordsMismatch': return 'Les mots de passe ne correspondent pas';
+			case 'errors.validation.minLength': return ({required Object min}) => 'Doit contenir au moins ${min} caractères';
+			case 'errors.file.uploadFailed': return 'Impossible de charger le fichier.';
+			case 'errors.file.imagePickerFailed': return 'Impossible de sélectionner l\'image.';
 			case 'home.welcomeBack': return 'Bon retour,';
 			case 'home.helloUser': return ({required Object name}) => 'Bonjour, ${name}';
 			case 'home.searchPlaceholder': return 'Rechercher un service...';
@@ -934,6 +1595,14 @@ extension on Translations {
 			case 'home.nav.search': return 'Recherche';
 			case 'home.nav.orders': return 'Commandes';
 			case 'home.nav.profile': return 'Profil';
+			case 'messages.title': return 'Messages';
+			case 'messages.empty': return 'Aucune conversation';
+			case 'messages.placeholder': return 'Écrivez un message...';
+			case 'messages.send': return 'Envoyer';
+			case 'messages.call': return 'Appeler';
+			case 'messages.status.delivered': return 'Livré';
+			case 'messages.status.read': return 'Lu';
+			case 'messages.status.typing': return 'En train d\'écrire...';
 			case 'onboarding.skip': return 'Ignorer';
 			case 'onboarding.start': return 'Commencer';
 			case 'onboarding.next': return 'Suivant';
@@ -943,6 +1612,70 @@ extension on Translations {
 			case 'onboarding.pages.book.description': return 'Planifiez vos interventions en quelques clics selon vos disponibilités.';
 			case 'onboarding.pages.rate.title': return 'Noter & Évaluer';
 			case 'onboarding.pages.rate.description': return 'Partagez votre expérience et aidez la communauté à grow en toute confiance.';
+			case 'requests.title': return 'Demandes';
+			case 'requests.status.pending': return 'En attente';
+			case 'requests.status.accepted': return 'Acceptée';
+			case 'requests.status.refused': return 'Refusée';
+			case 'requests.status.inProgress': return 'En cours';
+			case 'requests.status.completed': return 'Terminée';
+			case 'requests.status.cancelled': return 'Annulée';
+			case 'requests.actions.accept': return 'Accepter';
+			case 'requests.actions.refuse': return 'Refuser';
+			case 'requests.actions.cancel': return 'Annuler';
+			case 'requests.actions.complete': return 'Terminer';
+			case 'requests.actions.confirm': return 'Confirmer';
+			case 'requests.actions.viewDetails': return 'Voir les détails';
+			case 'requests.messages.requestAccepted': return 'Demande acceptée. Le client sera notifié.';
+			case 'requests.messages.requestRefused': return 'Demande refusée. Le client sera informé.';
+			case 'requests.messages.statusUpdated': return 'Statut mis à jour.';
+			case 'requests.messages.chatAfterAccept': return 'La messagerie s\'ouvrira après acceptation.';
+			case 'requests.messages.selectRating': return 'Sélectionnez une note avant d\'envoyer.';
+			case 'requests.messages.reviewThanks': return 'Merci pour votre avis !';
+			case 'requests.messages.reportReason': return 'Précisez le motif (minimum 10 caractères).';
+			case 'requests.mission.title': return 'Mission';
+			case 'requests.mission.chatComingSoon': return 'Messagerie à venir.';
+			case 'settings.title': return 'Paramètres';
+			case 'settings.sections.account': return 'Compte';
+			case 'settings.sections.preferences': return 'Préférences';
+			case 'settings.sections.security': return 'Sécurité';
+			case 'settings.sections.support': return 'Support';
+			case 'settings.sections.legal': return 'Légal';
+			case 'settings.actions.editProfile': return 'Modifier le profil';
+			case 'settings.actions.addresses': return 'Mes adresses';
+			case 'settings.actions.paymentMethods': return 'Moyens de paiement';
+			case 'settings.actions.notifications': return 'Notifications';
+			case 'settings.actions.theme': return 'Thème';
+			case 'settings.actions.language': return 'Langue';
+			case 'settings.actions.privacy': return 'Confidentialité';
+			case 'settings.actions.changePassword': return 'Changer le mot de passe';
+			case 'settings.actions.twoFactor': return 'Authentification à deux facteurs';
+			case 'settings.actions.connectedDevices': return 'Appareils connectés';
+			case 'settings.actions.contactSupport': return 'Contacter le support';
+			case 'settings.actions.reportIssue': return 'Signaler un problème';
+			case 'settings.actions.terms': return 'Conditions générales';
+			case 'settings.actions.privacyPolicy': return 'Politique de confidentialité';
+			case 'settings.actions.logout': return 'Se déconnecter';
+			case 'settings.actions.deleteAccount': return 'Supprimer mon compte';
+			case 'settings.actions.exportData': return 'Exporter mes données';
+			case 'settings.actions.save': return 'Enregistrer';
+			case 'settings.actions.cancel': return 'Annuler';
+			case 'settings.actions.confirm': return 'Confirmer';
+			case 'settings.actions.delete': return 'Supprimer';
+			case 'settings.actions.edit': return 'Modifier';
+			case 'settings.themes.system': return 'Système';
+			case 'settings.themes.light': return 'Clair';
+			case 'settings.themes.dark': return 'Sombre';
+			case 'settings.languages.french': return 'Français';
+			case 'settings.languages.english': return 'English';
+			case 'settings.messages.profileUpdated': return 'Profil mis à jour.';
+			case 'settings.messages.passwordUpdated': return 'Mot de passe mis à jour.';
+			case 'settings.messages.logoutConfirm': return 'Êtes-vous sûr de vouloir vous déconnecter ?';
+			case 'settings.messages.deleteAccountConfirm': return 'Cette action est irréversible. Continuer ?';
+			case 'settings.messages.dataExportInfo': return 'Une archive vous sera envoyée par email sous 24h.';
+			case 'settings.messages.issueReported': return 'Signalement enregistré. Merci pour votre retour.';
+			case 'settings.messages.messageSent': return 'Message envoyé. Nous vous répondrons sous 24h.';
+			case 'settings.messages.deviceDisconnected': return 'Appareil déconnecté.';
+			case 'settings.messages.allDevicesDisconnected': return 'Toutes les autres sessions ont été déconnectées.';
 			default: return null;
 		}
 	}
@@ -1039,6 +1772,45 @@ extension on _TranslationsEn {
 			case 'common.labels.loading': return 'Loading...';
 			case 'common.labels.success': return 'Success';
 			case 'common.labels.required': return 'Required field';
+			case 'discovery.search.placeholder': return 'Search for a service...';
+			case 'discovery.search.filters': return 'Filters';
+			case 'discovery.search.distance': return 'Distance';
+			case 'discovery.search.pricePerHour': return 'Price per hour';
+			case 'discovery.search.min': return 'Min';
+			case 'discovery.search.max': return 'Max';
+			case 'discovery.search.apply': return 'Apply';
+			case 'discovery.search.reset': return 'Reset';
+			case 'discovery.categories.title': return 'Popular categories';
+			case 'discovery.categories.viewAll': return 'View all';
+			case 'discovery.categories.plumbing': return 'Plumbing';
+			case 'discovery.categories.electricity': return 'Electricity';
+			case 'discovery.categories.cleaning': return 'Cleaning';
+			case 'discovery.categories.painting': return 'Painting';
+			case 'discovery.categories.it': return 'IT & Technology';
+			case 'discovery.categories.events': return 'Events';
+			case 'discovery.categories.health': return 'Health & Wellness';
+			case 'discovery.categories.construction': return 'Building & Construction';
+			case 'discovery.providers.nearby': return 'Nearby providers';
+			case 'discovery.providers.rating': return ({required Object count}) => '${count} reviews';
+			case 'discovery.providers.viewProfile': return 'View profile';
+			case 'discovery.providers.requestQuote': return 'Request a quote';
+			case 'discovery.providers.freeQuote': return 'Free quote';
+			case 'discovery.providers.about': return 'About';
+			case 'discovery.providers.services': return 'Services';
+			case 'discovery.providers.reviews': return 'Latest reviews';
+			case 'discovery.providers.reportReview': return 'Report this review';
+			case 'errors.generic': return 'An error occurred. Please try again.';
+			case 'errors.noConnection': return 'No internet connection.';
+			case 'errors.notFound': return 'Resource not found.';
+			case 'errors.unauthorized': return 'Session expired. Please log in again.';
+			case 'errors.validation.required': return 'Required field';
+			case 'errors.validation.invalidEmail': return 'Invalid email address';
+			case 'errors.validation.invalidPhone': return 'Invalid phone number';
+			case 'errors.validation.passwordTooWeak': return 'Password is too weak';
+			case 'errors.validation.passwordsMismatch': return 'Passwords do not match';
+			case 'errors.validation.minLength': return ({required Object min}) => 'Must contain at least ${min} characters';
+			case 'errors.file.uploadFailed': return 'Unable to upload the file.';
+			case 'errors.file.imagePickerFailed': return 'Unable to select the image.';
 			case 'home.welcomeBack': return 'Welcome back,';
 			case 'home.helloUser': return ({required Object name}) => 'Hello, ${name}';
 			case 'home.searchPlaceholder': return 'Search for a service...';
@@ -1055,6 +1827,14 @@ extension on _TranslationsEn {
 			case 'home.nav.search': return 'Search';
 			case 'home.nav.orders': return 'Orders';
 			case 'home.nav.profile': return 'Profile';
+			case 'messages.title': return 'Messages';
+			case 'messages.empty': return 'No conversations';
+			case 'messages.placeholder': return 'Write a message...';
+			case 'messages.send': return 'Send';
+			case 'messages.call': return 'Call';
+			case 'messages.status.delivered': return 'Delivered';
+			case 'messages.status.read': return 'Read';
+			case 'messages.status.typing': return 'Typing...';
 			case 'onboarding.skip': return 'Skip';
 			case 'onboarding.start': return 'Get Started';
 			case 'onboarding.next': return 'Next';
@@ -1064,6 +1844,70 @@ extension on _TranslationsEn {
 			case 'onboarding.pages.book.description': return 'Schedule services seamlessly at your convenience.';
 			case 'onboarding.pages.rate.title': return 'Rate & Review';
 			case 'onboarding.pages.rate.description': return 'Share your experience and help the community grow.';
+			case 'requests.title': return 'Requests';
+			case 'requests.status.pending': return 'Pending';
+			case 'requests.status.accepted': return 'Accepted';
+			case 'requests.status.refused': return 'Refused';
+			case 'requests.status.inProgress': return 'In progress';
+			case 'requests.status.completed': return 'Completed';
+			case 'requests.status.cancelled': return 'Cancelled';
+			case 'requests.actions.accept': return 'Accept';
+			case 'requests.actions.refuse': return 'Refuse';
+			case 'requests.actions.cancel': return 'Cancel';
+			case 'requests.actions.complete': return 'Complete';
+			case 'requests.actions.confirm': return 'Confirm';
+			case 'requests.actions.viewDetails': return 'View details';
+			case 'requests.messages.requestAccepted': return 'Request accepted. The client will be notified.';
+			case 'requests.messages.requestRefused': return 'Request refused. The client will be informed.';
+			case 'requests.messages.statusUpdated': return 'Status updated.';
+			case 'requests.messages.chatAfterAccept': return 'Messaging will open after acceptance.';
+			case 'requests.messages.selectRating': return 'Please select a rating before submitting.';
+			case 'requests.messages.reviewThanks': return 'Thank you for your review!';
+			case 'requests.messages.reportReason': return 'Please specify the reason (minimum 10 characters).';
+			case 'requests.mission.title': return 'Mission';
+			case 'requests.mission.chatComingSoon': return 'Messaging coming soon.';
+			case 'settings.title': return 'Settings';
+			case 'settings.sections.account': return 'Account';
+			case 'settings.sections.preferences': return 'Preferences';
+			case 'settings.sections.security': return 'Security';
+			case 'settings.sections.support': return 'Support';
+			case 'settings.sections.legal': return 'Legal';
+			case 'settings.actions.editProfile': return 'Edit profile';
+			case 'settings.actions.addresses': return 'My addresses';
+			case 'settings.actions.paymentMethods': return 'Payment methods';
+			case 'settings.actions.notifications': return 'Notifications';
+			case 'settings.actions.theme': return 'Theme';
+			case 'settings.actions.language': return 'Language';
+			case 'settings.actions.privacy': return 'Privacy';
+			case 'settings.actions.changePassword': return 'Change password';
+			case 'settings.actions.twoFactor': return 'Two-factor authentication';
+			case 'settings.actions.connectedDevices': return 'Connected devices';
+			case 'settings.actions.contactSupport': return 'Contact support';
+			case 'settings.actions.reportIssue': return 'Report an issue';
+			case 'settings.actions.terms': return 'Terms of service';
+			case 'settings.actions.privacyPolicy': return 'Privacy policy';
+			case 'settings.actions.logout': return 'Log out';
+			case 'settings.actions.deleteAccount': return 'Delete my account';
+			case 'settings.actions.exportData': return 'Export my data';
+			case 'settings.actions.save': return 'Save';
+			case 'settings.actions.cancel': return 'Cancel';
+			case 'settings.actions.confirm': return 'Confirm';
+			case 'settings.actions.delete': return 'Delete';
+			case 'settings.actions.edit': return 'Edit';
+			case 'settings.themes.system': return 'System';
+			case 'settings.themes.light': return 'Light';
+			case 'settings.themes.dark': return 'Dark';
+			case 'settings.languages.french': return 'Français';
+			case 'settings.languages.english': return 'English';
+			case 'settings.messages.profileUpdated': return 'Profile updated.';
+			case 'settings.messages.passwordUpdated': return 'Password updated.';
+			case 'settings.messages.logoutConfirm': return 'Are you sure you want to log out?';
+			case 'settings.messages.deleteAccountConfirm': return 'This action is irreversible. Continue?';
+			case 'settings.messages.dataExportInfo': return 'An archive will be sent to you by email within 24 hours.';
+			case 'settings.messages.issueReported': return 'Report saved. Thank you for your feedback.';
+			case 'settings.messages.messageSent': return 'Message sent. We will reply within 24 hours.';
+			case 'settings.messages.deviceDisconnected': return 'Device disconnected.';
+			case 'settings.messages.allDevicesDisconnected': return 'All other sessions have been disconnected.';
 			default: return null;
 		}
 	}

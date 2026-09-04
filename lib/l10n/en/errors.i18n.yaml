@@ -1,0 +1,14 @@
+generic: An error occurred. Please try again.
+no_connection: No internet connection.
+not_found: Resource not found.
+unauthorized: Session expired. Please log in again.
+validation:
+  required: Required field
+  invalid_email: Invalid email address
+  invalid_phone: Invalid phone number
+  password_too_weak: Password is too weak
+  passwords_mismatch: Passwords do not match
+  min_length: "Must contain at least ${min} characters"
+file:
+  upload_failed: Unable to upload the file.
+  image_picker_failed: Unable to select the image.

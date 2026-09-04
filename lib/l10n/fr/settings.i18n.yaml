@@ -1,0 +1,47 @@
+title: Paramètres
+sections:
+  account: Compte
+  preferences: Préférences
+  security: Sécurité
+  support: Support
+  legal: Légal
+actions:
+  edit_profile: Modifier le profil
+  addresses: Mes adresses
+  payment_methods: Moyens de paiement
+  notifications: Notifications
+  theme: Thème
+  language: Langue
+  privacy: Confidentialité
+  change_password: Changer le mot de passe
+  two_factor: Authentification à deux facteurs
+  connected_devices: Appareils connectés
+  contact_support: Contacter le support
+  report_issue: Signaler un problème
+  terms: Conditions générales
+  privacy_policy: Politique de confidentialité
+  logout: Se déconnecter
+  delete_account: Supprimer mon compte
+  export_data: Exporter mes données
+  save: Enregistrer
+  cancel: Annuler
+  confirm: Confirmer
+  delete: Supprimer
+  edit: Modifier
+themes:
+  system: Système
+  light: Clair
+  dark: Sombre
+languages:
+  french: Français
+  english: English
+messages:
+  profile_updated: Profil mis à jour.
+  password_updated: Mot de passe mis à jour.
+  logout_confirm: Êtes-vous sûr de vouloir vous déconnecter ?
+  delete_account_confirm: Cette action est irréversible. Continuer ?
+  data_export_info: Une archive vous sera envoyée par email sous 24h.
+  issue_reported: Signalement enregistré. Merci pour votre retour.
+  message_sent: Message envoyé. Nous vous répondrons sous 24h.
+  device_disconnected: Appareil déconnecté.
+  all_devices_disconnected: Toutes les autres sessions ont été déconnectées.

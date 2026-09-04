@@ -1,0 +1,14 @@
+generic: Une erreur est survenue. Veuillez réessayer.
+no_connection: Pas de connexion internet.
+not_found: Ressource introuvable.
+unauthorized: Session expirée. Veuillez vous reconnecter.
+validation:
+  required: Champ obligatoire
+  invalid_email: Adresse email invalide
+  invalid_phone: Numéro de téléphone invalide
+  password_too_weak: Mot de passe trop faible
+  passwords_mismatch: Les mots de passe ne correspondent pas
+  min_length: "Doit contenir au moins ${min} caractères"
+file:
+  upload_failed: Impossible de charger le fichier.
+  image_picker_failed: Impossible de sélectionner l'image.
